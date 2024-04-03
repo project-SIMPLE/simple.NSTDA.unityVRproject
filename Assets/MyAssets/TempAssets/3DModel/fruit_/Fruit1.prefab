@@ -134,8 +134,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.001352313, y: 0.0013805656, z: 0.0011919352}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.00065928814, y: 0.0006539254, z: 0.0006486138}
+  m_Center: {x: 0.00004927403, y: -0.000084008316, z: 0}
 --- !u!114 &8276048224074132161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +230,18 @@ MonoBehaviour:
       - m_Target: {fileID: 5089144136192167662}
         m_TargetAssemblyTypeName: Seed, Assembly-CSharp
         m_MethodName: Grabed
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 5103266293196923185}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
+        m_MethodName: set_useGravity
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
