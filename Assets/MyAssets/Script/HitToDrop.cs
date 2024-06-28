@@ -21,7 +21,7 @@ public class HitToDrop : MonoBehaviour
         }
         hitRigibody.useGravity = false;
     }
-    /*
+    
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -31,7 +31,7 @@ public class HitToDrop : MonoBehaviour
             ActiveHit();
         }
 
-    }*/
+    }
     public void ActiveHit()
     {
         hitRigibody.useGravity = true;
