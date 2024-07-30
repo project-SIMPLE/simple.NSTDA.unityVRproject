@@ -9,10 +9,14 @@ public class Seed : MonoBehaviour
     [SerializeField]
     private bool Detach = false;
     // Start is called before the first frame update
+    private Rigidbody rb;
 
     void Start()
     {
-        
+        if (this.GetComponent<Rigidbody>() != null)
+        {
+            rb = this.GetComponent<Rigidbody>();
+        }
     }
 
     // Update is called once per frame
@@ -40,5 +44,18 @@ public class Seed : MonoBehaviour
     public void SeedCollected()
     {
         Destroy(this.gameObject);
+    }
+    public void ActiveSeedPhysic()
+    {
+        if(rb != null)
+        {
+            Invoke("DelayAddPhysic",Random.Range(0.0f,0.75f));
+            
+        }
+    }
+
+    private void DelayAddPhysic()
+    {
+        rb.useGravity = true;
     }
 }
