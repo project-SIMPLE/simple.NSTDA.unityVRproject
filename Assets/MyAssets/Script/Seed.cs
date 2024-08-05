@@ -4,26 +4,42 @@ using UnityEngine;
 
 public class Seed : MonoBehaviour
 {
+    /// <summary>
+    /// Apple = 1
+    /// Orange = 2
+    /// Mango = 3
+    /// </summary>
+    [SerializeField]
+    private int seedID;
     [SerializeField]
     private bool pickUp = false;
     [SerializeField]
     private bool Detach = false;
     // Start is called before the first frame update
     private Rigidbody rb;
+    private Transform originTransform;
 
-    void Start()
+    private void Awake()
+    {
+        originTransform = this.gameObject.transform;
+    }
+    private void Start()
     {
         if (this.GetComponent<Rigidbody>() != null)
         {
             rb = this.GetComponent<Rigidbody>();
         }
+        TestbedManager.instance.OnResetSeedPosition += ResetSeedPosition;
+    }
+    private void OnDestroy()
+    {
+        TestbedManager.instance.OnResetSeedPosition -= ResetSeedPosition;
+    }
+    public int GetSeedID()
+    {
+        return seedID;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void DetachSeed()
     {
         Detach = true;
@@ -41,15 +57,23 @@ public class Seed : MonoBehaviour
     {
         return Detach;
     }
+    private void ResetSeedPosition()
+    {
+        this.gameObject.SetActive(true);
+    }
     public void SeedCollected()
     {
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+        this.gameObject.transform.position = originTransform.position;
+        this.gameObject.transform.rotation = originTransform.rotation;
+        this.gameObject.SetActive(false);
+        
     }
     public void ActiveSeedPhysic()
     {
         if(rb != null)
         {
-            Invoke("DelayAddPhysic",Random.Range(0.0f,0.75f));
+            Invoke("DelayAddPhysic",Random.Range(0.0f,0.5f));
             
         }
     }

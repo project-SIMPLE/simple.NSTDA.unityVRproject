@@ -23,6 +23,7 @@ public class FruitBunchWithHook : FruitBase
         if (fruits.Length <= 0) { this.gameObject.SetActive(false); }
         foreach (GameObject fruit in fruits)
         {
+            if (fruit == null) continue;
             if (fruit.GetComponent<Seed>()!= null)
             {
                 fruit.GetComponent<Seed>().ActiveSeedPhysic();

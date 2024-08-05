@@ -63,8 +63,7 @@ public class HUDController : MonoBehaviour
     }
     public void UpdateText1()
     {
-        text1.text =ScoreManager.instance.GetTreeScore().ToString() +" / "+ ScoreManager.instance.GetTargetTreeScore().ToString();
-        text2.text = ScoreManager.instance.GetFruitScore().ToString() + " / " + ScoreManager.instance.GetTargetFruitScore().ToString();
+        
     }
 
     private Coroutine co_HideInActiveInfoPannel;

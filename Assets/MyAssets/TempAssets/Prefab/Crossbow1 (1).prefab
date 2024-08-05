@@ -131,15 +131,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7388c73173748148c4ba5f2ad6c713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 0
   ropeLocation: 1
   autoFindRopeLocation: 1
   rigidbodySettings:
-    body: {fileID: 6845978473857211273}
+    body: {fileID: 0}
     stiffness: 0.019
     damping: 0.024
   transformSettings:
-    transform: {fileID: 0}
+    transform: {fileID: 6263857016687738286}
   localConnectionPoint:
     x: 0
     y: 0
@@ -233,7 +233,7 @@ PrefabInstance:
     - target: {fileID: 2359059558406911687, guid: 509693e537b5baa4696c953087639353,
         type: 3}
       propertyPath: _launchForce
-      value: 1000
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 2359059558406911687, guid: 509693e537b5baa4696c953087639353,
         type: 3}
@@ -344,6 +344,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226651070237646047, guid: 509693e537b5baa4696c953087639353,
+        type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6620807118910628020, guid: 509693e537b5baa4696c953087639353,
         type: 3}
@@ -462,8 +467,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 923850245576538177, guid: 04a947c67d359d24eb90df4f4a9df1a2,
         type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 923850245576538177, guid: 04a947c67d359d24eb90df4f4a9df1a2,
+        type: 3}
+      propertyPath: m_Mass
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 923850245576538177, guid: 04a947c67d359d24eb90df4f4a9df1a2,
+        type: 3}
       propertyPath: m_UseGravity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 923850245576538177, guid: 04a947c67d359d24eb90df4f4a9df1a2,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 923850245576538177, guid: 04a947c67d359d24eb90df4f4a9df1a2,
         type: 3}

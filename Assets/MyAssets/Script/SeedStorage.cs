@@ -37,7 +37,9 @@ public class SeedStorage : MonoBehaviour
         
         if (!seedScript.PickUpState() && seedScript.DetachSeedStatus())
         {
+            TestbedManager.instance.SeedCollected(seedScript.GetSeedID());
             seedScript.SeedCollected();
+            
         }
     }
 }

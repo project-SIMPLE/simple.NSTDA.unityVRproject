@@ -194,7 +194,9 @@ public class FruitCollectGun : MonoBehaviour
             //    _endHookObj.transform.DOMove(_launchPoint.transform.position, _timeTillReach).OnComplete(ResetHookStatus);
             //}
 
-            _endHookObj.transform.DOLocalMove(_launchPoint.transform.position, _timeTillReach).OnComplete(ResetHookStatus);
+            //_endHookObj.transform.DOLocalMove(_launchPoint.transform.position, _timeTillReach).OnComplete(ResetHookStatus);
+            _endHookObj.transform.position = _launchPoint.transform.position;
+            ResetHookStatus();
             RopeIsNotHooked();
         }
 

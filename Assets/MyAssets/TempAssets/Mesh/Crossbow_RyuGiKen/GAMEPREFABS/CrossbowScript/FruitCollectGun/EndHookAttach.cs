@@ -27,7 +27,7 @@ public class EndHookAttach : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         if (!_fruitCollectGun.HookIsAtOrigin)
         {
@@ -38,6 +38,18 @@ public class EndHookAttach : MonoBehaviour
         {
             this.transform.position = _shootPointTransform.position;
         }
+    }
+    void Update()
+    {
+        /*if (!_fruitCollectGun.HookIsAtOrigin)
+        {
+            //_hookRope.SetPosition(1, _shootPointTransform.position);
+        }
+
+        else
+        {
+            this.transform.position = _shootPointTransform.position;
+        }*/
     }
 
 

@@ -51,7 +51,7 @@ public class CutableObject : MonoBehaviour
     {
         defaultObj.SetActive(false);
         brokenObj.SetActive(true);
-        ScoreManager.instance.IncreaseTreeScore(1);
+        //TestbedManager.instance.IncreaseTreeScore(1);
         aSound.clip = finishAudio;
         aSound.Play();
         yield return new WaitForSeconds(20f);

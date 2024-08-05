@@ -39,6 +39,10 @@ public class ForestTimer : MonoBehaviour
             }
         }
     }
+    public void EditSetTimer(int i)
+    {
+        SetTimer = i;
+    }
     public void StartTimer()
     {
         TimerOn = true;
