@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 using UnityEngine.XR.Interaction.Toolkit;
 
 
@@ -183,8 +182,7 @@ public class FruitCollectGun : MonoBehaviour
         //if(_isHooked)
         //{
 
-        //DOTween.To(() => _gunRopeLR.GetPosition(1), (x) => _gunRopeLR.SetPosition(1, x), _gunRopeLR.GetPosition(0), _timeTillReach);
-
+        
 
         //}
         if (!_hitScanMode)
@@ -194,7 +192,7 @@ public class FruitCollectGun : MonoBehaviour
             //    _endHookObj.transform.DOMove(_launchPoint.transform.position, _timeTillReach).OnComplete(ResetHookStatus);
             //}
 
-            //_endHookObj.transform.DOLocalMove(_launchPoint.transform.position, _timeTillReach).OnComplete(ResetHookStatus);
+            
             _endHookObj.transform.position = _launchPoint.transform.position;
             ResetHookStatus();
             RopeIsNotHooked();
@@ -233,7 +231,7 @@ public class FruitCollectGun : MonoBehaviour
     //{
     //    Vector3 fruitPosition = _laserObjectDetection.HitObject.transform.position;
 
-    //    DOTween.To(() => _gunRopeLR.GetPosition(0), (x) => _gunRopeLR.SetPosition(1, x), fruitPosition , _timeTillReach);
+    
 
     //    RopeIsHooked();
 

@@ -6,19 +6,30 @@ using UnityEngine;
 public class TestbedHUDController : MonoBehaviour
 {
     [SerializeField]
+    private GameObject HUDUI;
+    [SerializeField]
     private TextMeshProUGUI appleScore;
     [SerializeField]
     private TextMeshProUGUI orangeScore;
     [SerializeField]
-    private TextMeshProUGUI MangoScore;
+    private TextMeshProUGUI mangoScore;
+
+    [SerializeField]
+    private GameObject finishMenu;
+    [SerializeField]
+    private GameObject pauseMenu;
+    [SerializeField]
+    private TextMeshProUGUI stageNumberText;
 
     private void Start()
     {
         TestbedManager.instance.OnSeedCollected += UpdateSeedUI;
+        TestbedManager.instance.OnTimerFinish += ShowPauseMenu;
     }
     private void OnDestroy()
     {
         TestbedManager.instance.OnSeedCollected -= UpdateSeedUI;
+        TestbedManager.instance.OnTimerFinish -= ShowPauseMenu;
     }
     private void UpdateSeedUI(int id, int value)
     {
@@ -31,8 +42,23 @@ public class TestbedHUDController : MonoBehaviour
                 orangeScore.text = value.ToString();
                 break; 
             case 3:
-                MangoScore.text = value.ToString();
+                mangoScore.text = value.ToString();
                 break;
         }
     }
+    private void ShowPauseMenu(int index,bool isFinish)
+    {
+        HUDUI.SetActive(false);
+        if (isFinish)
+        {
+            finishMenu.SetActive(true);
+        }
+        else
+        {
+            pauseMenu.SetActive(true);
+            stageNumberText.text = "Stage " + index.ToString();
+        }
+        
+    }
+
 }

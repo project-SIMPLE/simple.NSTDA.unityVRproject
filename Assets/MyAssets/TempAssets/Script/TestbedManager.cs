@@ -5,11 +5,23 @@ using UnityEngine;
 
 public class TestbedManager : MonoBehaviour
 {
+    [SerializeField]
+    private bool offlineMode = true;
 
     public static TestbedManager instance { get; private set;}
     [SerializeField]
     private int[] fruitListScore = { 0, 0, 0 };
 
+    [SerializeField]
+    private GameObject LocomotionModule;
+    [SerializeField]
+    private GameObject BeltTool;
+
+    [SerializeField]
+    private int stageIndex = 1;
+
+    [SerializeField]
+    private GameObject[] stages;
 
     private void Awake()
     {
@@ -22,16 +34,43 @@ public class TestbedManager : MonoBehaviour
             instance = this;
         }
     }
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        UpdateStage(stageIndex-1);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    private void UpdateStage(int index)
+    {
+        if(index > 0)
+        {
+            stages[index-1].SetActive(false);
+        }
+        stages[index].SetActive(true);
+    }
+    public void StartGame()
+    {
+        if(offlineMode)
+        {
+            GameStart();
+        }
+    }
+
+    public void EnablePlayMode()
+    {
+        LocomotionModule?.SetActive(true);
+        BeltTool?.SetActive(true);
+    }
+    public void DisablePlayMode()
+    {
+        LocomotionModule?.SetActive(false);
+        BeltTool?.SetActive(false);
     }
 
     public event Action<int,int> OnSeedCollected;
@@ -51,5 +90,52 @@ public class TestbedManager : MonoBehaviour
         {
             OnResetSeedPosition();
         }
+    }
+
+    public event Action<int,bool> OnTimerFinish;
+    public void TimerFinish()
+    {
+        
+        DisablePlayMode();
+        stageIndex++;
+        if (IsGameFinish())
+        {
+            if (OnTimerFinish != null)
+            {
+                OnTimerFinish(stageIndex,true);
+            }
+        }
+        else
+        {
+            UpdateStage(stageIndex-1);
+            if (OnTimerFinish != null)
+            {
+                OnTimerFinish(stageIndex,false);
+            }
+        }
+
+        
+    }
+
+    private bool IsGameFinish()
+    {
+        if(stageIndex-1 == stages.Length) {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+
+    public event Action OnGameStart;
+    public void GameStart()
+    {
+        if(OnGameStart != null)
+        {
+            OnGameStart();
+        }
+        EnablePlayMode();
     }
 }
