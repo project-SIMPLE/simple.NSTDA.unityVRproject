@@ -15,12 +15,16 @@ public class TestbedHUDController : MonoBehaviour
     private TextMeshProUGUI mangoScore;
 
     [SerializeField]
+    private GameObject pauseUI;
+    [SerializeField]
     private GameObject finishMenu;
     [SerializeField]
     private GameObject pauseMenu;
     [SerializeField]
     private TextMeshProUGUI stageNumberText;
 
+    [SerializeField]
+    private TextMeshProUGUI[] pausePannelScoreTexts;
     private void Start()
     {
         TestbedManager.instance.OnSeedCollected += UpdateSeedUI;
@@ -49,8 +53,10 @@ public class TestbedHUDController : MonoBehaviour
     private void ShowPauseMenu(int index,bool isFinish)
     {
         HUDUI.SetActive(false);
+        pauseUI.SetActive(true);
         if (isFinish)
         {
+            pauseMenu.SetActive(false);
             finishMenu.SetActive(true);
         }
         else
@@ -59,6 +65,12 @@ public class TestbedHUDController : MonoBehaviour
             stageNumberText.text = "Stage " + index.ToString();
         }
         
+        if(pausePannelScoreTexts != null)
+        {
+            pausePannelScoreTexts[0].text = appleScore.text;
+            pausePannelScoreTexts[1].text = orangeScore.text;
+            pausePannelScoreTexts[2].text = mangoScore.text;
+        }
     }
 
 }

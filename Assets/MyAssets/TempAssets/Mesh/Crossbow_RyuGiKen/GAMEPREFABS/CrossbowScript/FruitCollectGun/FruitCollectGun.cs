@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,6 +50,9 @@ public class FruitCollectGun : MonoBehaviour
     [Header("XR")]
     [SerializeField] private float _flickThreshold;
 
+
+    [SerializeField]
+    private GameObject ShakeHandUI;
     #endregion
 
     #region Base Method
@@ -240,23 +244,37 @@ public class FruitCollectGun : MonoBehaviour
     public void GetFruitFromHook(GameObject desigFruit)
     {
         _focusObject = desigFruit;
+        ShowShakeText(true);
         //_focusFruitScript = _focusObject.GetComponent<FruitBase>();
     }
 
+    
+    
+    private void ShowShakeText(bool t)
+    {
+        if (ShakeHandUI != null)
+        {
+            ShakeHandUI.SetActive(t);
+        }
+    }
+
+
     public void RopeIsHooked()
     {
-        if(_hitScanMode)
+        
+        if (_hitScanMode)
         {
             IsHooked = true;
             _focusObject = _laserObjectDetection.HitObject;
+           
         }
        
         _laserObjectDetection.LaserLineInvisible();
     }
     public void RopeIsNotHooked()
     {
-   
-            IsHooked = false;
+        ShowShakeText(false);
+        IsHooked = false;
             _focusObject = null;
         _laserObjectDetection.LaserLineVisible();
         //_endHookObj.GetComponent<EndHookAttach>().ClearPosition(Vector3.zero);
