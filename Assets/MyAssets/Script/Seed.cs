@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Seed : MonoBehaviour
@@ -29,11 +30,19 @@ public class Seed : MonoBehaviour
         {
             rb = this.GetComponent<Rigidbody>();
         }
-        TestbedManager.instance.OnResetSeedPosition += ResetSeedPosition;
+        if(TestbedManager.instance != null)
+        {
+            TestbedManager.instance.OnResetSeedPosition += ResetSeedPosition;
+        }
+        
     }
     private void OnDestroy()
     {
-        TestbedManager.instance.OnResetSeedPosition -= ResetSeedPosition;
+        if (TestbedManager.instance != null)
+        {
+            TestbedManager.instance.OnResetSeedPosition -= ResetSeedPosition;
+        }
+            
     }
     public int GetSeedID()
     {
@@ -81,5 +90,18 @@ public class Seed : MonoBehaviour
     private void DelayAddPhysic()
     {
         rb.useGravity = true;
+    }
+
+    public void ActiveSeedObject()
+    {
+        Invoke("DealyActive", Random.Range(0.0f, 0.5f));
+    }
+    private void DealyActive()
+    {
+        this.gameObject.SetActive(true);
+        if (rb != null)
+        {
+            DelayAddPhysic();
+        }
     }
 }

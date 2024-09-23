@@ -324,7 +324,7 @@ public class FruitCollectGun : MonoBehaviour
     {
         if (_focusObject == null)
             return;
-        if(_focusObject.GetComponent<FruitBunchWithHook>() != null)
+        if(_focusObject.GetComponent<FruitBunchWithCenter>() != null)
         {
             _focusFruitScript.ActiveFruitBunchOnHook();
         }

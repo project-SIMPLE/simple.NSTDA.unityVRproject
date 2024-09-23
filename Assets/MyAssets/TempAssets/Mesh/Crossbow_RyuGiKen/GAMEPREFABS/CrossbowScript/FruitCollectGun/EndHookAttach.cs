@@ -59,7 +59,16 @@ public class EndHookAttach : MonoBehaviour
 
         if(_attachedObject.GetComponent<FruitBase>() != null)
         {
-            _storeHitPosition = this.transform.position;
+            if(_attachedObject.GetComponent<FruitBunchWithCenter>() != null)
+            {
+                _storeHitPosition = _attachedObject.transform.position;
+                Debug.Log(_storeHitPosition);
+            }
+            else
+            {
+                _storeHitPosition = this.transform.position;
+            }
+            
             FreezePosition(_storeHitPosition);
             _fruitObjectDesig = _attachedObject;
             _fruitCollectGun.GetFruitFromHook(_fruitObjectDesig);
@@ -75,7 +84,16 @@ public class EndHookAttach : MonoBehaviour
 
         if (_attachedObject.GetComponent<FruitBase>() != null)
         {
-            _storeHitPosition = this.transform.position;
+            if (_attachedObject.GetComponent<FruitBunchWithCenter>() != null)
+            {
+                _storeHitPosition = _attachedObject.transform.position;
+                
+            }
+            else
+            {
+                _storeHitPosition = this.transform.position;
+            }
+
             FreezePosition(_storeHitPosition);
             _fruitObjectDesig = _attachedObject;
             _fruitCollectGun.GetFruitFromHook(_fruitObjectDesig);

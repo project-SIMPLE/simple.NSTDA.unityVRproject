@@ -5,15 +5,17 @@ using UnityEngine;
 
 public class FruitBunchWithHook : FruitBase
 {
+
     [SerializeField]
     string hitObjectTag = "Tools";
+
 
     [SerializeField]
     GameObject[] fruits;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     private void ActiveHit()
@@ -24,7 +26,7 @@ public class FruitBunchWithHook : FruitBase
         foreach (GameObject fruit in fruits)
         {
             if (fruit == null) continue;
-            if (fruit.GetComponent<Seed>()!= null)
+            if (fruit.GetComponent<Seed>() != null)
             {
                 fruit.GetComponent<Seed>().ActiveSeedPhysic();
             }
@@ -35,5 +37,4 @@ public class FruitBunchWithHook : FruitBase
     {
         ActiveHit();
     }
-
 }
