@@ -9,40 +9,36 @@ using UnityEngine.InputSystem;
 
 public class SimulationManagerInteraction : SimulationManager
 {
+
+    //Defines what happens when a ray passes over an object 
     protected override void HoverEnterInteraction(HoverEnterEventArgs ev)
     {
-
+         GameObject obj = ev.interactableObject.transform.gameObject;
     }
 
+
+    //Defines what happens when a ray passes not anymore over an object 
     protected override void HoverExitInteraction(HoverExitEventArgs ev)
     {
-        
+        GameObject obj = ev.interactableObject.transform.gameObject;
     }
 
+    //Defines what happens when a object is selected
     protected override void SelectInteraction(SelectEnterEventArgs ev)
     {
 
         if (remainingTime <= 0.0)
         {
-            GameObject grabbedObject = ev.interactableObject.transform.gameObject;
+            GameObject obj = ev.interactableObject.transform.gameObject;
 
-            if (("fire").Equals(grabbedObject.tag))
-            {
-                Dictionary<string, string> args = new Dictionary<string, string> {
-                         {"plot_", grabbedObject.name }
-                    };
-                ConnectionManager.Instance.SendExecutableAsk("extinguish", args);
-               
-                remainingTime = timeWithoutInteraction;
-            }
 
+            remainingTime = timeWithoutInteraction;
         }
 
     }
 
-
-//Defines what happens when the main button (of the right controller) is trigger 
-protected override void TriggerMainButton()
+    //Defines what happens when the main button (of the right controller) is trigger 
+    protected override void TriggerMainButton()
     {
        
     }

@@ -84,8 +84,7 @@ public class ConnectionManager : WebSocketConnector
             var jsonId = new Dictionary<string, string> {
                 {"type", "connection"},
                 { "id", StaticInformation.getId() },
-                { "set_heartbeat", UseHeartbeat ? "true": "false" },
-                 { "heartbeat", "1000000" } 
+                { "set_heartbeat", UseHeartbeat ? "true": "false" }
             }; 
             string jsonStringId = JsonConvert.SerializeObject(jsonId);
             SendMessageToServer(jsonStringId, new Action<bool>((success) => {
