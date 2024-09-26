@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -65,10 +66,14 @@ public class FruitCollectGun : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _isUsing = false;
-    }
 
+        _endHookObj.transform.position = _launchPoint.transform.position;
+        ResetHookStatus();
+        RopeIsNotHooked();
+    }
+    
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //_lauchPointVector = _launchPoint.transform.localPosition;
         
@@ -91,6 +96,8 @@ public class FruitCollectGun : MonoBehaviour
     }
 
     #endregion
+
+    
 
     public void UnactivateAimingModule()
     {
@@ -324,7 +331,7 @@ public class FruitCollectGun : MonoBehaviour
     {
         if (_focusObject == null)
             return;
-        if(_focusObject.GetComponent<FruitBunchWithCenter>() != null)
+        if(_focusObject.GetComponent<FruitBase>() != null)
         {
             _focusFruitScript.ActiveFruitBunchOnHook();
         }

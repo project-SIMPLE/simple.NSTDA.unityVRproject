@@ -17,6 +17,7 @@ public class Seed : MonoBehaviour
     [SerializeField]
     private bool Detach = false;
     // Start is called before the first frame update
+    [SerializeField]
     private Rigidbody rb;
     private Transform originTransform;
 
