@@ -16,6 +16,8 @@ public class TestbedManager : MonoBehaviour
     private GameObject LocomotionModule;
     [SerializeField]
     private GameObject BeltTool;
+    [SerializeField]
+    private GameObject ToolsMenu;
 
     [SerializeField]
     private int stageIndex = 1;
@@ -66,11 +68,20 @@ public class TestbedManager : MonoBehaviour
     {
         LocomotionModule?.SetActive(true);
         BeltTool?.SetActive(true);
+        if (ToolsMenu != null)
+        {
+            ToolsMenu?.SetActive(true);
+        }
+        
     }
     public void DisablePlayMode()
     {
         LocomotionModule?.SetActive(false);
         BeltTool?.SetActive(false);
+        if (ToolsMenu != null)
+        {
+            ToolsMenu.SetActive(false);
+        }
     }
 
     public event Action<int,int> OnSeedCollected;

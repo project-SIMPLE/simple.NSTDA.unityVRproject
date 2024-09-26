@@ -6,7 +6,8 @@ public class SeedStorage : MonoBehaviour
 {
     [SerializeField]
     string colliderTag = "Seed";
-
+    [SerializeField]
+    private AudioSource soundEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +22,10 @@ public class SeedStorage : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-
+        
         if (collision.gameObject.tag.Equals(colliderTag, System.StringComparison.InvariantCultureIgnoreCase))
         {
-            
+            //Debug.Log("Collect!!!!");
             CollectSeed(collision.gameObject);
         }
 
@@ -37,9 +38,12 @@ public class SeedStorage : MonoBehaviour
         
         if (!seedScript.PickUpState() && seedScript.DetachSeedStatus())
         {
-            if (TestbedManager.instance == null) return;
-            TestbedManager.instance.SeedCollected(seedScript.GetSeedID());
+            if (TestbedManager.instance != null)
+            {
+                TestbedManager.instance.SeedCollected(seedScript.GetSeedID());
+            }
             seedScript.SeedCollected();
+            soundEffect.Play();
             
         }
     }
