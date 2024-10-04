@@ -31,18 +31,9 @@ public class Seed : MonoBehaviour
         {
             rb = this.GetComponent<Rigidbody>();
         }
-        if(TestbedManager.instance != null)
-        {
-            TestbedManager.instance.OnResetSeedPosition += ResetSeedPosition;
-        }
-        
     }
     private void OnDestroy()
     {
-        if (TestbedManager.instance != null)
-        {
-            TestbedManager.instance.OnResetSeedPosition -= ResetSeedPosition;
-        }
             
     }
     public int GetSeedID()
