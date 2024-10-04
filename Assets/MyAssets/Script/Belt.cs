@@ -5,7 +5,7 @@ using UnityEngine;
 public class Belt : MonoBehaviour
 {
     public GameObject HMD;
-    public GameObject[] itemSlot;
+    //public GameObject[] itemSlot;
 
     [Range(0.01f,1f)]
     public float heightRation;
@@ -25,13 +25,13 @@ public class Belt : MonoBehaviour
         cHMDRot = HMD.transform.rotation;
         UpdateBelt();
     }
-
+    /*
     private void UpdateitemSlot(GameObject item)
     {
         item.gameObject.transform.position = new Vector3(item.gameObject.transform.position.x,
             item.gameObject.transform.position.y * heightRation,
             item.gameObject.transform.position.z);
-    }
+    }*/
     private void UpdateBelt()
     {
         this.transform.position = new Vector3(cHMDPos.x,cHMDPos.y*heightRation, cHMDPos.z);
