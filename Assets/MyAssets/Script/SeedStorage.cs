@@ -42,6 +42,10 @@ public class SeedStorage : MonoBehaviour
             {
                 TestbedManager.instance.SeedCollected(seedScript.GetSeedID());
             }
+            if (OnlineModeGameManager.instance != null)
+            {
+                OnlineModeGameManager.instance.SeedCollected(seedScript.GetSeedID());
+            }
             seedScript.SeedCollected();
             soundEffect.Play();
             
