@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class GAMAConnector : SimulationManager
@@ -12,13 +13,27 @@ public class GAMAConnector : SimulationManager
     {
         // Debug.Log("content " + content);
         message = GAMAMessage_edit.CreateFromJSON(content);
-         
+        UpdateGameManager(message);
+    }
+
+    private void UpdateGameManager(GAMAMessage_edit m)
+    {
+        switch (m.Head)
+        {
+            case "Start":
+                OnlineModeGameManager.Instance?.GameStart();
+                break;
+            case "Stop":
+                OnlineModeGameManager.Instance?.GameStop();
+                break;
+        }
     }
 
     protected override void OtherUpdate()
     {
 
     }
+
 
     public void SendSeedInfoToGAMA(int seedID)
     {

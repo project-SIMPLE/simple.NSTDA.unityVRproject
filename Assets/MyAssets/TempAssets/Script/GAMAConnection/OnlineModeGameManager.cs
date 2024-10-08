@@ -5,24 +5,26 @@ using UnityEngine;
 
 public class OnlineModeGameManager : MonoBehaviour
 {
-    public static OnlineModeGameManager instance { get; private set; }
+    public static OnlineModeGameManager Instance { get; private set; }
 
+    [SerializeField]
+    private GameObject[] interactableItemAndTools;
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this);
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -30,17 +32,26 @@ public class OnlineModeGameManager : MonoBehaviour
     {
 
     }
+    private void ActiveInteractableItemAndTools(bool t)
+    {
+        if (interactableItemAndTools == null) return;
+        foreach(GameObject item in interactableItemAndTools)
+        {
+            item.SetActive(t);
+        }
+    }
+
 
     public event Action OnGameStart;
     public void GameStart()
     {
-
+        ActiveInteractableItemAndTools(true);
     }
 
     public event Action OnGameStop;
     public void GameStop()
     {
-
+        ActiveInteractableItemAndTools(false);
     }
 
     public event Action<int> OnSeedCollected;
