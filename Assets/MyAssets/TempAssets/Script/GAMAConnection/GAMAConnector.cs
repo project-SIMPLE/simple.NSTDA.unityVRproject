@@ -1,37 +1,58 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class GAMAConnector : SimulationManager
 {
 
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        OnlineModeGameManager.Instance.OnSeedCollected += SendSeedInfoToGAMA;
+    }
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        OnlineModeGameManager.Instance.OnSeedCollected -= SendSeedInfoToGAMA;
+
+    }
+
     GAMAMessage_edit message = null;
     protected override void ManageOtherMessages(string content)
     {
-        // Debug.Log("content " + content);
+        //Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!content " + content);
         message = GAMAMessage_edit.CreateFromJSON(content);
-        UpdateGameManager(message);
+        
     }
 
     private void UpdateGameManager(GAMAMessage_edit m)
     {
-        switch (m.Head)
+        //Debug.Log("!!!!!!!!!!!!!!!!!!!GAMAMessage Format Head = __"+ m.Head.ToString()+"___");
+        string jsonHead = m.Head;
+        string jsonBody = m.Body;
+        
+
+        switch (jsonHead)
         {
             case "Start":
+                Debug.Log("JSON HEAD START");
                 OnlineModeGameManager.Instance?.GameStart();
                 break;
             case "Stop":
                 OnlineModeGameManager.Instance?.GameStop();
                 break;
         }
+       
     }
 
     protected override void OtherUpdate()
     {
-
+        if (message != null)
+        {  
+            UpdateGameManager(message);
+            message = null;
+        }
     }
 
 
@@ -67,7 +88,7 @@ public class GAMAConnector : SimulationManager
 public class GAMAMessage_edit
 {
     public string Head;
-    public string message;
+    public string Body;
 
     public static GAMAMessage_edit CreateFromJSON(string jsonString)
     {

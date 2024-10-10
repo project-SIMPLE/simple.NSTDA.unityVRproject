@@ -113,7 +113,7 @@ public class SimulationManager : MonoBehaviour
     }
 
 
-    void OnEnable()
+    public virtual void OnEnable()
     {
         if (ConnectionManager.Instance != null)
         {
@@ -128,7 +128,7 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    void OnDisable()
+    public virtual void OnDisable()
     {
         Debug.Log("SimulationManager: OnDisable");
         ConnectionManager.Instance.OnServerMessageReceived -= HandleServerMessageReceived;

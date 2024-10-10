@@ -35,10 +35,17 @@ public class OnlineModeGameManager : MonoBehaviour
     }
     private void ActiveInteractableItemAndTools(bool t)
     {
-        if (interactableItemAndTools == null) return;
-        foreach(GameObject item in interactableItemAndTools)
+        //if (interactableItemAndTools == null) return;
+        try{
+            foreach(GameObject item in interactableItemAndTools)
+            {
+                //Debug.Log(item +""+ t);
+                item.SetActive(t);
+            }
+        }
+        catch (Exception e)
         {
-            item.SetActive(t);
+            Debug.Log(e);
         }
     }
 
@@ -46,22 +53,28 @@ public class OnlineModeGameManager : MonoBehaviour
     public event Action OnGameStart;
     public void GameStart()
     {
+        Debug.Log("GAMA START");
         ActiveInteractableItemAndTools(true);
+        
     }
 
     public event Action OnGameStop;
     public void GameStop()
     {
+        Debug.Log("GAMA STOP");
         ActiveInteractableItemAndTools(false);
     }
 
     public event Action<int> OnSeedCollected;
     public void SeedCollected(int seedID)
     {
+        
         if (OnSeedCollected != null)
         {
             OnSeedCollected(seedID);
         }
+        
+
         
     }
 
