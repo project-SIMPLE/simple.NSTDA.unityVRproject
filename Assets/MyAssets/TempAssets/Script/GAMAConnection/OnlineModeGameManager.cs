@@ -20,6 +20,7 @@ public class OnlineModeGameManager : MonoBehaviour
         {
             Instance = this;
         }
+        ActiveInteractableItemAndTools(false);
     }
     // Start is called before the first frame update
     void Start()
