@@ -33,7 +33,6 @@ namespace UnityEngine.XR.Content.Interaction
         {
             if (!(args.interactorObject is XRRayInteractor))
                 return;
-
             var attachTransform = args.interactorObject.GetAttachTransform(m_SelectInteractable);
             var originalAttachPose = args.interactorObject.GetLocalAttachPoseOnSelect(m_SelectInteractable);
             attachTransform.SetLocalPose(originalAttachPose);

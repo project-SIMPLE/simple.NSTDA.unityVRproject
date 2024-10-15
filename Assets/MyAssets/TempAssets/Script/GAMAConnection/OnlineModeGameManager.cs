@@ -2,10 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class OnlineModeGameManager : MonoBehaviour
 {
     public static OnlineModeGameManager Instance { get; private set; }
+    [SerializeField]
+    private XRInteractionManager interactionManager;
+
 
     [SerializeField]
     private GameObject[] interactableItemAndTools;
@@ -73,9 +77,6 @@ public class OnlineModeGameManager : MonoBehaviour
         {
             OnSeedCollected(seedID);
         }
-        
-
-        
     }
 
 }
