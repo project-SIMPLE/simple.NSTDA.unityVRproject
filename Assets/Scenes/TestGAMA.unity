@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589245, b: 0.2978263, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276788, g: 0.21589147, b: 0.29782534, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3495,7 +3495,7 @@ MonoBehaviour:
   interactableItemAndTools:
   - {fileID: 1108196790}
   - {fileID: 7622769508945930673}
-  - {fileID: 7622769508945930672}
+  - {fileID: 1350625450}
   - {fileID: 7622769508945930676}
 --- !u!114 &653474310
 MonoBehaviour:
@@ -7053,7 +7053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1350625451
 Transform:
   m_ObjectHideFlags: 0
@@ -9357,7 +9357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1790935224
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12708,7 +12708,7 @@ PrefabInstance:
         type: 3}
       propertyPath: callbackObj
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 930337897}
     - target: {fileID: 7002322565081354517, guid: 07cb82de61d3e40458a7efdf09f51415,
         type: 3}
       propertyPath: m_InteractionManager
@@ -13129,12 +13129,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &7622769508945930672 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3961104949394224769, guid: d80cecb52a6ad4aa5a40c90469bf4843,
-    type: 3}
-  m_PrefabInstance: {fileID: 8480189752947824737}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7622769508945930673 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7276611202316277929, guid: d80cecb52a6ad4aa5a40c90469bf4843,
