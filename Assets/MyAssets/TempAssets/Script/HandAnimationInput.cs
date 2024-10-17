@@ -12,7 +12,9 @@ public class HandAnimationInput : MonoBehaviour
     int GrabLarge = Animator.StringToHash("GrabLarge");
     int GrabStickUp = Animator.StringToHash("GrabStickUp");
     int GrabGun = Animator.StringToHash("GrabStickFront");
-    
+
+    public InputActionProperty GrabInputAction;
+    public InputActionProperty TriggerInputAction;
 
     private void OnEnable()
     {
@@ -26,28 +28,80 @@ public class HandAnimationInput : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
-    public void OnSelectEntered(SelectEnterEventArgs args)
+
+    bool isGrab;
+    bool isTrigger;
+    void Update()
     {
-        string tags = args.interactableObject.transform.tag;
-        if(tags == "Tools")
+        
+        isGrab = GrabInputAction.action.IsPressed();
+        isTrigger = TriggerInputAction.action.IsPressed();
+
+        string cItem = GetItemOnHand();
+
+
+        if (isGrab)
         {
-            if(args.interactableObject.transform.name == "CrossbowVR")
+            if (cItem == "No" || cItem == "Other")
+            {
+                SetHandAnimation(1);
+            }
+            else if (cItem == "Tools")
+            {
+                SetHandAnimation(2);
+            }
+            if(cItem == "Gun")
             {
                 SetHandAnimation(3);
             }
-            else
+        }
+        else if (isTrigger)
+        {
+            if (isGrab && cItem == "Gun")
             {
                 SetHandAnimation(2);
             }
         }
         else
         {
-            SetHandAnimation(1);
+            SetHandAnimation(0);
+        }
+
+
+    }
+    private string itemOnHand = "No";
+
+    private string GetItemOnHand()
+    {
+        return itemOnHand;
+    }
+    public void OnSelectEntered(SelectEnterEventArgs args)
+    {
+        string tags = args.interactableObject.transform.tag;
+        //Debug.Log(tags +" Name: "+ args.interactableObject.transform.name);
+        if(tags == "Tools")
+        {
+            if(args.interactableObject.transform.name == "CrossbowVR")
+            {
+                //SetHandAnimation(3);
+                itemOnHand = "Gun";
+            }
+            else
+            {
+                itemOnHand = "Tools";
+                //SetHandAnimation(2);
+            }
+        }
+        else
+        {
+            itemOnHand = "Other";
+            //SetHandAnimation(1);
         }
     }
     public void OnSelectExited(SelectExitEventArgs args)
     {
-        SetHandAnimation(0);
+        //SetHandAnimation(0);
+        itemOnHand = "No";
     }
     public void FireGun()
     {
