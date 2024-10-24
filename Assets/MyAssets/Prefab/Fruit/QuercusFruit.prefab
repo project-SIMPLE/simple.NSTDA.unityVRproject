@@ -205,6 +205,7 @@ MonoBehaviour:
   seedID: 1
   pickUp: 0
   Detach: 0
+  rb: {fileID: 0}
 --- !u!114 &2393093546326469748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +423,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4826205334494705868}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a2dafec4e5b3174f9df43977fa423fc, type: 3}
   m_Name: 

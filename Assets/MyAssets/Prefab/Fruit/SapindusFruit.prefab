@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1883389363201490793}
   - component: {fileID: 8741822646737503814}
   - component: {fileID: 168759761014064168}
-  - component: {fileID: 5658531726085096241}
+  - component: {fileID: -29885222922796985}
   m_Layer: 6
   m_Name: SapindusFruit
   m_TagString: Seed
@@ -122,6 +122,7 @@ MonoBehaviour:
   seedID: 1
   pickUp: 0
   Detach: 0
+  rb: {fileID: 0}
 --- !u!114 &168759761014064168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,20 +333,20 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &5658531726085096241
+--- !u!114 &-29885222922796985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3312256387775973113}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a2dafec4e5b3174f9df43977fa423fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitObjectTag: Tools
-  hitRigibody: {fileID: 0}
+  hitRigibody: {fileID: 3474465427257281605}
 --- !u!1 &6990990211423789921
 GameObject:
   m_ObjectHideFlags: 0
