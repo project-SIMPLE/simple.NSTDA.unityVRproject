@@ -18,7 +18,8 @@ public class HitTiDrop2 : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.name);
-        if (other.gameObject.tag.Equals(hitObjectTag, System.StringComparison.InvariantCultureIgnoreCase))
+        if (other.gameObject.tag.Equals(hitObjectTag, System.StringComparison.InvariantCultureIgnoreCase)||
+            other.gameObject.tag.Equals("Hand", System.StringComparison.InvariantCultureIgnoreCase))
         {
             ActiveHit();
             
@@ -27,7 +28,8 @@ public class HitTiDrop2 : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("HiTTTTT1");
-        if (collision.gameObject.tag.Equals(hitObjectTag, System.StringComparison.InvariantCultureIgnoreCase))
+        if (collision.gameObject.tag.Equals(hitObjectTag, System.StringComparison.InvariantCultureIgnoreCase) ||
+            collision.gameObject.tag.Equals("Hand", System.StringComparison.InvariantCultureIgnoreCase))
         {
             ActiveHit();
             
