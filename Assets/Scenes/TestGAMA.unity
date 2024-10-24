@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 0f1401d983cde1c49a7f687a57e62c5a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -97,8 +97,10 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 25bfc1211141d3d46ad2e4edf034f787,
+    type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 413dfe9be9ae199439f26d0e5d84cb6c,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7333,6 +7335,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2283110578696162300, guid: 78bec8a37c1ba1040a0fdee9a8360827,
         type: 3}
+      propertyPath: collisions.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283110578696162300, guid: 78bec8a37c1ba1040a0fdee9a8360827,
+        type: 3}
       propertyPath: simulation.enabled
       value: 1
       objectReference: {fileID: 0}
@@ -7379,7 +7386,7 @@ PrefabInstance:
     - target: {fileID: 6902220650558205426, guid: 78bec8a37c1ba1040a0fdee9a8360827,
         type: 3}
       propertyPath: autoFindRopeLocation
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6902220650558205426, guid: 78bec8a37c1ba1040a0fdee9a8360827,
         type: 3}
