@@ -6,7 +6,8 @@ public class HitTiDrop2 : MonoBehaviour
 {
     [SerializeField]
     string hitObjectTag = "Tools";
-
+    [SerializeField]
+    string hitObjectTag2 = "Hand";
     [SerializeField]
     GameObject fruitPrefab;
     
@@ -19,7 +20,7 @@ public class HitTiDrop2 : MonoBehaviour
     {
         Debug.Log(other.name);
         if (other.gameObject.tag.Equals(hitObjectTag, System.StringComparison.InvariantCultureIgnoreCase)||
-            other.gameObject.tag.Equals("Hand", System.StringComparison.InvariantCultureIgnoreCase))
+            other.gameObject.tag.Equals(hitObjectTag2, System.StringComparison.InvariantCultureIgnoreCase))
         {
             ActiveHit();
             
@@ -29,14 +30,14 @@ public class HitTiDrop2 : MonoBehaviour
     {
         //Debug.Log("HiTTTTT1");
         if (collision.gameObject.tag.Equals(hitObjectTag, System.StringComparison.InvariantCultureIgnoreCase) ||
-            collision.gameObject.tag.Equals("Hand", System.StringComparison.InvariantCultureIgnoreCase))
+            collision.gameObject.tag.Equals(hitObjectTag2, System.StringComparison.InvariantCultureIgnoreCase))
         {
             ActiveHit();
             
         }
 
     }
-    private void ActiveHit()
+    public void ActiveHit()
     {
         if(fruitPrefab != null)
         {
