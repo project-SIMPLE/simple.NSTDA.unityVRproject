@@ -96,7 +96,7 @@ public class SimulationManager : MonoBehaviour
 
 
     // ############################################ UNITY FUNCTIONS ############################################
-    void Awake()
+    public virtual void Awake()
     {
         Instance = this;
         SelectedObjects = new List<GameObject>();

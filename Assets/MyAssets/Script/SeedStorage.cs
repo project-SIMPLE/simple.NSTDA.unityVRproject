@@ -21,11 +21,11 @@ public class SeedStorage : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        //Debug.Log("Hit collision+++");
 
-        
         if (collision.gameObject.tag.Equals(colliderTag, System.StringComparison.InvariantCultureIgnoreCase))
         {
-            //Debug.Log("Collect!!!!");
+            //Debug.Log("Hit Seed Storage");
             CollectSeed(collision.gameObject);
         }
 
@@ -33,18 +33,19 @@ public class SeedStorage : MonoBehaviour
     private void CollectSeed(GameObject seed)
     {
         Seed seedScript = seed.GetComponent<Seed>();
-        //Debug.Log(seedScript);
 
         
         if (!seedScript.PickUpState() && seedScript.DetachSeedStatus())
         {
             if (TestbedManager.instance != null)
             {
+                //Debug.Log("Call Manager 1");
                 TestbedManager.instance.SeedCollected(seedScript.GetSeedID());
             }
             if (OnlineModeGameManager.Instance != null)
             {
-                OnlineModeGameManager.Instance?.SeedCollected(seedScript.GetSeedID());
+                //Debug.Log("Call Manager 2");
+                OnlineModeGameManager.Instance.SeedCollected(seedScript.GetSeedID());
             }
             seedScript.SeedCollected();
             soundEffect.Play();

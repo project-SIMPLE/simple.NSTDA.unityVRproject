@@ -5,17 +5,26 @@ using UnityEngine;
 
 public class GAMAConnector : SimulationManager
 {
-
+    private bool isSubscribed = false;
     public override void OnEnable()
     {
         base.OnEnable();
-        OnlineModeGameManager.Instance.OnSeedCollected += SendSeedInfoToGAMA;
+        Debug.Log("Register Action!!");
+
+        if (!isSubscribed) 
+        {
+            OnlineModeGameManager.Instance.OnSeedCollected += SendSeedInfoToGAMA;
+            isSubscribed = true;
+        }
     }
     public override void OnDisable()
     {
         base.OnDisable();
-        OnlineModeGameManager.Instance.OnSeedCollected -= SendSeedInfoToGAMA;
-
+        if (isSubscribed)
+        {
+            OnlineModeGameManager.Instance.OnSeedCollected -= SendSeedInfoToGAMA;
+            isSubscribed = false;
+        }
     }
 
     GAMAMessage_edit message = null;
@@ -58,7 +67,7 @@ public class GAMAConnector : SimulationManager
 
     public void SendSeedInfoToGAMA(int seedID)
     {
-
+        Debug.Log("Collect!!! :" + seedID);
         Dictionary<string, string> args = new Dictionary<string, string> {
          {"player_ID", GetTeamID() },
          {"tree_ID",  seedID.ToString()}

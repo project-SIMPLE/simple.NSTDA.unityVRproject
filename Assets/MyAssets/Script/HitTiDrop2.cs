@@ -18,7 +18,7 @@ public class HitTiDrop2 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
         if (other.gameObject.tag.Equals(hitObjectTag, System.StringComparison.InvariantCultureIgnoreCase)||
             other.gameObject.tag.Equals(hitObjectTag2, System.StringComparison.InvariantCultureIgnoreCase))
         {

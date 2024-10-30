@@ -64,10 +64,10 @@ public class Seed : MonoBehaviour
     }
     public void SeedCollected()
     {
-        //Destroy(this.gameObject);
-        this.gameObject.transform.position = originTransform.position;
-        this.gameObject.transform.rotation = originTransform.rotation;
-        this.gameObject.SetActive(false);
+        Destroy(this.gameObject);
+        //this.gameObject.transform.position = originTransform.position;
+        //this.gameObject.transform.rotation = originTransform.rotation;
+        //this.gameObject.SetActive(false);
         
     }
     public void ActiveSeedPhysic()
