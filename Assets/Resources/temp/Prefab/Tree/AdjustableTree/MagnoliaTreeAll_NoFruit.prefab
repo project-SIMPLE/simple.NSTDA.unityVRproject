@@ -1,0 +1,207 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &786360506396497260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6585325210607400445}
+  - component: {fileID: 5910782799922983108}
+  m_Layer: 0
+  m_Name: MagnoliaTreeAll_NoFruit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6585325210607400445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786360506396497260}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3101034528411384994}
+  - {fileID: 8130749528056426918}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5910782799922983108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786360506396497260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5383f5ab0f8ec3044b1b610615996964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weightRation: 0.5
+--- !u!1001 &1012976621876661355
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6585325210607400445}
+    m_Modifications:
+    - target: {fileID: 1224726579054544039, guid: 6becfd1ffe60cf749a6e742633ecaef6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224726579054544039, guid: 6becfd1ffe60cf749a6e742633ecaef6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224726579054544039, guid: 6becfd1ffe60cf749a6e742633ecaef6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224726579054544039, guid: 6becfd1ffe60cf749a6e742633ecaef6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224726579054544039, guid: 6becfd1ffe60cf749a6e742633ecaef6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224726579054544039, guid: 6becfd1ffe60cf749a6e742633ecaef6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224726579054544039, guid: 6becfd1ffe60cf749a6e742633ecaef6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224726579054544039, guid: 6becfd1ffe60cf749a6e742633ecaef6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224726579054544039, guid: 6becfd1ffe60cf749a6e742633ecaef6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224726579054544039, guid: 6becfd1ffe60cf749a6e742633ecaef6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3851520506705388605, guid: 6becfd1ffe60cf749a6e742633ecaef6,
+        type: 3}
+      propertyPath: m_Name
+      value: MagnoliaTree_Tall_NoFruit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3851520506705388605, guid: 6becfd1ffe60cf749a6e742633ecaef6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6becfd1ffe60cf749a6e742633ecaef6, type: 3}
+--- !u!4 &8130749528056426918 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1224726579054544039, guid: 6becfd1ffe60cf749a6e742633ecaef6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1012976621876661355}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6929108859474474241
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6585325210607400445}
+    m_Modifications:
+    - target: {fileID: 5413385793082395043, guid: e3b0a80df513fbf479fe522df359ae60,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413385793082395043, guid: e3b0a80df513fbf479fe522df359ae60,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413385793082395043, guid: e3b0a80df513fbf479fe522df359ae60,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413385793082395043, guid: e3b0a80df513fbf479fe522df359ae60,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413385793082395043, guid: e3b0a80df513fbf479fe522df359ae60,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413385793082395043, guid: e3b0a80df513fbf479fe522df359ae60,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413385793082395043, guid: e3b0a80df513fbf479fe522df359ae60,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413385793082395043, guid: e3b0a80df513fbf479fe522df359ae60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413385793082395043, guid: e3b0a80df513fbf479fe522df359ae60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413385793082395043, guid: e3b0a80df513fbf479fe522df359ae60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518904054013971410, guid: e3b0a80df513fbf479fe522df359ae60,
+        type: 3}
+      propertyPath: m_Name
+      value: MagnoliaTree_Short_NoFruit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518904054013971410, guid: e3b0a80df513fbf479fe522df359ae60,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e3b0a80df513fbf479fe522df359ae60, type: 3}
+--- !u!4 &3101034528411384994 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5413385793082395043, guid: e3b0a80df513fbf479fe522df359ae60,
+    type: 3}
+  m_PrefabInstance: {fileID: 6929108859474474241}
+  m_PrefabAsset: {fileID: 0}
