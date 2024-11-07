@@ -415,6 +415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4525844378309129456}
+  - component: {fileID: 8535352244738542970}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Untagged
@@ -440,6 +441,31 @@ Transform:
   - {fileID: 1792587110066930555}
   m_Father: {fileID: 4465736655659636071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &8535352244738542970
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3772325799412166788}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.24000013, y: 0.76400054, z: -0.2045002}
+  m_Size: 4.4027576
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 170873798479554096}
+    - renderer: {fileID: 6248612050959014144}
+  - screenRelativeHeight: 0.054
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 170873798479554096}
+    - renderer: {fileID: 6248612050959014144}
+  m_Enabled: 1
 --- !u!1 &4376627294157317272
 GameObject:
   m_ObjectHideFlags: 0

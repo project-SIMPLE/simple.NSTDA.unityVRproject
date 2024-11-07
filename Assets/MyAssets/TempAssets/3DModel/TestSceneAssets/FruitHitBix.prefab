@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2348151445921393017}
   - component: {fileID: 1809668629559670608}
   - component: {fileID: 4678305917503679028}
-  - component: {fileID: 821850145188385425}
+  - component: {fileID: 3166258457992156479}
   m_Layer: 0
   m_Name: FruitHitBix
   m_TagString: Untagged
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &821850145188385425
+--- !u!114 &3166258457992156479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,15 +115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2660138494969132761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8e09aa767b23d4681e2dacda581d56, type: 3}
+  m_Script: {fileID: 11500000, guid: fd2980267ff35444abf857da045a5d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DesireToolTypeParam: 0
   FruitParam: 0
   hitObjectTag: Tools
-  fruits:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  interactableFruits: {fileID: 0}
