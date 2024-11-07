@@ -62,7 +62,7 @@ Transform:
   m_LocalScale: {x: 240.36871, y: 240.36865, z: 195.58316}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1932417247404982583}
+  m_Father: {fileID: 4237585368761617310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5801428193257755548
 MeshFilter:
@@ -148,7 +148,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8620053176589317447}
-  - {fileID: 4140312748859716416}
+  - {fileID: 7255840777168979435}
   - {fileID: 4304780465481122027}
   - {fileID: 7210168781809698523}
   m_Father: {fileID: 1676943981194730092}
@@ -464,7 +464,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4880194141534836902}
-  - {fileID: 5050965385330924187}
+  - {fileID: 857889085391824376}
   - {fileID: 4991993159713955253}
   - {fileID: 3366768572928742748}
   m_Father: {fileID: 3621564285131881100}
@@ -511,6 +511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8229396891954125788}
+  - component: {fileID: 7989243206601163465}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Untagged
@@ -536,6 +537,26 @@ Transform:
   - {fileID: 7340478036811069971}
   m_Father: {fileID: 4840713012819231741}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &7989243206601163465
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6948753443059861719}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.27849853, y: 0.9997507, z: 0.14449981}
+  m_Size: 3.2097566
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.039243117
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6314660966328958728}
+    - renderer: {fileID: 3273026931041227395}
+  m_Enabled: 1
 --- !u!1 &7111180194227993621
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +620,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1932417247404982583}
+  - {fileID: 4237585368761617310}
   m_Father: {fileID: 4840713012819231741}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8198665601274327536
@@ -1331,7 +1352,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8acd2a415761d6742ab3b930d9e15b3d, type: 3}
---- !u!4 &4140312748859716416 stripped
+--- !u!4 &7255840777168979435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6756723512284444372, guid: 8acd2a415761d6742ab3b930d9e15b3d,
     type: 3}
@@ -1582,12 +1603,12 @@ PrefabInstance:
     - target: {fileID: 4742473837712756890, guid: d5fdaa20ba7f0f44cb0318c6b280ffa7,
         type: 3}
       propertyPath: m_LODs.Array.data[1].screenRelativeHeight
-      value: 0.3032642
+      value: 0.26474702
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: d5fdaa20ba7f0f44cb0318c6b280ffa7,
         type: 3}
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.04847062
+      value: 0.043328974
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: d5fdaa20ba7f0f44cb0318c6b280ffa7,
         type: 3}
@@ -1628,7 +1649,7 @@ PrefabInstance:
       addedObject: {fileID: 4652757486330748275}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5fdaa20ba7f0f44cb0318c6b280ffa7, type: 3}
---- !u!4 &1932417247404982583 stripped
+--- !u!4 &4237585368761617310 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d5fdaa20ba7f0f44cb0318c6b280ffa7,
     type: 3}
@@ -1806,7 +1827,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bed26142fb7f1b4e9058dbf8035b1f9, type: 3}
---- !u!4 &5050965385330924187 stripped
+--- !u!4 &857889085391824376 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5620342605184728930, guid: 5bed26142fb7f1b4e9058dbf8035b1f9,
     type: 3}

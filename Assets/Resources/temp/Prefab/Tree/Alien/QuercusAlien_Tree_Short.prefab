@@ -134,6 +134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1726421342518755351}
+  - component: {fileID: 1989887329957939915}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Untagged
@@ -157,6 +158,29 @@ Transform:
   - {fileID: 4266919151023188164}
   m_Father: {fileID: 1032313840442920884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &1989887329957939915
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6546415125820411726}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.31209344, y: -1.2912195, z: 0.2933448}
+  m_Size: 2.7001128
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.05088098
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3656150634583636425}
+    - renderer: {fileID: 2032887632438395078}
+    - renderer: {fileID: 3834154788679756199}
+    - renderer: {fileID: 4159858380677861352}
+    - renderer: {fileID: 2195566747444374502}
+  m_Enabled: 1
 --- !u!1 &6972702248937810787
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +332,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 794908c61dfd95c4d920d988c9199e72, type: 3}
+--- !u!23 &2195566747444374502 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5473616678569979577, guid: 794908c61dfd95c4d920d988c9199e72,
+    type: 3}
+  m_PrefabInstance: {fileID: 6164874889691252063}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5830439497829137823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 389535913849845952, guid: 794908c61dfd95c4d920d988c9199e72,
@@ -382,6 +412,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 794908c61dfd95c4d920d988c9199e72, type: 3}
+--- !u!23 &2032887632438395078 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5473616678569979577, guid: 794908c61dfd95c4d920d988c9199e72,
+    type: 3}
+  m_PrefabInstance: {fileID: 6323183454063668863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5955901655568438975 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 389535913849845952, guid: 794908c61dfd95c4d920d988c9199e72,
@@ -599,6 +635,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 794908c61dfd95c4d920d988c9199e72, type: 3}
+--- !u!23 &4159858380677861352 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5473616678569979577, guid: 794908c61dfd95c4d920d988c9199e72,
+    type: 3}
+  m_PrefabInstance: {fileID: 8236231004963823953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8586975461113567633 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 389535913849845952, guid: 794908c61dfd95c4d920d988c9199e72,
@@ -673,6 +715,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 794908c61dfd95c4d920d988c9199e72, type: 3}
+--- !u!23 &3656150634583636425 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5473616678569979577, guid: 794908c61dfd95c4d920d988c9199e72,
+    type: 3}
+  m_PrefabInstance: {fileID: 8740203746278774640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8947693850352873392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 389535913849845952, guid: 794908c61dfd95c4d920d988c9199e72,
@@ -747,6 +795,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 794908c61dfd95c4d920d988c9199e72, type: 3}
+--- !u!23 &3834154788679756199 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5473616678569979577, guid: 794908c61dfd95c4d920d988c9199e72,
+    type: 3}
+  m_PrefabInstance: {fileID: 9134309572944561950}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8909385535316393950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 389535913849845952, guid: 794908c61dfd95c4d920d988c9199e72,

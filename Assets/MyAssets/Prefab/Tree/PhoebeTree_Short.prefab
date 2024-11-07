@@ -172,7 +172,7 @@ Transform:
   - {fileID: 4230393672694556794}
   - {fileID: 3929737878802698109}
   - {fileID: 2178198238664614399}
-  - {fileID: 7794422508818953671}
+  - {fileID: 7330922906412827539}
   m_Father: {fileID: 4279925415472937991}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6326995641829349779
@@ -386,6 +386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: fruitPrefab
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8522438672176227380, guid: dc49024fcaf409b47aa6595a80552e14,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.014906235
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -668,7 +673,7 @@ PrefabInstance:
     - target: {fileID: 4742473837712756890, guid: 8a81dd253f64ca24e8a489a62f7707ed,
         type: 3}
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.046278358
+      value: 0.04260643
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 8a81dd253f64ca24e8a489a62f7707ed,
         type: 3}
@@ -808,7 +813,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc49024fcaf409b47aa6595a80552e14, type: 3}
---- !u!4 &7794422508818953671 stripped
+--- !u!4 &7330922906412827539 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 691287644699932245, guid: dc49024fcaf409b47aa6595a80552e14,
     type: 3}

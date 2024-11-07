@@ -127,9 +127,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2419084891207409840}
-  - {fileID: 2816429895649907289}
+  - {fileID: 1535948288851884683}
   - {fileID: 672881159739561391}
-  - {fileID: 268408490991648720}
+  - {fileID: 3601935068519667484}
   m_Father: {fileID: 2717582083773480505}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1763629880815460364
@@ -161,10 +161,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4116788329348838875}
+  - {fileID: 2518134049224644443}
   - {fileID: 6592335599305226230}
   - {fileID: 5260921229513520183}
-  - {fileID: 8438804125146653788}
+  - {fileID: 5141306896767372424}
   m_Father: {fileID: 4551844023997820346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2726246872981191431
@@ -232,6 +232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1269028105459557487}
+  - component: {fileID: 3378079525120761202}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Untagged
@@ -257,6 +258,26 @@ Transform:
   - {fileID: 6001560806555861182}
   m_Father: {fileID: 6455516393311400133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &3378079525120761202
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2944074223673247184}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.15740037, y: 1.1557996, z: -0.33805037}
+  m_Size: 3.9699578
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.050027855
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6494647024962531242}
+    - renderer: {fileID: 4625666349341756091}
+  m_Enabled: 1
 --- !u!1 &6505617651796956601
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +313,7 @@ Transform:
   m_Children:
   - {fileID: 5022696603710902775}
   - {fileID: 3962152078614537622}
-  - {fileID: 5211879701907496970}
+  - {fileID: 6697460314430958958}
   - {fileID: 7911170674645582257}
   m_Father: {fileID: 2717582083773480505}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -418,7 +439,7 @@ Transform:
   m_Children:
   - {fileID: 3024959193781694614}
   - {fileID: 6478799232448669708}
-  - {fileID: 3502900726783368192}
+  - {fileID: 2610598996305794712}
   - {fileID: 2288547395551678575}
   m_Father: {fileID: 4551844023997820346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -698,7 +719,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0963d37a4cb02724b9a564b52d588e22, type: 3}
---- !u!4 &268408490991648720 stripped
+--- !u!4 &3601935068519667484 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3622355101703891155, guid: 0963d37a4cb02724b9a564b52d588e22,
     type: 3}
@@ -871,7 +892,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0963d37a4cb02724b9a564b52d588e22, type: 3}
---- !u!4 &4116788329348838875 stripped
+--- !u!4 &2518134049224644443 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3622355101703891155, guid: 0963d37a4cb02724b9a564b52d588e22,
     type: 3}
@@ -1123,7 +1144,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0963d37a4cb02724b9a564b52d588e22, type: 3}
---- !u!4 &2816429895649907289 stripped
+--- !u!4 &1535948288851884683 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3622355101703891155, guid: 0963d37a4cb02724b9a564b52d588e22,
     type: 3}
@@ -1240,7 +1261,7 @@ PrefabInstance:
     - target: {fileID: 4742473837712756890, guid: 8a81dd253f64ca24e8a489a62f7707ed,
         type: 3}
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.046278358
+      value: 0.043328974
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 8a81dd253f64ca24e8a489a62f7707ed,
         type: 3}
@@ -1395,7 +1416,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8febd826465f0b24a93369188abaa828, type: 3}
---- !u!4 &3502900726783368192 stripped
+--- !u!4 &2610598996305794712 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1488009022600449383, guid: 8febd826465f0b24a93369188abaa828,
     type: 3}
@@ -1662,7 +1683,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8febd826465f0b24a93369188abaa828, type: 3}
---- !u!4 &5211879701907496970 stripped
+--- !u!4 &6697460314430958958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1488009022600449383, guid: 8febd826465f0b24a93369188abaa828,
     type: 3}
@@ -2008,7 +2029,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0963d37a4cb02724b9a564b52d588e22, type: 3}
---- !u!4 &8438804125146653788 stripped
+--- !u!4 &5141306896767372424 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3622355101703891155, guid: 0963d37a4cb02724b9a564b52d588e22,
     type: 3}
