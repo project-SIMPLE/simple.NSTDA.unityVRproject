@@ -51,6 +51,10 @@ public class GAMAConnector : SimulationManager
             case "Stop":
                 OnlineModeGameManager.Instance?.GameStop();
                 break;
+            case "Tutorial":
+                Debug.Log("Tutorial START");
+                OnlineModeGameManager.Instance?.StartTutorial();
+                break;
         }
        
     }

@@ -44,7 +44,7 @@ public class SeedStorage : MonoBehaviour
             }
             if (OnlineModeGameManager.Instance != null)
             {
-                //Debug.Log("Call Manager 2");
+                Debug.Log("Call Manager 2");
                 OnlineModeGameManager.Instance.SeedCollected(seedScript.GetSeedID());
             }
             seedScript.SeedCollected();

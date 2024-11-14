@@ -13,6 +13,9 @@ public class OnlineModeGameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject[] interactableItemAndTools;
+    [SerializeField]
+    private GameObject Tutorial_Area;
+
 
     private void Awake()
     {
@@ -24,7 +27,7 @@ public class OnlineModeGameManager : MonoBehaviour
         {
             Instance = this;
         }
-        ActiveInteractableItemAndTools(false);
+        //ActiveInteractableItemAndTools(false);
     }
     // Start is called before the first frame update
     void Start()
@@ -37,6 +40,12 @@ public class OnlineModeGameManager : MonoBehaviour
     {
 
     }
+
+    private void ActiveLocomotion(bool t)
+    {
+        interactableItemAndTools[3].SetActive(t);
+    }
+    
     private void ActiveInteractableItemAndTools(bool t)
     {
         //if (interactableItemAndTools == null) return;
@@ -53,6 +62,10 @@ public class OnlineModeGameManager : MonoBehaviour
         }
     }
 
+    public void StartTutorial()
+    {
+        Tutorial_Area.GetComponent<TutorialManager>().TutorialStart();
+    }
 
     public event Action OnGameStart;
     public void GameStart()
@@ -69,11 +82,20 @@ public class OnlineModeGameManager : MonoBehaviour
         ActiveInteractableItemAndTools(false);
     }
 
+    public event Action OnTutorialSeedCollect;
     public event Action<int> OnSeedCollected;
     public void SeedCollected(int seedID)
     {
-        
-        if (OnSeedCollected != null)
+        if(seedID == 0)
+        {
+            Debug.Log("collect 00000000000000000000000");
+            if(OnTutorialSeedCollect != null)
+            {
+                Debug.Log("call Listioner");
+                OnTutorialSeedCollect();
+            }
+        }
+        else if (OnSeedCollected != null)
         {
             OnSeedCollected(seedID);
         }
