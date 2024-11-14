@@ -68,7 +68,25 @@ public class GAMAConnector : SimulationManager
         }
     }
 
+    public void SendTutorialFinishInfo()
+    {
+        Debug.Log("Team ID: "+ GetTeamID() +"Finish Tutorial");
+        Dictionary<string, string> args = new Dictionary<string, string>
+        {
+            { "player_ID",GetTeamID()},
+            { "tutorial_status","true"}
+        };
 
+        try
+        {
+            ConnectionManager.Instance.SendExecutableAsk("tutorial_finish", args);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+
+    }
     public void SendSeedInfoToGAMA(int seedID)
     {
         Debug.Log("Collect!!! :" + seedID);
