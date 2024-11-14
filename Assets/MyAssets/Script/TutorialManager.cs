@@ -69,6 +69,7 @@ public class TutorialManager : MonoBehaviour
     public void Stage2Complete()
     {
         stage2.SetActive(false);
+        OnlineModeGameManager.Instance.TutorialFinish();
     }
     
     private void TutorialSeedCollect()

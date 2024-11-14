@@ -14,6 +14,7 @@ public class GAMAConnector : SimulationManager
         if (!isSubscribed) 
         {
             OnlineModeGameManager.Instance.OnSeedCollected += SendSeedInfoToGAMA;
+            OnlineModeGameManager.Instance.OnTutorialFinish += SendTutorialFinishInfo;
             isSubscribed = true;
         }
     }
@@ -23,6 +24,7 @@ public class GAMAConnector : SimulationManager
         if (isSubscribed)
         {
             OnlineModeGameManager.Instance.OnSeedCollected -= SendSeedInfoToGAMA;
+            OnlineModeGameManager.Instance.OnTutorialFinish -= SendTutorialFinishInfo;
             isSubscribed = false;
         }
     }

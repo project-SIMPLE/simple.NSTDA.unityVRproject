@@ -27,7 +27,7 @@ public class OnlineModeGameManager : MonoBehaviour
         {
             Instance = this;
         }
-        ActiveInteractableItemAndTools(false);
+       // ActiveInteractableItemAndTools(false);
     }
     // Start is called before the first frame update
     void Start()
@@ -66,6 +66,15 @@ public class OnlineModeGameManager : MonoBehaviour
     {
         Tutorial_Area.GetComponent<TutorialManager>().TutorialStart();
         ActiveInteractableItemAndTools(true);
+    }
+
+    public event Action OnTutorialFinish;
+    public void TutorialFinish()
+    {
+        if( OnTutorialFinish != null)
+        {
+            OnTutorialFinish();
+        }
     }
 
     public event Action OnGameStart;
