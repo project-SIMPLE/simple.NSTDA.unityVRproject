@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.489, y: 1.335, z: -0.5087}
-  m_LocalScale: {x: 0.09000001, y: 0.09000001, z: 0.09000001}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2188636959512061961}
@@ -60,7 +60,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -483,7 +483,7 @@ PrefabInstance:
     - target: {fileID: 4742473837712756890, guid: 33fff803aed66a241bd21bb2612210a0,
         type: 3}
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.012
+      value: 0.00928947
       objectReference: {fileID: 0}
     - target: {fileID: 4765135082495412225, guid: 33fff803aed66a241bd21bb2612210a0,
         type: 3}

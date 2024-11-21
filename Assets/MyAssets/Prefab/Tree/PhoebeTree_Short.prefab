@@ -199,7 +199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6326995641829349779}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.86, y: 0, z: -12.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -307,7 +307,8 @@ PrefabInstance:
         type: 3}
       propertyPath: fruitPrefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2601969245267530211, guid: 0963d37a4cb02724b9a564b52d588e22,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -386,7 +387,8 @@ PrefabInstance:
         type: 3}
       propertyPath: fruitPrefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2601969245267530211, guid: 0963d37a4cb02724b9a564b52d588e22,
+        type: 3}
     - target: {fileID: 8522438672176227380, guid: dc49024fcaf409b47aa6595a80552e14,
         type: 3}
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
@@ -550,7 +552,8 @@ PrefabInstance:
         type: 3}
       propertyPath: fruitPrefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2601969245267530211, guid: 0963d37a4cb02724b9a564b52d588e22,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -807,7 +810,8 @@ PrefabInstance:
         type: 3}
       propertyPath: fruitPrefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2601969245267530211, guid: 0963d37a4cb02724b9a564b52d588e22,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

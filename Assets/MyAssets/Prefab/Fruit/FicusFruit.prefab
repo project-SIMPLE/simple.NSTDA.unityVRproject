@@ -340,11 +340,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8576163816350767290}
     m_Modifications:
-    - target: {fileID: -7511558181221131132, guid: 9fd69ac3f5de2c24d86a6d8c8abf1709,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f1cc94c249df324488103841aabc6f7a, type: 2}
     - target: {fileID: 1674062205206311019, guid: 73f2809df5e3f0a44bdb52529baa1d7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -460,6 +455,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6520420307249978797, guid: 73f2809df5e3f0a44bdb52529baa1d7a,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.007900001
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9fd69ac3f5de2c24d86a6d8c8abf1709,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1cc94c249df324488103841aabc6f7a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

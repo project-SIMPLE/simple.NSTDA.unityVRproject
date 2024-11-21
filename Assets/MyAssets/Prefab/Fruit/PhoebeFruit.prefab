@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.117, y: 1.1085, z: 0.222}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.036482, y: 2.036482, z: 2.036482}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2171240917989183084}
@@ -60,7 +60,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -80,12 +80,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.049779274, y: 0.12168336, z: 0.04272887}
-  m_Center: {x: -0.000110361725, y: 0.047970414, z: 0.006180778}
+  m_Size: {x: 0.09351628, y: 0.21186523, z: 0.069870904}
+  m_Center: {x: 0.0012798032, y: 0.09306135, z: 0.015534143}
 --- !u!65 &6953565542885353255
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -105,8 +105,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.09679596, y: 0.14362156, z: 0.0581847}
-  m_Center: {x: 0, y: 0.0507949, z: 0.0063046142}
+  m_Size: {x: 0.12599206, y: 0.25795373, z: 0.058184694}
+  m_Center: {x: 0.0024776382, y: 0.09401318, z: 0.0063046142}
 --- !u!114 &2686277843967841965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +357,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1488009022600449383, guid: 8febd826465f0b24a93369188abaa828,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7159
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488009022600449383, guid: 8febd826465f0b24a93369188abaa828,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7159
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488009022600449383, guid: 8febd826465f0b24a93369188abaa828,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7159
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488009022600449383, guid: 8febd826465f0b24a93369188abaa828,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -404,6 +419,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2298077216142515175, guid: 8febd826465f0b24a93369188abaa828,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.008449878
       objectReference: {fileID: 0}
     - target: {fileID: 2925845947800069663, guid: 8febd826465f0b24a93369188abaa828,
         type: 3}
