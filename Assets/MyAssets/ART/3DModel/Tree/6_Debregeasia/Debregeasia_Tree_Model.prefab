@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.113220796, y: -0.6979835, z: -0.6979836, w: 0.11322077}
   m_LocalPosition: {x: 0, y: 0.01, z: 0}
-  m_LocalScale: {x: 119.268555, y: 119.268524, z: 97.04641}
+  m_LocalScale: {x: 135.08356, y: 135.08353, z: 109.91476}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5831055351002526763}
@@ -111,7 +111,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 74.4856, y: 74.4856, z: 74.4856}
+  m_LocalScale: {x: 53.418095, y: 53.418095, z: 53.418095}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5831055351002526763}
@@ -195,7 +195,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 74.4856, y: 74.4856, z: 74.4856}
+  m_LocalScale: {x: 53.418095, y: 53.418095, z: 53.418095}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5831055351002526763}
@@ -295,21 +295,23 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6294719544113045025}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: -0.12545443, y: 4.4708185, z: -0.08513641}
-  m_Size: 8.961077
+  m_LocalReferencePoint: {x: -0.09344536, y: 3.3301158, z: -0.06341416}
+  m_Size: 6.674711
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.25
+  - screenRelativeHeight: 0.34840336
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2972930835560884979}
-  - screenRelativeHeight: 0.125
+    - renderer: {fileID: 7761090144909070428}
+  - screenRelativeHeight: 0.17183968
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 9140804433356871579}
-  - screenRelativeHeight: 0.01
+    - renderer: {fileID: 7761090144909070428}
+  - screenRelativeHeight: 0.028563987
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 3746465379759381150}
@@ -342,7 +344,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 74.4856, y: 74.4856, z: 74.4856}
+  m_LocalScale: {x: 53.418095, y: 53.418095, z: 53.418095}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5831055351002526763}
