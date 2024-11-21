@@ -7,8 +7,8 @@ public class PlayerAnimationController : MonoBehaviour
 {
     private Animator anim;
     // Start is called before the first frame update
-    int Idle = Animator.StringToHash("Idle");
-    int Walk = Animator.StringToHash("Walk");
+    //int Idle = Animator.StringToHash("Idle");
+    //int Walk = Animator.StringToHash("Walk");
 
     private Vector3 previousPos;
     [SerializeField]
@@ -35,8 +35,8 @@ public class PlayerAnimationController : MonoBehaviour
         
         currentPos = this.transform.position;
         distance = Mathf.Abs(Vector3.Distance(currentPos, previousPos));
-        previousPos = currentPos;
-        if(!isWalk && distance > 0f)
+        
+        if(!isWalk && distance > 0.001f)
         {
             SetPlayerAnimation(1);
             isWalk = true;
@@ -46,22 +46,26 @@ public class PlayerAnimationController : MonoBehaviour
             SetPlayerAnimation(0);
             isWalk = false;
         }
-          
-        
+        previousPos = currentPos;
+
     }
     public void SetPlayerAnimation(int id)
     {
         switch (id)
         {
             case 0:
-                anim.SetTrigger(Idle);
+                //anim.SetTrigger(Idle);
+                anim.SetBool("Idle", true);
+                anim.SetBool("Walk", false);
                 break;
             case 1:
-                anim.SetTrigger(Walk);
+                //anim.SetTrigger(Walk);
+                anim.SetBool("Idle", false);
+                anim.SetBool("Walk", true);
                 break;
             
             default:
-                anim.SetTrigger(Idle);
+                //anim.SetTrigger(Idle);
                 break;
         }
     }
