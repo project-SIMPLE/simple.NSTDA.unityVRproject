@@ -14,6 +14,9 @@ public class TutorialManager : MonoBehaviour
     private int SeedCount = 0;
     private bool IsEventRegis = false;
 
+    [SerializeField]
+    private Animator DoorAnimationControl;
+
     private void OnEnable()
     {
         if (!IsEventRegis)
@@ -58,6 +61,10 @@ public class TutorialManager : MonoBehaviour
     public void Stage1Completed()
     {
         stage1.SetActive(false);
+        
+    }
+    public void StartStage2()
+    {
         stage2.SetActive(true);
         SeedCount = 0;
 
@@ -78,7 +85,13 @@ public class TutorialManager : MonoBehaviour
         SeedCount++;
         if(SeedCount == 4)
         {
+            
             Stage2Complete();
         }
+    }
+    public void SetDoorAnimation(bool t)
+    {
+        if (DoorAnimationControl == null) return;
+        DoorAnimationControl.SetBool("Open", t);
     }
 }
