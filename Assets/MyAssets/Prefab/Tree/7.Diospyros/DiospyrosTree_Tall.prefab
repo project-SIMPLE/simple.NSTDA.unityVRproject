@@ -61,7 +61,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6339448266433877557}
+  - {fileID: 4454789467085271095}
   m_Father: {fileID: 7553211718173555383}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2580276806379030022
@@ -142,13 +142,13 @@ LODGroup:
     - renderer: {fileID: 7103980513922525968}
     - renderer: {fileID: 3212087378889470664}
     - renderer: {fileID: 4503099265110669235}
-    - renderer: {fileID: 3835986395546415408}
+    - renderer: {fileID: 4020030283700738008}
     - renderer: {fileID: 8929375823484983544}
     - renderer: {fileID: 3173552731192794665}
     - renderer: {fileID: 7871412179811829277}
     - renderer: {fileID: 434542826383672759}
     - renderer: {fileID: 673179547256257987}
-    - renderer: {fileID: 2240515141675969209}
+    - renderer: {fileID: 2153219617608633409}
     - renderer: {fileID: 1940878085898178770}
     - renderer: {fileID: 4715741381491738049}
     - renderer: {fileID: 7325861651002877507}
@@ -226,7 +226,7 @@ Transform:
   m_Children:
   - {fileID: 8619085904895242210}
   - {fileID: 7309549355501742745}
-  - {fileID: 3835986395546415407}
+  - {fileID: 7837530793817148146}
   - {fileID: 2370301352244610514}
   - {fileID: 8576047622791627523}
   m_Father: {fileID: 5698585872753944601}
@@ -343,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 6550502949190809976}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.01, y: 0, z: -8.45}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -419,7 +419,7 @@ Transform:
   m_Children:
   - {fileID: 6703971850036746397}
   - {fileID: 5933802289476657385}
-  - {fileID: 2240515141675969208}
+  - {fileID: 5111375915704947051}
   - {fileID: 4747329267173330424}
   - {fileID: 1909290157309122795}
   - {fileID: 4513790857074015081}
@@ -542,9 +542,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1811808096773773180}
-  - {fileID: 4238217868661720734}
+  - {fileID: 2094493170344540737}
   - {fileID: 697811710261564786}
-  - {fileID: 1903255008532559163}
+  - {fileID: 4443283280321923558}
   m_Father: {fileID: 5698585872753944601}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9202389292046428077
@@ -576,7 +576,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4655758751292636265}
+  - {fileID: 9026945359452148651}
   - {fileID: 2916719522468459050}
   - {fileID: 6998249267642699658}
   - {fileID: 2021584135650494012}
@@ -1019,7 +1019,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d2cdaaab213e374a901b3240d07ab52, type: 3}
---- !u!4 &1903255008532559163 stripped
+--- !u!4 &4443283280321923558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2864305592423791836, guid: 2d2cdaaab213e374a901b3240d07ab52,
     type: 3}
@@ -1108,15 +1108,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f109beb2ba2b4a84ca5385ca08f1550e, type: 3}
---- !u!4 &2240515141675969208 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6483118541459323868, guid: f109beb2ba2b4a84ca5385ca08f1550e,
+--- !u!23 &2153219617608633409 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 213408008377329398, guid: f109beb2ba2b4a84ca5385ca08f1550e,
     type: 3}
   m_PrefabInstance: {fileID: 2240515141675969207}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &2240515141675969209 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 213408008377329398, guid: f109beb2ba2b4a84ca5385ca08f1550e,
+--- !u!4 &5111375915704947051 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6483118541459323868, guid: f109beb2ba2b4a84ca5385ca08f1550e,
     type: 3}
   m_PrefabInstance: {fileID: 2240515141675969207}
   m_PrefabAsset: {fileID: 0}
@@ -1472,15 +1472,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f109beb2ba2b4a84ca5385ca08f1550e, type: 3}
---- !u!4 &3835986395546415407 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6483118541459323868, guid: f109beb2ba2b4a84ca5385ca08f1550e,
+--- !u!23 &4020030283700738008 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 213408008377329398, guid: f109beb2ba2b4a84ca5385ca08f1550e,
     type: 3}
   m_PrefabInstance: {fileID: 3835986395546415406}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &3835986395546415408 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 213408008377329398, guid: f109beb2ba2b4a84ca5385ca08f1550e,
+--- !u!4 &7837530793817148146 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6483118541459323868, guid: f109beb2ba2b4a84ca5385ca08f1550e,
     type: 3}
   m_PrefabInstance: {fileID: 3835986395546415406}
   m_PrefabAsset: {fileID: 0}
@@ -1557,7 +1557,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d2cdaaab213e374a901b3240d07ab52, type: 3}
---- !u!4 &4238217868661720734 stripped
+--- !u!4 &2094493170344540737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2864305592423791836, guid: 2d2cdaaab213e374a901b3240d07ab52,
     type: 3}
@@ -2058,7 +2058,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9f4c52c24d809648bd105d531342ba3, type: 3}
---- !u!4 &6339448266433877557 stripped
+--- !u!4 &4454789467085271095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7796905583392009429, guid: d9f4c52c24d809648bd105d531342ba3,
     type: 3}
@@ -2137,7 +2137,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d2cdaaab213e374a901b3240d07ab52, type: 3}
---- !u!4 &4655758751292636265 stripped
+--- !u!4 &9026945359452148651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2864305592423791836, guid: 2d2cdaaab213e374a901b3240d07ab52,
     type: 3}
