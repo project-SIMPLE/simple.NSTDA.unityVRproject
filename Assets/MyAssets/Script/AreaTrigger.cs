@@ -12,6 +12,8 @@ public class AreaTrigger : MonoBehaviour
     [SerializeField]
     public UnityEvent OnTriggerCustom;
 
+    [SerializeField]
+    public UnityEvent OnExitCustom;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,15 @@ public class AreaTrigger : MonoBehaviour
         {
             //Debug.Log("Player Walk in");
             OnTriggerCustom.Invoke();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            //Debug.Log("Player Walk in");
+            OnExitCustom.Invoke();
+
         }
     }
 
