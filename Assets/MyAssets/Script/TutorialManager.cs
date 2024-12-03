@@ -17,6 +17,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     private Animator DoorAnimationControl;
 
+    [SerializeField]
+    private Animator Dooe2AnimationControl;
+
     private void OnEnable()
     {
         if (!IsEventRegis)
@@ -83,9 +86,13 @@ public class TutorialManager : MonoBehaviour
     {
         Debug.Log("Mango");
         SeedCount++;
+        if(SeedCount == 2)
+        {
+            SetDoor2Animation(true);
+        }
         if(SeedCount == 4)
         {
-            
+            SetDoor2Animation(false);
             Stage2Complete();
         }
     }
@@ -93,5 +100,10 @@ public class TutorialManager : MonoBehaviour
     {
         if (DoorAnimationControl == null) return;
         DoorAnimationControl.SetBool("Open", t);
+    }
+    public void SetDoor2Animation(bool t)
+    {
+        if (Dooe2AnimationControl == null) return;
+        Dooe2AnimationControl.SetBool("Open", t);
     }
 }
