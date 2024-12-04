@@ -9,7 +9,7 @@ public class OnlineModeGameManager : MonoBehaviour
     public static OnlineModeGameManager Instance { get; private set; }
     [SerializeField]
     private XRInteractionManager interactionManager;
-
+    
 
     [SerializeField]
     private GameObject[] interactableItemAndTools;
@@ -83,6 +83,10 @@ public class OnlineModeGameManager : MonoBehaviour
         Debug.Log("GAMA START");
         ActiveInteractableItemAndTools(true);
         
+        if( OnGameStart != null )
+        {
+            OnGameStart();
+        }
     }
 
     public event Action OnGameStop;
@@ -90,6 +94,10 @@ public class OnlineModeGameManager : MonoBehaviour
     {
         Debug.Log("GAMA STOP");
         ActiveInteractableItemAndTools(false);
+        if(OnGameStop != null )
+        {
+            OnGameStop();
+        }
     }
 
     public event Action OnTutorialSeedCollect;
