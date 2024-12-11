@@ -95,8 +95,11 @@ public class SimulationManager : MonoBehaviour
     protected EnableMoveInfo enableMove;
 
 
+    protected float TimeSendInit = 0.5f;
+    protected float TimerSendInit ;
+
     // ############################################ UNITY FUNCTIONS ############################################
-    public virtual void Awake()
+    void Awake()
     {
         Instance = this;
         SelectedObjects = new List<GameObject>();
@@ -180,6 +183,10 @@ public class SimulationManager : MonoBehaviour
             UpdateGameState(GameState.GAME);
 
         }
+        if (infoWorld != null && !infoWorld.isInit && IsGameState(GameState.LOADING_DATA))
+        {
+            infoWorld = null;
+        }
         if (converter != null && data != null)
         {
             manageUpdateTerrain();
@@ -206,6 +213,20 @@ public class SimulationManager : MonoBehaviour
         {
             updateAnimation();
             infoAnimation = null;
+        }
+
+        if(IsGameState(GameState.LOADING_DATA) && ConnectionManager.Instance.getUseMiddleware())
+        {
+            if (TimerSendInit > 0)
+                TimerSendInit -= Time.deltaTime;
+            if (TimerSendInit <= 0)
+            {
+                TimerSendInit = TimeSendInit;
+                Dictionary<string, string> args = new Dictionary<string, string> {
+                             {"id", ConnectionManager.Instance.GetConnectionId() }
+                        };
+                ConnectionManager.Instance.SendExecutableAsk("send_init_data", args);
+            }
         }
 
         if (IsGameState(GameState.GAME))
@@ -256,7 +277,6 @@ public class SimulationManager : MonoBehaviour
 
     private void updateAnimation()
     {
-        Debug.Log("updateAnimation");
 
         foreach (String n in infoAnimation.names) {
             if (!geometryMap.ContainsKey(n)) continue;            
@@ -284,7 +304,6 @@ public class SimulationManager : MonoBehaviour
                 }
                 foreach (String t in infoAnimation.triggers)
                 {
-                    Debug.Log("t: " + t);
                     m_animator.SetTrigger(t);
 
                 }
@@ -498,7 +517,7 @@ public class SimulationManager : MonoBehaviour
     {
         foreach (GameObject loc in locomotion)
         {
-            loc.active = active;
+            loc.SetActive(active);
         }
          if (mh != null)
          {
@@ -636,8 +655,15 @@ public class SimulationManager : MonoBehaviour
 
 
         }
+
+/*
+        if (infoWorld.attributes != null && infoWorld.attributes.Count > 0)
+            ManageAttributes(infoWorld.attributes);
+*/
+
         if (initGame)
             AdditionalInitAfterGeomLoading();
+
         infoWorld = null;
     }
 
@@ -667,10 +693,18 @@ public class SimulationManager : MonoBehaviour
                     };
                     ConnectionManager.Instance.SendExecutableAsk("send_init_data", args);
                 }
+                TimerSendInit = TimeSendInit;
                 break;
 
             case GameState.GAME:
                 Debug.Log("SimulationManager: UpdateGameState -> GAME");
+                if (ConnectionManager.Instance.getUseMiddleware())
+                {
+                    Dictionary<string, string> args = new Dictionary<string, string> {
+                         {"id", ConnectionManager.Instance.GetConnectionId() }
+                    };
+                    ConnectionManager.Instance.SendExecutableAsk("player_ready_to_receive_geometries", args);
+                }
                 break;
 
             case GameState.END:
@@ -782,8 +816,7 @@ public class SimulationManager : MonoBehaviour
 
         TimerSendPosition = TimeSendPosition;
     }
-    private int cpt = 0;
-
+   
 
     private void instantiateGO(GameObject obj, String name, PropertiesGAMA prop)
     {
@@ -922,12 +955,13 @@ public class SimulationManager : MonoBehaviour
                 toFollow.Remove(obj);
             GameObject.Destroy(obj);
         }
-
-
-        infoWorld = null;
     }
+/*
+    protected virtual void ManageAttributes(List<Attributes> attributes)
+    {
 
-    
+    }
+*/
     protected virtual void ManageOtherInformation()
     {
 
@@ -987,7 +1021,7 @@ public class SimulationManager : MonoBehaviour
 
     }
 
-    private async void HandleServerMessageReceived(String firstKey, String content)
+    private void HandleServerMessageReceived(String firstKey, String content)
     {
 
         if (content == null || content.Equals("{}")) return;
