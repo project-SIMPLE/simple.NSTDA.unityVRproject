@@ -656,10 +656,10 @@ public class SimulationManager : MonoBehaviour
 
         }
 
-/*
+       
         if (infoWorld.attributes != null && infoWorld.attributes.Count > 0)
             ManageAttributes(infoWorld.attributes);
-*/
+
 
         if (initGame)
             AdditionalInitAfterGeomLoading();
@@ -956,12 +956,12 @@ public class SimulationManager : MonoBehaviour
             GameObject.Destroy(obj);
         }
     }
-/*
+
     protected virtual void ManageAttributes(List<Attributes> attributes)
     {
 
     }
-*/
+
     protected virtual void ManageOtherInformation()
     {
 

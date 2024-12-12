@@ -5,8 +5,8 @@ using System;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using UnityEngine.XR.Interaction.Toolkit;
- 
-using Newtonsoft.Json; 
+
+using Newtonsoft.Json;
 using System.Linq;
 
 public class GAMAGeometryLoader: ConnectionWithGama
@@ -350,7 +350,7 @@ public class GAMAGeometryLoader: ConnectionWithGama
             else if(type.Equals("json_state")) {
 
                 Boolean inGame = (Boolean)jsonObj["in_game"];
-                if (inGame != null && inGame)
+                if (inGame)
                 {
                     Dictionary<string, string> args = new Dictionary<string, string> {
                          {"id", "geomloader" }
