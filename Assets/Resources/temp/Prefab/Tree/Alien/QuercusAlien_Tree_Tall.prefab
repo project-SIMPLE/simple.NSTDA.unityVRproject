@@ -42,7 +42,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6474963878924008315}
-  - component: {fileID: 3139160306807577796}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Untagged
@@ -68,31 +67,6 @@ Transform:
   - {fileID: 2138714002103272194}
   m_Father: {fileID: 2689210319443059666}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &3139160306807577796
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 535102614373561246}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: -0.5359998, y: 1.6428006, z: -0.27699775}
-  m_Size: 3.724759
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.6
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 3646826578089061621}
-    - renderer: {fileID: 4386499197027332216}
-  - screenRelativeHeight: 0.045532234
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 3646826578089061621}
-    - renderer: {fileID: 4386499197027332216}
-  m_Enabled: 1
 --- !u!1 &757384587348716058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,36 +1668,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
-      value: 0.75665563
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
-      value: 0.5072366
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.012807468
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[0].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 1792344415867666676}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[1].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 2792154218427340073}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[2].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 6203916104565277843}
     - target: {fileID: 4765135082495412225, guid: c36ae0d8a4d8d2341abae551e3de520e,
         type: 3}
       propertyPath: m_CastShadows
@@ -1876,7 +1820,7 @@ PrefabInstance:
     - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
         type: 3}
       propertyPath: m_LODs.Array.data[0].screenRelativeHeight
-      value: 0.75665563
+      value: 0.8639673
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
         type: 3}
@@ -1886,7 +1830,7 @@ PrefabInstance:
     - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
         type: 3}
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.012807468
+      value: 0.04667031
       objectReference: {fileID: 0}
     - target: {fileID: 4765135082495412225, guid: c36ae0d8a4d8d2341abae551e3de520e,
         type: 3}
@@ -1916,24 +1860,6 @@ PrefabInstance:
 --- !u!4 &1419527454471039865 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c36ae0d8a4d8d2341abae551e3de520e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1457360673239747730}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &1792344415867666676 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 929494627569290342, guid: c36ae0d8a4d8d2341abae551e3de520e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1457360673239747730}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &2792154218427340073 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3640646518860159419, guid: c36ae0d8a4d8d2341abae551e3de520e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1457360673239747730}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &6203916104565277843 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4765135082495412225, guid: c36ae0d8a4d8d2341abae551e3de520e,
     type: 3}
   m_PrefabInstance: {fileID: 1457360673239747730}
   m_PrefabAsset: {fileID: 0}
@@ -2055,36 +1981,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
-      value: 0.75665563
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
-      value: 0.5072366
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.012807468
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[0].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 1792344415867666676}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[1].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 2792154218427340073}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[2].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 6203916104565277843}
     - target: {fileID: 4765135082495412225, guid: c36ae0d8a4d8d2341abae551e3de520e,
         type: 3}
       propertyPath: m_CastShadows
@@ -2444,12 +2340,12 @@ PrefabInstance:
     - target: {fileID: 4742473837712756890, guid: 79f28e8d04da7b34a85ae8cd76648bb7,
         type: 3}
       propertyPath: m_LODs.Array.data[1].screenRelativeHeight
-      value: 0.28280774
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 79f28e8d04da7b34a85ae8cd76648bb7,
         type: 3}
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.046278533
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 79f28e8d04da7b34a85ae8cd76648bb7,
         type: 3}
@@ -2836,36 +2732,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
-      value: 0.75665563
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
-      value: 0.5072366
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.012807468
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[0].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 1792344415867666676}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[1].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 2792154218427340073}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[2].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 6203916104565277843}
     - target: {fileID: 4765135082495412225, guid: c36ae0d8a4d8d2341abae551e3de520e,
         type: 3}
       propertyPath: m_CastShadows
@@ -3094,36 +2960,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
-      value: 0.75665563
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
-      value: 0.5072366
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.012807468
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[0].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 1792344415867666676}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[1].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 2792154218427340073}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[2].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 6203916104565277843}
     - target: {fileID: 4765135082495412225, guid: c36ae0d8a4d8d2341abae551e3de520e,
         type: 3}
       propertyPath: m_CastShadows
@@ -3273,36 +3109,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
-      value: 0.75665563
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
-      value: 0.5072366
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.012807468
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[0].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 1792344415867666676}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[1].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 2792154218427340073}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[2].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 6203916104565277843}
     - target: {fileID: 4765135082495412225, guid: c36ae0d8a4d8d2341abae551e3de520e,
         type: 3}
       propertyPath: m_CastShadows
@@ -3452,36 +3258,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
-      value: 0.75665563
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
-      value: 0.5072366
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.012807468
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[0].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 1792344415867666676}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[1].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 2792154218427340073}
-    - target: {fileID: 4742473837712756890, guid: c36ae0d8a4d8d2341abae551e3de520e,
-        type: 3}
-      propertyPath: m_LODs.Array.data[2].renderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 6203916104565277843}
     - target: {fileID: 4765135082495412225, guid: c36ae0d8a4d8d2341abae551e3de520e,
         type: 3}
       propertyPath: m_CastShadows

@@ -1,0 +1,207 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4958875955103589814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5416177159756260999}
+  - component: {fileID: 3032957113828653484}
+  m_Layer: 0
+  m_Name: PhyllanTree_All
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5416177159756260999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958875955103589814}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.76, y: 0, z: -7.63}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4203781830786724872}
+  - {fileID: 6899039502190266962}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3032957113828653484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958875955103589814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5383f5ab0f8ec3044b1b610615996964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weightRation: 0.5
+--- !u!1001 &14250454297617472
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5416177159756260999}
+    m_Modifications:
+    - target: {fileID: 6885141167029906962, guid: 5ac8af995dc513d48a139d3fe3c70921,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885141167029906962, guid: 5ac8af995dc513d48a139d3fe3c70921,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885141167029906962, guid: 5ac8af995dc513d48a139d3fe3c70921,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885141167029906962, guid: 5ac8af995dc513d48a139d3fe3c70921,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885141167029906962, guid: 5ac8af995dc513d48a139d3fe3c70921,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885141167029906962, guid: 5ac8af995dc513d48a139d3fe3c70921,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885141167029906962, guid: 5ac8af995dc513d48a139d3fe3c70921,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885141167029906962, guid: 5ac8af995dc513d48a139d3fe3c70921,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885141167029906962, guid: 5ac8af995dc513d48a139d3fe3c70921,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885141167029906962, guid: 5ac8af995dc513d48a139d3fe3c70921,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384019210795601837, guid: 5ac8af995dc513d48a139d3fe3c70921,
+        type: 3}
+      propertyPath: m_Name
+      value: PhyllanTree_Tall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384019210795601837, guid: 5ac8af995dc513d48a139d3fe3c70921,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ac8af995dc513d48a139d3fe3c70921, type: 3}
+--- !u!4 &6899039502190266962 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6885141167029906962, guid: 5ac8af995dc513d48a139d3fe3c70921,
+    type: 3}
+  m_PrefabInstance: {fileID: 14250454297617472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7000465245440403393
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5416177159756260999}
+    m_Modifications:
+    - target: {fileID: 5465035924535519549, guid: 8852372d33dc2e7499052a2405223b26,
+        type: 3}
+      propertyPath: m_Name
+      value: PhyllanTree_Short
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465035924535519549, guid: 8852372d33dc2e7499052a2405223b26,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588892980163761097, guid: 8852372d33dc2e7499052a2405223b26,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588892980163761097, guid: 8852372d33dc2e7499052a2405223b26,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588892980163761097, guid: 8852372d33dc2e7499052a2405223b26,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588892980163761097, guid: 8852372d33dc2e7499052a2405223b26,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588892980163761097, guid: 8852372d33dc2e7499052a2405223b26,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588892980163761097, guid: 8852372d33dc2e7499052a2405223b26,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588892980163761097, guid: 8852372d33dc2e7499052a2405223b26,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588892980163761097, guid: 8852372d33dc2e7499052a2405223b26,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588892980163761097, guid: 8852372d33dc2e7499052a2405223b26,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588892980163761097, guid: 8852372d33dc2e7499052a2405223b26,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8852372d33dc2e7499052a2405223b26, type: 3}
+--- !u!4 &4203781830786724872 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6588892980163761097, guid: 8852372d33dc2e7499052a2405223b26,
+    type: 3}
+  m_PrefabInstance: {fileID: 7000465245440403393}
+  m_PrefabAsset: {fileID: 0}
