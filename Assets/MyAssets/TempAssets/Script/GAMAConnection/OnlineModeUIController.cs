@@ -10,6 +10,13 @@ public class OnlineModeUIController : MonoBehaviour
 
     private void OnEnable()
     {
+        
+        
+        
+    }
+    
+    void Start()
+    {
         OnlineModeGameManager.Instance.OnGameStart += GameStartUI;
         OnlineModeGameManager.Instance.OnGameStop += GameStopUI;
     }
@@ -17,10 +24,6 @@ public class OnlineModeUIController : MonoBehaviour
     {
         OnlineModeGameManager.Instance.OnGameStart -= GameStartUI;
         OnlineModeGameManager.Instance.OnGameStop -= GameStopUI;
-    }
-    void Start()
-    {
-        
     }
     private void GameStopUI()
     {
