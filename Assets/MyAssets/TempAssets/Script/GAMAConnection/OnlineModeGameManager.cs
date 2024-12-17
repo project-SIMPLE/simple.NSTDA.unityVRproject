@@ -14,7 +14,7 @@ public class OnlineModeGameManager : MonoBehaviour
     [SerializeField]
     private GameObject[] interactableItemAndTools;
     [SerializeField]
-    private GameObject Tutorial_Area;
+    //private GameObject Tutorial_Area;
 
 
     private void Awake()
@@ -64,8 +64,14 @@ public class OnlineModeGameManager : MonoBehaviour
 
     public void StartTutorial()
     {
-        Tutorial_Area.GetComponent<TutorialManager>().TutorialStart();
+        //Tutorial_Area.GetComponent<TutorialManager>().TutorialStart();
         ActiveInteractableItemAndTools(true);
+    }
+
+    public event Action OnTutorialStart;
+    public void TutorialStart()
+    {
+        OnTutorialStart?.Invoke();
     }
 
     public event Action OnTutorialFinish;

@@ -17,19 +17,23 @@ public class OnlineModeUIController : MonoBehaviour
     
     void Start()
     {
-        OnlineModeGameManager.Instance.OnGameStart += GameStartUI;
-        OnlineModeGameManager.Instance.OnGameStop += GameStopUI;
+
+        OnlineModeGameManager.Instance.OnTutorialStart += HideGamePauseUI;
+        //OnlineModeGameManager.Instance.OnGameStart += GameStartUI;
+        OnlineModeGameManager.Instance.OnGameStop += ShowGamePauseUI;
     }
     private void OnDisable()
     {
-        OnlineModeGameManager.Instance.OnGameStart -= GameStartUI;
-        OnlineModeGameManager.Instance.OnGameStop -= GameStopUI;
+
+        OnlineModeGameManager.Instance.OnTutorialStart -= HideGamePauseUI;
+        //OnlineModeGameManager.Instance.OnGameStart -= GameStartUI;
+        OnlineModeGameManager.Instance.OnGameStop -= ShowGamePauseUI;
     }
-    private void GameStopUI()
+    private void ShowGamePauseUI()
     {
         pauseMenu.SetActive(true);
     }
-    private void GameStartUI()
+    private void HideGamePauseUI()
     {
         pauseMenu.SetActive(false);
     }

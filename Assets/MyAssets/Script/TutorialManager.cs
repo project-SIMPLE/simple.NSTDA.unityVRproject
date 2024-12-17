@@ -27,9 +27,10 @@ public class TutorialManager : MonoBehaviour
         if (!IsEventRegis)
         {
             Debug.Log("Regis!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+            OnlineModeGameManager.Instance.OnTutorialStart += TutorialStart;
             OnlineModeGameManager.Instance.OnTutorialSeedCollect += TutorialSeedCollect;
             IsEventRegis=true;
-
             OnlineModeGameManager.Instance.OnTutorialFinish += TutorialFinish;
         }
         
@@ -38,6 +39,8 @@ public class TutorialManager : MonoBehaviour
     {
         if (IsEventRegis)
         {
+
+            OnlineModeGameManager.Instance.OnTutorialStart -= TutorialStart;
             OnlineModeGameManager.Instance.OnTutorialSeedCollect -= TutorialSeedCollect;
             IsEventRegis = false;
 
