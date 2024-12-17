@@ -5,11 +5,12 @@ OcclusionCullingSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_OcclusionBakeSettings:
-    smallestOccluder: 2
-    smallestHole: 0.25
+    smallestOccluder: 1
+    smallestHole: 1
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: eb1940e9c2a3b5048976be0c6af8514e
+  m_OcclusionCullingData: {fileID: 36300000, guid: 6d9443ab0dea4444a9912280e99f6f65,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -25357,7 +25358,7 @@ PrefabInstance:
     - target: {fileID: 8400268368628786363, guid: 04c88b5fa1943406e992a594e3205624,
         type: 3}
       propertyPath: DefaultIP
-      value: 172.20.10.11
+      value: 192.168.68.51
       objectReference: {fileID: 0}
     - target: {fileID: 8400268368628786363, guid: 04c88b5fa1943406e992a594e3205624,
         type: 3}
@@ -40368,7 +40369,6 @@ MonoBehaviour:
   - {fileID: 7622769508945930673}
   - {fileID: 1350625450}
   - {fileID: 8653265909976349618}
-  Tutorial_Area: {fileID: 1314779179}
 --- !u!114 &649356476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57493,7 +57493,7 @@ PrefabInstance:
     - target: {fileID: 786783959773757369, guid: dcc03cdbf1b3a884ea1a7510b47296d7,
         type: 3}
       propertyPath: m_InteractionLayers.m_Bits
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 786783959773757369, guid: dcc03cdbf1b3a884ea1a7510b47296d7,
         type: 3}
@@ -93464,7 +93464,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571700349}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -134726,7 +134726,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7854328097767562442}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
