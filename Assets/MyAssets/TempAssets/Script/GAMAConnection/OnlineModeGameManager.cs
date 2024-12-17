@@ -66,6 +66,7 @@ public class OnlineModeGameManager : MonoBehaviour
     {
         //Tutorial_Area.GetComponent<TutorialManager>().TutorialStart();
         ActiveInteractableItemAndTools(true);
+        TutorialStart();
     }
 
     public event Action OnTutorialStart;
