@@ -71296,8 +71296,8 @@ Transform:
   m_GameObject: {fileID: 1163451848}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 236.6, y: 0.1, z: -136.2}
-  m_LocalScale: {x: 55.12817, y: 11.025634, z: 34.510235}
+  m_LocalPosition: {x: 233.3, y: 0.1, z: -135.6}
+  m_LocalScale: {x: 90.980644, y: 4.4424143, z: 51.699753}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -126635,7 +126635,7 @@ MonoBehaviour:
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 1
-  m_GravityApplicationMode: 0
+  m_GravityApplicationMode: 1
   m_ForwardSource: {fileID: 5381456369006402454}
   m_LeftHandMoveAction:
     m_UseReference: 1
@@ -133727,7 +133727,7 @@ PrefabInstance:
     - target: {fileID: 8429981633443581377, guid: 6c8af5c8012f01440af6cb2bc3eb987c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8429981633443581380, guid: 6c8af5c8012f01440af6cb2bc3eb987c,
         type: 3}
