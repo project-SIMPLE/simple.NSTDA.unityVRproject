@@ -15,6 +15,8 @@ public class TutorialManager : MonoBehaviour
     private bool IsEventRegis = false;
     [SerializeField]
     private GameObject wall;
+    [SerializeField]
+    private GameObject TutorialFinishText;
 
     [SerializeField]
     private Animator DoorAnimationControl;
@@ -32,6 +34,7 @@ public class TutorialManager : MonoBehaviour
             OnlineModeGameManager.Instance.OnTutorialSeedCollect += TutorialSeedCollect;
             IsEventRegis=true;
             OnlineModeGameManager.Instance.OnTutorialFinish += TutorialFinish;
+            OnlineModeGameManager.Instance.OnGameStart += GameStart;
         }
         
     }
@@ -45,6 +48,7 @@ public class TutorialManager : MonoBehaviour
             IsEventRegis = false;
 
             OnlineModeGameManager.Instance.OnTutorialFinish -= TutorialFinish;
+            OnlineModeGameManager.Instance.OnGameStart -= GameStart;
         }
         
     }
@@ -66,6 +70,11 @@ public class TutorialManager : MonoBehaviour
     }
     public void TutorialFinish()
     {
+        TutorialFinishText.SetActive(true);
+    }
+    public void GameStart()
+    {
+        TutorialFinishText.SetActive(false);
         wall.SetActive(false);
     }
     public void ResetTutorial()
