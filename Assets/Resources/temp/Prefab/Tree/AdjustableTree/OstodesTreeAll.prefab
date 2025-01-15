@@ -55,6 +55,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9106810348411041548}
     m_Modifications:
+    - target: {fileID: 1776943637549741217, guid: 3e79a85d0288f4b4e9e9889eba8c56f7,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.073856965
+      objectReference: {fileID: 0}
     - target: {fileID: 4376794322521515654, guid: 3e79a85d0288f4b4e9e9889eba8c56f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -142,7 +147,7 @@ PrefabInstance:
     - target: {fileID: 1661862540907081890, guid: 3d618f9a91140ec41861ca76324bd151,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7603152856041138357, guid: 3d618f9a91140ec41861ca76324bd151,
         type: 3}
