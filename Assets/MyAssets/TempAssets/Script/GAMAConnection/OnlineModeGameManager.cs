@@ -113,7 +113,7 @@ public class OnlineModeGameManager : MonoBehaviour
     {
         if(seedID == 0)
         {
-            Debug.Log("collect 00000000000000000000000");
+            Debug.Log("collect ");
             if(OnTutorialSeedCollect != null)
             {
                 Debug.Log("call Listioner");

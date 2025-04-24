@@ -67,6 +67,7 @@ public class TutorialManager : MonoBehaviour
     {
         stage1.SetActive(true);
         wall.SetActive(true);
+        TutorialFinishText.SetActive(false);
     }
     public void TutorialFinish()
     {
@@ -102,6 +103,7 @@ public class TutorialManager : MonoBehaviour
     {
         stage2.SetActive(false);
         OnlineModeGameManager.Instance.TutorialFinish();
+        
     }
     
     private void TutorialSeedCollect()
