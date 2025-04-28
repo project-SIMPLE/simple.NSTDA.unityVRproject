@@ -14,8 +14,8 @@ public class GAMAConnectorVU2 : SimulationManager
         if (!isSubscribed) 
         {
             VU2Zone1EventManager.Instance.OnPlayerHitFruitOnTree += SendFruitPosToGAMA;
-            //OnlineModeGameManager.Instance.OnSeedCollected += SendSeedInfoToGAMA;
-            //OnlineModeGameManager.Instance.OnTutorialFinish += SendTutorialFinishInfo;
+            VU2Zone1EventManager.Instance.OnPutFruitIntoBucket += TellGAMAToRemoveFruit;
+            VU2Zone1EventManager.Instance.OnLoadSeedToNextZone += TellGAMAToCountFruit;
             isSubscribed = true;
         }
     }
@@ -25,8 +25,8 @@ public class GAMAConnectorVU2 : SimulationManager
         if (isSubscribed)
         {
             VU2Zone1EventManager.Instance.OnPlayerHitFruitOnTree -= SendFruitPosToGAMA;
-            //OnlineModeGameManager.Instance.OnSeedCollected -= SendSeedInfoToGAMA;
-            //OnlineModeGameManager.Instance.OnTutorialFinish -= SendTutorialFinishInfo;
+            VU2Zone1EventManager.Instance.OnPutFruitIntoBucket -= TellGAMAToRemoveFruit;
+            VU2Zone1EventManager.Instance.OnLoadSeedToNextZone -= TellGAMAToCountFruit;
             isSubscribed = false;
         }
     }
@@ -48,7 +48,7 @@ public class GAMAConnectorVU2 : SimulationManager
 
         switch (jsonHead)
         {
-            case "Start":
+            /*case "Start":
                 Debug.Log("JSON HEAD START");
                 OnlineModeGameManager.Instance?.GameStart();
                 break;
@@ -58,7 +58,7 @@ public class GAMAConnectorVU2 : SimulationManager
             case "Tutorial":
                 Debug.Log("Tutorial START");
                 OnlineModeGameManager.Instance?.StartTutorial();
-                break;
+                break;*/
         }
        
     }
@@ -98,11 +98,6 @@ public class GAMAConnectorVU2 : SimulationManager
          {"player_ID", GetTeamID() },
          {"tree_ID",  seedID.ToString()}
         };
-
-        /*Dictionary<string, string> args = new Dictionary<string,string>() { 
-            { "SeedID",seedID.ToString()} 
-        };*/
-
         try
         {
             ConnectionManager.Instance.SendExecutableAsk("collect_seeds", args);
@@ -140,6 +135,41 @@ public class GAMAConnectorVU2 : SimulationManager
             Debug.Log(e);
         }
 
+    }
+
+    public void TellGAMAToRemoveFruit(string fruitName)
+    {
+        Dictionary<string, string> args = new Dictionary<string, string>
+        {
+            { "fruit_Name", fruitName }
+        };
+
+        try
+        {
+            ConnectionManager.Instance.SendExecutableAsk("PlayerCollectFruit", args);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+    }
+
+    public void TellGAMAToCountFruit()
+    {
+        Dictionary<string, string> args = new Dictionary<string, string>
+        {
+            { "status", "true"}
+        };
+
+
+        try
+        {
+            ConnectionManager.Instance.SendExecutableAsk("CountScore", args);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
     }
 
 }

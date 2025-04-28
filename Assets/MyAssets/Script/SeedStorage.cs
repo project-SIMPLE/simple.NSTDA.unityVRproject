@@ -47,6 +47,7 @@ public class SeedStorage : MonoBehaviour
                 Debug.Log("Call Manager 2");
                 OnlineModeGameManager.Instance.SeedCollected(seedScript.GetSeedID());
             }
+            
             seedScript.SeedCollected();
             soundEffect.Play();
             

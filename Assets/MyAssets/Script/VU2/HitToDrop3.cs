@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HitToDrop3 : MonoBehaviour
 {
@@ -8,13 +9,13 @@ public class HitToDrop3 : MonoBehaviour
     string hitObjectTag = "Tools";
     [SerializeField]
     string hitObjectTag2 = "Hand";
-    [SerializeField]
-    GameObject fruitPrefab;
-    [SerializeField]
-    private int fruitID;
-    [SerializeField]
-    private int fruitPos;
     
+    [SerializeField]
+    private int fruitIndex;
+
+    [SerializeField]
+    public UnityEvent OnFruitHit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +44,7 @@ public class HitToDrop3 : MonoBehaviour
     }
     public void ActiveHit()
     {
+        OnFruitHit.Invoke();
         /*if(fruitPrefab != null)
         {
             Instantiate(fruitPrefab,this.transform.position,this.transform.rotation);
