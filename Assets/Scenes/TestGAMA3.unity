@@ -14015,6 +14015,7 @@ GameObject:
   - component: {fileID: 649356473}
   - component: {fileID: 649356475}
   - component: {fileID: 649356476}
+  - component: {fileID: 649356477}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -14070,6 +14071,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 3528939179683288387}
+--- !u!114 &649356477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649356472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3dbfe12fe4a9934a8395cec1de8172c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &650990632
 GameObject:
   m_ObjectHideFlags: 0
@@ -30111,7 +30124,7 @@ PrefabInstance:
     - target: {fileID: 5918039348429199469, guid: 78bec8a37c1ba1040a0fdee9a8360827,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6027797458393491127, guid: 78bec8a37c1ba1040a0fdee9a8360827,
         type: 3}
@@ -30163,6 +30176,11 @@ PrefabInstance:
       propertyPath: _launchForce
       value: 4000
       objectReference: {fileID: 0}
+    - target: {fileID: 6920543761995065943, guid: 78bec8a37c1ba1040a0fdee9a8360827,
+        type: 3}
+      propertyPath: shakeToDropFruit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8534906799812720173, guid: 78bec8a37c1ba1040a0fdee9a8360827,
         type: 3}
       propertyPath: autoFindRopeLocation
@@ -30195,18 +30213,12 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1488375543}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488375547}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e29d151f660d04a469babffc5334b996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1488375547 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3791104650278581985, guid: 78bec8a37c1ba1040a0fdee9a8360827,
-    type: 3}
-  m_PrefabInstance: {fileID: 1488375543}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1488476290
 GameObject:
   m_ObjectHideFlags: 0
@@ -38053,7 +38065,7 @@ PrefabInstance:
         type: 3}
       propertyPath: callbackObj
       value: 
-      objectReference: {fileID: 1488375547}
+      objectReference: {fileID: 2822789527255867479}
     - target: {fileID: 5354864557100473812, guid: 65fac156ea311c743993ab8955cc8627,
         type: 3}
       propertyPath: m_InteractionManager
@@ -47493,6 +47505,11 @@ PrefabInstance:
       propertyPath: _endHookScript
       value: 
       objectReference: {fileID: 2800791131936955379}
+    - target: {fileID: 2359059558406911687, guid: 509693e537b5baa4696c953087639353,
+        type: 3}
+      propertyPath: shakeToDropFruit
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2639148263859698044, guid: 509693e537b5baa4696c953087639353,
         type: 3}
       propertyPath: m_Loop

@@ -14,6 +14,8 @@ public class FruitCollectGun : MonoBehaviour
     [SerializeField] public bool IsHooked;
     [SerializeField] private bool _isUsing;
     public bool IsUsing => _isUsing;
+    [SerializeField] private bool shakeToDropFruit = true;
+    public bool ShakeToDropFruit => shakeToDropFruit;
     [SerializeField] private LineRenderer _gunRopeLR;
     [SerializeField] private GameObject _launchPoint;
     private Vector3 _lauchPointVector;
@@ -91,7 +93,16 @@ public class FruitCollectGun : MonoBehaviour
 
         if(IsHooked)
         {
-            HandleFlicking();
+            if (shakeToDropFruit)
+            {
+                HandleFlicking();
+            }
+            else
+            {
+                ActivateHook();
+                CancelHook();
+            }
+            
         }    
     }
 
@@ -251,7 +262,10 @@ public class FruitCollectGun : MonoBehaviour
     public void GetFruitFromHook(GameObject desigFruit)
     {
         _focusObject = desigFruit;
-        ShowShakeText(true);
+        if (shakeToDropFruit)
+        {
+            ShowShakeText(true);
+        }
         //_focusFruitScript = _focusObject.GetComponent<FruitBase>();
     }
 

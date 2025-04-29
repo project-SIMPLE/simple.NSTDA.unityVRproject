@@ -11,11 +11,11 @@ public class TreeController : MonoBehaviour
 
     private void OnEnable()
     {
-        VU2Zone1EventManager.Instance.OnRemoveFruitOnTree += RemoveLocalFruit;
+        VU2Zone1EventManager.Instance.OnRemoveLocalFruitOnTree += RemoveLocalFruit;
     }
     private void OnDisable()
     {
-        VU2Zone1EventManager.Instance.OnRemoveFruitOnTree -= RemoveLocalFruit;
+        VU2Zone1EventManager.Instance.OnRemoveLocalFruitOnTree -= RemoveLocalFruit;
     }
     // Start is called before the first frame update
     void Start()

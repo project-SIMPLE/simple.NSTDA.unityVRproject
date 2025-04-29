@@ -25,13 +25,13 @@ public class VU2Zone1EventManager : MonoBehaviour
     {
         
     }
-/*
-    public event Action<string, int> OnRemoveFruitOnTree;
+
+    public event Action<string, int> OnRemoveLocalFruitOnTree;
     public void RemoveFruitOnTree(string treeName, int treeIndex)
     {
-        OnRemoveFruitOnTree?.Invoke(treeName,treeIndex);
+        OnRemoveLocalFruitOnTree?.Invoke(treeName,treeIndex);
     }
-*/
+
     public event Action<string,int,int,Vector3> OnPlayerHitFruitOnTree;
     public void PlayerHitFruitOnTree(string treeName, int fruitIndex, int fruitID, Vector3 Pos)
     {
