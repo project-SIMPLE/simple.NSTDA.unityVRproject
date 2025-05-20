@@ -6,6 +6,12 @@ public class Seeding : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] treeStateModels;
+
+    /**
+     * -1 = dead
+     * 0 = defaul
+     * 
+     **/
     [SerializeField]
     private int treeState;
     [SerializeField]
@@ -20,8 +26,7 @@ public class Seeding : MonoBehaviour
 
 
     [SerializeField]
-
-    private int WeedCount =0;
+    private int WeedCount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +43,7 @@ public class Seeding : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (treeState == maxGrownState) return;
+        if (treeState == maxGrownState || treeState == -1) return;
         grownCount += grownRate * Time.deltaTime;
         if(grownCount >= grownTime) 
         {
@@ -88,6 +93,12 @@ public class Seeding : MonoBehaviour
 
         }
     }
+
+    private void Treeburn()
+    {
+        treeStateModels[treeState].SetActive(false);
+        treeState = -1;
+    }
     private void AddFertilizer()
     {
         float tmp = (grownTime - grownCount)/2;
@@ -98,14 +109,22 @@ public class Seeding : MonoBehaviour
         WeedCount += num;
         ChangeGrownRate();
     }
-
-
+    private void OnParticleCollision(GameObject other)
+    {
+        Debug.Log("Tree Burn1");
+        if (other.transform.tag == "Fire")
+        {
+            Debug.Log("Tree Burn");
+            Treeburn();
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         string tag = other.gameObject.tag;
         if(tag == "Fire")
         {
-
+            Debug.Log("Tree Burn");
+            Treeburn();
         }
         /*
         if (other.gameObject.tag == "Weed")
