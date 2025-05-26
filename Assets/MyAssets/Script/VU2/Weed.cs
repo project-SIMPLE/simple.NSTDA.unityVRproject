@@ -33,8 +33,9 @@ public class Weed : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "WeedTool")
+        if(collision.gameObject.tag == "Tools")
         {
+            Debug.Log("Weed CUTTTTTT");
             if(isOnCooldown)
             {
 
@@ -52,6 +53,7 @@ public class Weed : MonoBehaviour
         if(weedHP <= 0)
         {
             OnWeedDestroyed();
+            this.gameObject.SetActive(false);
         }
     }
     private void OnTriggerEnter(Collider other)
