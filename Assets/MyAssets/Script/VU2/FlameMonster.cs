@@ -21,6 +21,8 @@ public class FlameMonster : MonoBehaviour
     [SerializeField]
     private int hitPoint = 5;
     [SerializeField]
+    private GameObject hpUI;
+    [SerializeField]
     private Slider hpBar;
 
     float timer;
@@ -80,7 +82,7 @@ public class FlameMonster : MonoBehaviour
     private void ReduceHitPoint()
     {
         hitPoint -= 1;
-        
+        if (hitPoint == 4) hpUI?.SetActive(true);
         if (hitPoint < 0)
         {
             this.gameObject.SetActive(false);

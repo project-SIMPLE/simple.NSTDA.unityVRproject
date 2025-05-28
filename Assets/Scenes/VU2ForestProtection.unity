@@ -1257,7 +1257,7 @@ Transform:
   m_GameObject: {fileID: 259088201}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.132, y: -0.007, z: 3.126}
+  m_LocalPosition: {x: 0.055, y: 0, z: 3.532}
   m_LocalScale: {x: 1.9988, y: 1.9988, z: 1.9988}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1870,13 +1870,14 @@ GameObject:
   - component: {fileID: 289097699}
   - component: {fileID: 289097698}
   - component: {fileID: 289097697}
+  - component: {fileID: 289097700}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: HP UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &289097696
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1960,6 +1961,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &289097700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289097695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19329ed563b48ab41ab39dc79bc22c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &297720552
 GameObject:
   m_ObjectHideFlags: 0
@@ -6503,7 +6516,7 @@ RectTransform:
   m_Father: {fileID: 2107977840}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -2.2981248, y: 0}
   m_SizeDelta: {x: 4.5962505, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10375,6 +10388,7 @@ MonoBehaviour:
   auraSize: 1
   hitCoolDown: 0
   hitPoint: 5
+  hpUI: {fileID: 289097695}
   hpBar: {fileID: 2080828068}
 --- !u!1 &1979452811
 GameObject:
