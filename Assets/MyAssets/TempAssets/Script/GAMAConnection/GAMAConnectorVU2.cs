@@ -13,9 +13,9 @@ public class GAMAConnectorVU2 : SimulationManager
 
         if (!isSubscribed) 
         {
-            VU2Zone1EventManager.Instance.OnPlayerHitFruitOnTree += SendFruitPosToGAMA;
-            VU2Zone1EventManager.Instance.OnPutFruitIntoBucket += TellGAMAToRemoveFruit;
-            VU2Zone1EventManager.Instance.OnLoadSeedToNextZone += TellGAMAToCountFruit;
+            //VU2ForestProtectionEventManager.Instance.OnPlayerHitFruitOnTree += SendFruitPosToGAMA;
+            //VU2ForestProtectionEventManager.Instance.OnPutFruitIntoBucket += TellGAMAToRemoveFruit;
+            //VU2ForestProtectionEventManager.Instance.OnLoadSeedToNextZone += TellGAMAToCountFruit;
             isSubscribed = true;
         }
     }
@@ -24,9 +24,9 @@ public class GAMAConnectorVU2 : SimulationManager
         base.OnDisable();
         if (isSubscribed)
         {
-            VU2Zone1EventManager.Instance.OnPlayerHitFruitOnTree -= SendFruitPosToGAMA;
-            VU2Zone1EventManager.Instance.OnPutFruitIntoBucket -= TellGAMAToRemoveFruit;
-            VU2Zone1EventManager.Instance.OnLoadSeedToNextZone -= TellGAMAToCountFruit;
+            //VU2ForestProtectionEventManager.Instance.OnPlayerHitFruitOnTree -= SendFruitPosToGAMA;
+            //VU2ForestProtectionEventManager.Instance.OnPutFruitIntoBucket -= TellGAMAToRemoveFruit;
+            //VU2ForestProtectionEventManager.Instance.OnLoadSeedToNextZone -= TellGAMAToCountFruit;
             isSubscribed = false;
         }
     }

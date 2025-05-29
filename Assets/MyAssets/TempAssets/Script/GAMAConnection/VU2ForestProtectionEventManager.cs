@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VU2Zone1EventManager : MonoBehaviour
+public class VU2ForestProtectionEventManager : MonoBehaviour
 {
-    public static VU2Zone1EventManager Instance { get; private set; }
+    public static VU2ForestProtectionEventManager Instance { get; private set; }
     // Start is called before the first frame update
     private void Awake()
     {
@@ -26,7 +26,15 @@ public class VU2Zone1EventManager : MonoBehaviour
         
     }
 
-    public event Action<string, int> OnRemoveLocalFruitOnTree;
+    public event Action<string, string> OnTreeChangeState;
+    public void TreeChangeState(string treeName, string state)
+    {
+        OnTreeChangeState?.Invoke(treeName, state);
+    }
+
+
+
+    /*public event Action<string, int> OnRemoveLocalFruitOnTree;
     public void RemoveFruitOnTree(string treeName, int treeIndex)
     {
         OnRemoveLocalFruitOnTree?.Invoke(treeName,treeIndex);
@@ -48,7 +56,7 @@ public class VU2Zone1EventManager : MonoBehaviour
     public void LoadSeedToNextZone()
     {
         OnLoadSeedToNextZone?.Invoke();
-    }
+    }*/
     // Update is called once per frame
     void Update()
     {

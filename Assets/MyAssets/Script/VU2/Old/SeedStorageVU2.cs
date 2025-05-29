@@ -57,7 +57,7 @@ public class SeedStorageVU2 : MonoBehaviour
         if (!isFull)
         {
 
-            VU2Zone1EventManager.Instance?.PutFruitIntoBucket(seed.name);
+            //VU2ForestProtectionEventManager.Instance?.PutFruitIntoBucket(seed.name);
             //seedScript.SeedCollected();
             soundEffect.Play();
 
@@ -73,7 +73,7 @@ public class SeedStorageVU2 : MonoBehaviour
 
     private void SendSeedsToZone2()
     {
-        VU2Zone1EventManager.Instance?.LoadSeedToNextZone();
+        //VU2ForestProtectionEventManager.Instance?.LoadSeedToNextZone();
 
         count = 0;
         isFull = false;

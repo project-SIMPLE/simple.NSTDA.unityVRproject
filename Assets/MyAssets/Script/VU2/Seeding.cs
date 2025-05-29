@@ -8,8 +8,10 @@ public class Seeding : MonoBehaviour
     private GameObject[] treeStateModels;
 
     /**
-     * -1 = dead
-     * 0 = defaul
+     * 0 = dead
+     * 1 = defaul
+     * 2 = grow 1
+     * 3 = grow 2
      * 
      **/
     [SerializeField]
@@ -30,7 +32,7 @@ public class Seeding : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        treeState = 0;
+        treeState = 1;
         treeStateModels[treeState].SetActive(true);
 
         maxGrownState = treeStateModels.Length -1;
@@ -43,12 +45,13 @@ public class Seeding : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        /*
         if (treeState == maxGrownState || treeState == -1) return;
         grownCount += grownRate * Time.deltaTime;
         if(grownCount >= grownTime) 
         {
             TreeGrown();
-        }
+        }*/
     }
     private void TreeGrown()
     {
@@ -70,6 +73,13 @@ public class Seeding : MonoBehaviour
         treeState -= 1;
         treeStateModels[treeState].SetActive(true);
         
+    }
+    public void ChangeGrowState(int state)
+    {
+        treeStateModels[treeState].SetActive(false);
+        treeState = state;
+        treeStateModels[treeState].SetActive(true);
+
     }
     private void ChangeGrownRate()
     {
@@ -96,8 +106,9 @@ public class Seeding : MonoBehaviour
 
     private void Treeburn()
     {
-        treeStateModels[treeState].SetActive(false);
-        treeState = -1;
+        /*treeStateModels[treeState].SetActive(false);
+        treeState = -1;*/
+        ChangeGrowState(0);
     }
     private void AddFertilizer()
     {
@@ -142,5 +153,7 @@ public class Seeding : MonoBehaviour
             ChangeGrownRate();
         }*/
     }
+
+   
 
 }

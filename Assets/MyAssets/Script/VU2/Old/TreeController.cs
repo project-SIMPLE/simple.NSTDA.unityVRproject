@@ -11,11 +11,11 @@ public class TreeController : MonoBehaviour
 
     private void OnEnable()
     {
-        VU2Zone1EventManager.Instance.OnRemoveLocalFruitOnTree += RemoveLocalFruit;
+        //VU2ForestProtectionEventManager?.Instance?.OnRemoveLocalFruitOnTree += RemoveLocalFruit;
     }
     private void OnDisable()
     {
-        VU2Zone1EventManager.Instance.OnRemoveLocalFruitOnTree -= RemoveLocalFruit;
+        //VU2ForestProtectionEventManager?.Instance?.OnRemoveLocalFruitOnTree -= RemoveLocalFruit;
     }
     // Start is called before the first frame update
     void Start()
@@ -33,7 +33,7 @@ public class TreeController : MonoBehaviour
 
     public void FruitOnThisTreeGotHit(int fruitIndex)
     {
-        VU2Zone1EventManager.Instance?.PlayerHitFruitOnTree(this.gameObject.name,fruitIndex, fruitID, fruitParent.transform.GetChild(fruitIndex).gameObject.transform.position);
+        //VU2ForestProtectionEventManager?.Instance?.PlayerHitFruitOnTree(this.gameObject.name,fruitIndex, fruitID, fruitParent.transform.GetChild(fruitIndex).gameObject.transform.position);
     }
     // Update is called once per frame
     void Update()
