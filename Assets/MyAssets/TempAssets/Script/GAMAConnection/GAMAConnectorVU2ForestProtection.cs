@@ -19,7 +19,7 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
 
         if (!isSubscribed)
         {
-            teamID = GetTeamIDAsInt();
+            //teamID = GetTeamIDAsInt();
             VU2ForestProtectionEventManager.Instance.OnTreeChangeState += SendTreeStatusToGAMA;
             isSubscribed = true;
         }
@@ -49,7 +49,7 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         string jsonHead = m.Head;
         string jsonBody = m.Body;
         string jsonContent = m.Content;
-
+        Debug.Log("++++++++++++++++++++++++++++++   "+m.Head +" - "+m.Body+" - "+m.Content);
         switch (jsonHead)
         {
             /*case "Start":
@@ -63,6 +63,13 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
                 Debug.Log("Tutorial START");
                 OnlineModeGameManager.Instance?.StartTutorial();
                 break;*/
+            case "Start":
+                break;
+            case "Stop":
+                break;
+            case "Update":
+                VU2ForestProtectionEventManager.Instance?.UpdateTreeFromGAMA(m.Body,m.Content);
+                break;
         }
 
     }
@@ -99,12 +106,13 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
 
     public void SendTreeStatusToGAMA(string treeName, string status)
     {
+        
         Dictionary<string, string> args = new Dictionary<string, string>
         {
             {"tree_Name", treeName },
             {"status",status }
         };
-
+        
         try
         {
             ConnectionManager.Instance.SendExecutableAsk("ChangeTreeState", args);

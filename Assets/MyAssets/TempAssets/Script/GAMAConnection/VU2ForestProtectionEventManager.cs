@@ -26,6 +26,11 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         
     }
 
+    public void UpdateTreeFromGAMA(string treeName, string status)
+    {
+        GameObject.Find(treeName)?.GetComponent<Seeding>()?.ChangeGrowState(Int32.Parse(status));
+    }
+
     public event Action<string, string> OnTreeChangeState;
     public void TreeChangeState(string treeName, string state)
     {
