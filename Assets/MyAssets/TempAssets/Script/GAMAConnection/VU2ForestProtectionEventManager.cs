@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class VU2ForestProtectionEventManager : MonoBehaviour
-{
+{   
     public static VU2ForestProtectionEventManager Instance { get; private set; }
+    public int Id { get => id; set => id = value; }
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -25,10 +27,53 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     {
         
     }
-
-    public void UpdateTreeFromGAMA(string treeName, string status)
+    private int id;
+    public void GetPlayerID(int playerID)
     {
-        GameObject.Find(treeName)?.GetComponent<Seeding>()?.ChangeGrowState(Int32.Parse(status));
+        id = playerID;
+    }
+    public void RemoveTreeFromOtherPlayer(List<GAMATreesMessage> tree)
+    {
+        foreach (GAMATreesMessage t in tree) 
+        {
+            int cID;
+            if (Int32.TryParse(t.PlayerID, out cID))
+            {
+
+            }
+            else
+            {
+                Debug.Log("PlayerID error");
+                return;
+            }
+            if (cID != id)
+            {
+                GameObject.Find(t.Name)?.gameObject.SetActive(false);
+            }
+        }
+    }
+    public void UpdateTreeFromGAMA(List<GAMATreesMessage> tree)
+    {
+        //GameObject.Find(treeName)?.GetComponent<Seeding>()?.ChangeGrowState(Int32.Parse(status));
+
+        foreach (GAMATreesMessage t in tree)
+        {
+            int cID;
+            if (Int32.TryParse(t.PlayerID, out cID))
+            {
+
+            }
+            else
+            {
+                Debug.Log("PlayerID error");
+                return;
+            }
+            if (cID == id)
+            {
+                GameObject.Find(t.Name)?.GetComponent<Seeding>()?.ChangeGrowState(Int32.Parse(t.State));
+                //GameObject.Find(t.Name).gameObject.SetActive(false);
+            }
+        }
     }
 
     public event Action<string, string> OnTreeChangeState;

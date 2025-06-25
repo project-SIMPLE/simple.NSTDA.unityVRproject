@@ -38,7 +38,7 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
     GAMAMessage_edit2 message = null;
     protected override void ManageOtherMessages(string content)
     {
-        //Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!content " + content);
+        //Debug.Log(content);
         message = GAMAMessage_edit2.CreateFromJSON(content);
 
     }
@@ -48,8 +48,9 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         //Debug.Log("!!!!!!!!!!!!!!!!!!!GAMAMessage Format Head = __"+ m.Head.ToString()+"___");
         string jsonHead = m.Head;
         string jsonBody = m.Body;
-        string jsonContent = m.Content;
-        Debug.Log("++++++++++++++++++++++++++++++   "+m.Head +" - "+m.Body+" - "+m.Content);
+        List<GAMATreesMessage> jsonContent = m.Content;
+        Debug.Log("++++++++++++++++++++++++++++++   "+m.Head +" - "+m.Body+" - "+jsonContent.Count);
+        //Debug.Log(jsonContent.ToString());
         switch (jsonHead)
         {
             /*case "Start":
@@ -67,8 +68,17 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
                 break;
             case "Stop":
                 break;
+            case "ReadID":
+                VU2ForestProtectionEventManager.Instance?.GetPlayerID(GetTeamIDAsInt());
+                if (jsonContent != null)
+                {
+                    VU2ForestProtectionEventManager.Instance?.RemoveTreeFromOtherPlayer(m.Content);
+                }
+                break;
             case "Update":
-                VU2ForestProtectionEventManager.Instance?.UpdateTreeFromGAMA(m.Body,m.Content);
+                
+                Debug.Log("Name: " + jsonContent[0].Name + "  | Grow State: "+ jsonContent[0].State);
+                VU2ForestProtectionEventManager.Instance?.UpdateTreeFromGAMA(jsonContent);
                 break;
         }
 
@@ -129,11 +139,25 @@ public class GAMAMessage_edit2
 {
     public string Head;
     public string Body;
-    public string Content;
+    public List<GAMATreesMessage> Content;
 
     public static GAMAMessage_edit2 CreateFromJSON(string jsonString)
     {
+
         return JsonUtility.FromJson<GAMAMessage_edit2>(jsonString);
     }
 
+}
+
+[System.Serializable]
+public class GAMATreesMessage
+{
+    public string PlayerID;
+    public string Name;
+    public string State;
+
+    public static GAMATreesMessage CreateFromJSON(string jsonString)
+    {
+        return JsonUtility.FromJson<GAMATreesMessage>(jsonString);
+    }
 }
