@@ -17,14 +17,14 @@ public class Seeding : MonoBehaviour
     [SerializeField]
     private int treeState;
     [SerializeField]
-    private float grownTime;
+    private float timeToGrow;
     [SerializeField]
-    private float grownCount = 0f;
+    private float growTimer = 0f;
     [SerializeField]
-    private float grownRate = 1.0f;
+    private float growRate = 1.0f;
 
     [SerializeField]
-    private int maxGrownState;
+    private int maxGrowState;
 
 
     [SerializeField]
@@ -35,7 +35,7 @@ public class Seeding : MonoBehaviour
         treeState = 1;
         treeStateModels[treeState].SetActive(true);
 
-        maxGrownState = treeStateModels.Length -1;
+        maxGrowState = treeStateModels.Length -1;
     }
 
     // Update is called once per frame
@@ -48,14 +48,14 @@ public class Seeding : MonoBehaviour
         /*
         if (treeState == maxGrownState || treeState == -1) return;
         grownCount += grownRate * Time.deltaTime;
-        if(grownCount >= grownTime) 
+        if(grownCount >= timeToGrow) 
         {
             TreeGrown();
         }*/
     }
     private void TreeGrown()
     {
-        grownCount = 0;
+        growTimer = 0;
 
 
         treeStateModels[treeState].SetActive(false);
@@ -66,7 +66,7 @@ public class Seeding : MonoBehaviour
 
     private void TreeDegrown()
     {
-        grownCount = 0;
+        growTimer = 0;
         if (treeState == 0) return;
 
         treeStateModels[treeState].SetActive(false);
@@ -86,19 +86,19 @@ public class Seeding : MonoBehaviour
         switch(WeedCount)
         {
             case 0:
-                grownRate = 1.0f;
+                growRate = 1.0f;
                 break;
             case 1:
-                grownRate = 0.8f;
+                growRate = 0.8f;
                 break;
             case 2:
-                grownRate = 0.6f;
+                growRate = 0.6f;
                 break;
             case 3:
-                grownRate = 0.4f;
+                growRate = 0.4f;
                 break;
             default:
-                grownRate = 0f;
+                growRate = 0f;
                 break;
 
         }
@@ -112,8 +112,8 @@ public class Seeding : MonoBehaviour
     }
     private void AddFertilizer()
     {
-        float tmp = (grownTime - grownCount)/2;
-        grownCount += tmp;
+        float tmp = (timeToGrow - growTimer)/2;
+        growTimer += tmp;
     }
     public void ChangeWeedCount(int num)
     {

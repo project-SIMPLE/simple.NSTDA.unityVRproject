@@ -1,6 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
+using System.Xml;
 using UnityEngine;
 
 public class Weed : MonoBehaviour
@@ -8,31 +9,173 @@ public class Weed : MonoBehaviour
     [SerializeField]
     private List<GameObject> treeInArea;
 
+
     [SerializeField]
     private int weedHP = 1;
+    [SerializeField]
+    private WeedState weedState;
 
-    void Start()
+    [SerializeField]
+    private GrowDir growFrom;
+
+    [SerializeField]
+    private float timeUnitlWeedSpread;
+    [SerializeField]
+    private float spreadingRadius;
+
+    private Dictionary<GrowDir, Vector3> growPos = new Dictionary<GrowDir, Vector3>()
     {
-        treeInArea = new List<GameObject>();
-    }
+        { GrowDir.Center ,      new Vector3(0, 0, 0) },
+        { GrowDir.UpLeft ,      new Vector3(-1, 0, 1) },
+        { GrowDir.Up ,          new Vector3(0, 0, 1) },
+        { GrowDir.UpRight ,     new Vector3(1, 0, 1) },
+        { GrowDir.Right ,       new Vector3(1, 0, 0) },
+        { GrowDir.DownRight ,   new Vector3(1, 0, -1) },
+        { GrowDir.Down ,        new Vector3(0, 0, -1) },
+        { GrowDir.DownLeft ,    new Vector3(-1, 0, -1) },
+        { GrowDir.Left ,        new Vector3(-1, 0, 0) }
+    };
+
+
 
     private bool isOnCooldown = false;
     private float cooldown = 0.5f;
     private float count = 0;
 
+    [SerializeField]
+    private bool isSpreading;
+    private float weedTimer = 0;
+
+    [SerializeField]
+    private GameObject Model;
+    [SerializeField]
+    private float targetSize = 0.2f;
+
+
+    void Start()
+    {
+        treeInArea = new List<GameObject>();
+    }
+    private void OnEnable()
+    {
+        weedState = WeedState.Growing;
+        targetSize += UnityEngine.Random.Range(-0.05f, 0.05f);
+        Model.transform.localScale = new Vector3 (0.05f, 0.05f, 0.05f);
+    }
+
     private void FixedUpdate()
     {
         if(isOnCooldown)
         {
-            count -= Time.deltaTime;
-            if(count <= cooldown)
+            count += Time.deltaTime;
+            if(count >= cooldown)
             {
                 isOnCooldown = false;
+                count = 0;
             }
         }
+        else
+        {
+            if (weedState != WeedState.Finish)
+            {
+                
+
+                switch (weedState)
+                {
+                    case WeedState.Growing:
+
+                        if(Model.transform.localScale.x < targetSize)
+                        {
+                            Model.transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 0.008f;
+                        }
+                        else
+                        {
+                            weedState = WeedState.Spreading;
+                        }
+
+
+                        break;
+                    case WeedState.Spreading:
+                        weedTimer += Time.deltaTime;
+
+                        if (weedTimer >= timeUnitlWeedSpread)
+                        {
+                            CreateNewWeed();
+                            weedState = WeedState.Finish;   
+                        }
+                        break;
+                }
+            }
+
+            /*if (isSpreading)
+            {
+                weedTimer += Time.deltaTime;
+                if(weedTimer >= timeUnitlWeedSpread)
+                {
+                    CreateNewWeed();
+                    isSpreading = false;
+                }
+            }*/
+        }
     }
+    
+    
+    private void CreateNewWeed()
+    {
+        Vector3 currentPos = this.transform.position;
+
+        foreach (GrowDir dir in growPos.Keys.ToList())
+        {
+            Vector3 pos;
+            if(growPos.TryGetValue(dir, out pos))
+            {
+                Vector3 tmp = currentPos + (pos * spreadingRadius);
+                if (IsLocationEmpty(tmp))
+                {
+                    GameObject obj = Instantiate(this.gameObject, tmp, this.transform.rotation);
+                    Weed objScript = obj.GetComponent<Weed>();
+                    objScript.SetGrowFrom(dir);
+                }
+            }
+        }
+
+
+
+        /*if(growFrom == GrowDir.Center)
+        {
+
+        }
+        else
+        {
+
+        }*/
+
+        isSpreading = false;
+    }
+    private float overlapRadious = 0.3f;
+    public bool IsLocationEmpty(Vector3 pos)
+    {
+        Collider[] hitColliders =  Physics.OverlapSphere(pos, overlapRadious);
+        if(hitColliders.Length > 0)
+        {
+            foreach (var collider in hitColliders)
+            {
+                if (collider.gameObject.tag == "Weed" || collider.gameObject.tag == "Fire")
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
+        
         if(collision.gameObject.tag == "Tools")
         {
             Debug.Log("Weed CUTTTTTT");
@@ -76,5 +219,34 @@ public class Weed : MonoBehaviour
             if (tree == null) return;
             tree.gameObject.GetComponent<Seeding>().ChangeWeedCount(-1);
         }
+    }
+    public void SetGrowFrom(GrowDir dir)
+    {
+        growFrom = dir;
+    }
+/*
+    private struct WeedGrowDir
+    {
+        GrowDir posIndex;
+        Vector3[] Pos;
+    }
+*/
+    private enum WeedState
+    {
+        Growing,
+        Spreading,
+        Finish
+    }
+    public enum GrowDir
+    {
+        Center = 0,
+        UpLeft = 1,
+        Up = 2,
+        UpRight = 3,
+        Right = 4,
+        DownRight = 5,
+        Down = 6,
+        DownLeft = 7,
+        Left = 8
     }
 }

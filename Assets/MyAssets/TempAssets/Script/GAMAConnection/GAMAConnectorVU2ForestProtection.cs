@@ -69,15 +69,21 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
             case "Stop":
                 break;
             case "ReadID":
-                VU2ForestProtectionEventManager.Instance?.GetPlayerID(GetTeamIDAsInt());
+                //Debug.Log("String ID: "+ GetTeamID());
+                //Debug.Log("int ID: "+GetTeamIDAsInt());
+                VU2ForestProtectionEventManager.Instance?.GetPlayerID(GetTeamID());
                 if (jsonContent != null)
                 {
                     VU2ForestProtectionEventManager.Instance?.RemoveTreeFromOtherPlayer(m.Content);
                 }
+                else
+                {
+                    Debug.Log("ERROR, jsonContent not found");
+                }
                 break;
             case "Update":
                 
-                Debug.Log("Name: " + jsonContent[0].Name + "  | Grow State: "+ jsonContent[0].State);
+                //Debug.Log("Name: " + jsonContent[0].Name + "  | Grow State: "+ jsonContent[0].State);
                 VU2ForestProtectionEventManager.Instance?.UpdateTreeFromGAMA(jsonContent);
                 break;
         }
@@ -99,7 +105,7 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
 
         if(Int32.TryParse(GetTeamID(), out id))
         {
-
+            return id;
         }
         else
         {

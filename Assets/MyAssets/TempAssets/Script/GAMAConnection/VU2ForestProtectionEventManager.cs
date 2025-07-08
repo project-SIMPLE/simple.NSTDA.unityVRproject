@@ -6,7 +6,7 @@ using UnityEngine;
 public class VU2ForestProtectionEventManager : MonoBehaviour
 {   
     public static VU2ForestProtectionEventManager Instance { get; private set; }
-    public int Id { get => id; set => id = value; }
+    
 
     // Start is called before the first frame update
     private void Awake()
@@ -27,26 +27,25 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     {
         
     }
-    private int id;
-    public void GetPlayerID(int playerID)
+    private string thisPlayerID;
+    public void GetPlayerID(string playerID)
     {
-        id = playerID;
+        //Debug.Log("#################### Plater ID:  "+ playerID);
+        thisPlayerID = playerID;
     }
     public void RemoveTreeFromOtherPlayer(List<GAMATreesMessage> tree)
     {
         foreach (GAMATreesMessage t in tree) 
         {
-            int cID;
-            if (Int32.TryParse(t.PlayerID, out cID))
-            {
-
-            }
-            else
+            string cID = t.PlayerID;
+            //Debug.Log("#################  cID "+ cID);
+            //Debug.Log("#################  this ID " + thisPlayerID);
+            if (cID == null)
             {
                 Debug.Log("PlayerID error");
                 return;
             }
-            if (cID != id)
+            if (cID != thisPlayerID)
             {
                 GameObject.Find(t.Name)?.gameObject.SetActive(false);
             }
@@ -58,17 +57,13 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
         foreach (GAMATreesMessage t in tree)
         {
-            int cID;
-            if (Int32.TryParse(t.PlayerID, out cID))
-            {
-
-            }
-            else
+            string cID = t.PlayerID;
+            if (cID == null)
             {
                 Debug.Log("PlayerID error");
                 return;
             }
-            if (cID == id)
+            if (cID == thisPlayerID)
             {
                 GameObject.Find(t.Name)?.GetComponent<Seeding>()?.ChangeGrowState(Int32.Parse(t.State));
                 //GameObject.Find(t.Name).gameObject.SetActive(false);
