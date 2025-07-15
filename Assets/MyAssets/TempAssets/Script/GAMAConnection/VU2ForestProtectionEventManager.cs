@@ -77,7 +77,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         OnTreeChangeState?.Invoke(treeName, state);
     }
 
-
+    
 
     /*public event Action<string, int> OnRemoveLocalFruitOnTree;
     public void RemoveFruitOnTree(string treeName, int treeIndex)

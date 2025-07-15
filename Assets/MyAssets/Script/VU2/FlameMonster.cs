@@ -42,7 +42,7 @@ public class FlameMonster : MonoBehaviour
         }
         else
         {
-            if(timer >= 1f)
+            if(timer >= 0.5f)
             {
                 timer = 0;
                 hitCoolDown=false;

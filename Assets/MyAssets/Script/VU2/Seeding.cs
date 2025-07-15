@@ -118,7 +118,30 @@ public class Seeding : MonoBehaviour
     public void ChangeWeedCount(int num)
     {
         WeedCount += num;
-        ChangeGrownRate();
+        //ChangeGrownRate();
+    }
+
+    public void GotWeedOnTree()
+    {
+        if(WeedCount == 0)
+        {
+            VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name,"STOPGROW");
+        }
+        WeedCount++;
+    }
+    
+    public void RemoveWeedOnTree()
+    {
+        if(WeedCount > 0)
+        {
+            WeedCount--;
+        }
+
+        if(WeedCount == 0)
+        {
+            VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name,"GROWING");
+        }
+        
     }
     private void OnParticleCollision(GameObject other)
     {

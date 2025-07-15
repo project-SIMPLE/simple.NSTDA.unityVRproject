@@ -17,6 +17,8 @@ public class Weed : MonoBehaviour
 
     [SerializeField]
     private GrowDir growFrom;
+    [SerializeField]
+    private float growCount;
 
     [SerializeField]
     private float timeUnitlWeedSpread;
@@ -59,7 +61,7 @@ public class Weed : MonoBehaviour
     private void OnEnable()
     {
         weedState = WeedState.Growing;
-        targetSize += UnityEngine.Random.Range(-0.05f, 0.05f);
+        targetSize = UnityEngine.Random.Range(0.15f, 0.25f);
         Model.transform.localScale = new Vector3 (0.05f, 0.05f, 0.05f);
     }
 
@@ -96,12 +98,18 @@ public class Weed : MonoBehaviour
 
                         break;
                     case WeedState.Spreading:
-                        weedTimer += Time.deltaTime;
-
-                        if (weedTimer >= timeUnitlWeedSpread)
+                        if (!isSpreading)
                         {
-                            CreateNewWeed();
-                            weedState = WeedState.Finish;   
+                            weedState = WeedState.Finish;
+                        }
+                        else
+                        {
+                            weedTimer += Time.deltaTime;
+                            if (weedTimer >= timeUnitlWeedSpread)
+                            {
+                                CreateNewWeed();
+                                weedState = WeedState.Finish;
+                            }
                         }
                         break;
                 }
@@ -132,6 +140,8 @@ public class Weed : MonoBehaviour
                 Vector3 tmp = currentPos + (pos * spreadingRadius);
                 if (IsLocationEmpty(tmp))
                 {
+                    if( (growCount*20f)+20f < UnityEngine.Random.Range(0f, 100f)) break;
+
                     GameObject obj = Instantiate(this.gameObject, tmp, this.transform.rotation);
                     Weed objScript = obj.GetComponent<Weed>();
                     objScript.SetGrowFrom(dir);
@@ -205,8 +215,9 @@ public class Weed : MonoBehaviour
         if (!treeInArea.Contains(other.gameObject) && other.gameObject.tag== "tree")
         {
             treeInArea.Add(other.gameObject);
-            other.gameObject.GetComponent<Seeding>().ChangeWeedCount(1);
-            
+            //other.gameObject.GetComponent<Seeding>().ChangeWeedCount(1);
+            other.gameObject.GetComponent<Seeding>().GotWeedOnTree();
+            isSpreading = false;
         }
     }
 
@@ -217,13 +228,18 @@ public class Weed : MonoBehaviour
         foreach (GameObject tree in treeInArea)
         {
             if (tree == null) return;
-            tree.gameObject.GetComponent<Seeding>().ChangeWeedCount(-1);
+            //tree.gameObject.GetComponent<Seeding>().ChangeWeedCount(-1);
+            tree.gameObject.GetComponent<Seeding>().RemoveWeedOnTree();
         }
     }
     public void SetGrowFrom(GrowDir dir)
     {
         growFrom = dir;
+        
+        growCount--;
+        if(growCount <= 0) { growCount = 0; }
     }
+    
 /*
     private struct WeedGrowDir
     {
