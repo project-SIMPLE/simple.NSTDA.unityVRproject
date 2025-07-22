@@ -76,6 +76,10 @@ public class Seeding : MonoBehaviour
     }
     public void ChangeGrowState(int state)
     {
+        if(state == 99)
+        {
+            return;
+        }
         treeStateModels[treeState].SetActive(false);
         treeState = state;
         treeStateModels[treeState].SetActive(true);
@@ -103,29 +107,36 @@ public class Seeding : MonoBehaviour
 
         }
     }
-
-    private void Treeburn()
-    {
-        /*treeStateModels[treeState].SetActive(false);
-        treeState = -1;*/
-        ChangeGrowState(0);
-    }
     private void AddFertilizer()
     {
         float tmp = (timeToGrow - growTimer)/2;
         growTimer += tmp;
     }
+
     public void ChangeWeedCount(int num)
     {
         WeedCount += num;
         //ChangeGrownRate();
     }
 
+    //
+    // -1 = stop growing
+    //  0 = die
+    //  1 = growing
+    //
+    private void Treeburn()
+    {
+        /*treeStateModels[treeState].SetActive(false);
+        treeState = -1;*/
+        ChangeGrowState(0);
+        VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name, "0");
+    }
+    
     public void GotWeedOnTree()
     {
         if(WeedCount == 0)
         {
-            VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name,"STOPGROW");
+            VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name,"-1");
         }
         WeedCount++;
     }
@@ -139,7 +150,7 @@ public class Seeding : MonoBehaviour
 
         if(WeedCount == 0)
         {
-            VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name,"GROWING");
+            VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name,"1");
         }
         
     }

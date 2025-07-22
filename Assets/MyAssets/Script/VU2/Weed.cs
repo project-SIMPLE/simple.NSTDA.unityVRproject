@@ -140,7 +140,7 @@ public class Weed : MonoBehaviour
                 Vector3 tmp = currentPos + (pos * spreadingRadius);
                 if (IsLocationEmpty(tmp))
                 {
-                    if( (growCount*20f)+20f < UnityEngine.Random.Range(0f, 100f)) break;
+                    if( ((growCount*20f)+50f) < UnityEngine.Random.Range(0f, 100f)) break;
 
                     GameObject obj = Instantiate(this.gameObject, tmp, this.transform.rotation);
                     Weed objScript = obj.GetComponent<Weed>();
@@ -185,15 +185,11 @@ public class Weed : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        
-        if(collision.gameObject.tag == "Tools")
+        Debug.Log("TAG ="+ collision.gameObject.tag);
+        if (collision.gameObject.tag == "Tools")
         {
             Debug.Log("Weed CUTTTTTT");
-            if(isOnCooldown)
-            {
-
-            }
-            else
+            if(!isOnCooldown)
             {
                 isOnCooldown = true;
                 ReduceHP();
@@ -211,15 +207,29 @@ public class Weed : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        
+        //Debug.Log("Trigger TAG =" + other.gameObject.tag);
+
         if (!treeInArea.Contains(other.gameObject) && other.gameObject.tag== "tree")
         {
             treeInArea.Add(other.gameObject);
             //other.gameObject.GetComponent<Seeding>().ChangeWeedCount(1);
             other.gameObject.GetComponent<Seeding>().GotWeedOnTree();
             isSpreading = false;
+        }else if(other.gameObject.tag== "Tools")
+        {
+            if (!isOnCooldown)
+            {
+                isOnCooldown = true;
+                ReduceHP();
+            }
+
+        }
+        else if(other.gameObject.tag== "Fire")
+        {
+            ReduceHP();
         }
     }
+
 
     private void OnWeedDestroyed()
     {

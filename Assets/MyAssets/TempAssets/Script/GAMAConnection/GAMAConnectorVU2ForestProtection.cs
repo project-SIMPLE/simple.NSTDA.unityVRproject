@@ -74,7 +74,7 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
                 VU2ForestProtectionEventManager.Instance?.GetPlayerID(GetTeamID());
                 if (jsonContent != null)
                 {
-                    VU2ForestProtectionEventManager.Instance?.RemoveTreeFromOtherPlayer(m.Content);
+                    VU2ForestProtectionEventManager.Instance?.RemoveOtherPlayerTree(m.Content);
                 }
                 else
                 {
@@ -82,9 +82,15 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
                 }
                 break;
             case "Update":
-                
                 //Debug.Log("Name: " + jsonContent[0].Name + "  | Grow State: "+ jsonContent[0].State);
-                VU2ForestProtectionEventManager.Instance?.UpdateTreeFromGAMA(jsonContent);
+                if (jsonBody == "GROW")
+                {
+                    VU2ForestProtectionEventManager.Instance?.UpdateTreeFromGAMA(jsonContent);
+                }
+                else if(jsonBody =="GRASS")
+                {
+                    VU2ForestProtectionEventManager.Instance?.UpdateGrassOnTreeFromGAMA(jsonContent);
+                }
                 break;
         }
 
@@ -120,6 +126,11 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         return ConnectionManager.Instance.getUseMiddleware() ? ConnectionManager.Instance.GetConnectionId() : ("\"" + ConnectionManager.Instance.GetConnectionId() + "\""); ;
     }
 
+    //
+    // -1 = stop growing
+    //  0 = die
+    //  1 = growing
+    //
     public void SendTreeStatusToGAMA(string treeName, string status)
     {
         

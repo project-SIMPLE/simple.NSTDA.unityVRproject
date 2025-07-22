@@ -25,6 +25,13 @@ public class GrassHitBox : MonoBehaviour
         }
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Tools" || other.gameObject.tag == "Fire")
+        {
+            GrassRemove();
+        }
+    }
     private void GrassRemove()
     {
         onGrassRemove.Invoke();

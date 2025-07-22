@@ -33,7 +33,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         //Debug.Log("#################### Plater ID:  "+ playerID);
         thisPlayerID = playerID;
     }
-    public void RemoveTreeFromOtherPlayer(List<GAMATreesMessage> tree)
+    public void RemoveOtherPlayerTree(List<GAMATreesMessage> tree)
     {
         foreach (GAMATreesMessage t in tree) 
         {
@@ -65,7 +65,27 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             }
             if (cID == thisPlayerID)
             {
+                //Debug.Log("Player : "+ cID);
                 GameObject.Find(t.Name)?.GetComponent<Seeding>()?.ChangeGrowState(Int32.Parse(t.State));
+                //GameObject.Find(t.Name).gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void UpdateGrassOnTreeFromGAMA(List<GAMATreesMessage> tree)
+    {
+        foreach (GAMATreesMessage t in tree)
+        {
+            string cID = t.PlayerID;
+            if (cID == null)
+            {
+                Debug.Log("PlayerID error");
+                return;
+            }
+            if (cID == thisPlayerID)
+            {
+                //Debug.Log("Player : "+ cID);
+                GameObject.Find(t.Name)?.GetComponent<SeedingWithGrass>()?.GrassesGrow();
                 //GameObject.Find(t.Name).gameObject.SetActive(false);
             }
         }

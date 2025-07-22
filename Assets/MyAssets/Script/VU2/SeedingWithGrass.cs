@@ -23,9 +23,11 @@ public class SeedingWithGrass : Seeding
         grassCount--;
         if(grassCount <= 0)
         {
+            grassCount = 0;
             RemoveWeedOnTree();
         }
     }
 
-    
+
+
 }
