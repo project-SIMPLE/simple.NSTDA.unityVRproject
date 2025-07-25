@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class TitleSceneManager : MonoBehaviour
@@ -49,5 +50,30 @@ public class TitleSceneManager : MonoBehaviour
     public void GotoScene(string name)
     {
         SceneManager.LoadScene(name);
+    }
+
+    public void IPKeyboard(string key)
+    {
+        if (key == null || key.Length == 0) return;
+        if (key == "DELETE")
+        {
+            if(IP.text.Length > 0) IP.text = IP.text.Substring(0, IP.text.Length - 1);
+        }
+        else
+        {
+            IP.text += key;
+        }
+    }
+    public void PortKeyboard(string key)
+    {
+        if (key == null || key.Length == 0) return;
+        if (key == "DELETE")
+        {
+            if (Port.text.Length > 0) Port.text = Port.text.Substring(0, Port.text.Length - 1);
+        }
+        else
+        {
+            Port.text += key;
+        }
     }
 }

@@ -19,7 +19,7 @@ public class GrassHitBox : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Tools" || collision.gameObject.tag == "Fire")
+        if (/*collision.gameObject.tag == "Tools" ||*/ collision.gameObject.tag == "Fire")
         {
             GrassRemove();
         }
@@ -27,7 +27,7 @@ public class GrassHitBox : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Tools" || other.gameObject.tag == "Fire")
+        if (/*other.gameObject.tag == "Tools" ||*/ other.gameObject.tag == "Fire")
         {
             GrassRemove();
         }
@@ -37,5 +37,9 @@ public class GrassHitBox : MonoBehaviour
         onGrassRemove.Invoke();
         this.gameObject.SetActive(false);
         
+    }
+    public void CutGrass()
+    {
+        GrassRemove();
     }
 }

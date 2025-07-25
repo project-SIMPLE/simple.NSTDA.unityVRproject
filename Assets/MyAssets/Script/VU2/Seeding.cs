@@ -134,7 +134,7 @@ public class Seeding : MonoBehaviour
     
     public void GotWeedOnTree()
     {
-        if(WeedCount == 0)
+        if(WeedCount == 0 && treeState!=0)
         {
             VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name,"-1");
         }
@@ -148,7 +148,7 @@ public class Seeding : MonoBehaviour
             WeedCount--;
         }
 
-        if(WeedCount == 0)
+        if(WeedCount == 0 && treeState != 0)
         {
             VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name,"1");
         }

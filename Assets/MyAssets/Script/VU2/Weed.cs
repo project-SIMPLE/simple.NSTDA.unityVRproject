@@ -185,7 +185,7 @@ public class Weed : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("TAG ="+ collision.gameObject.tag);
+        //Debug.Log("TAG ="+ collision.gameObject.tag);
         if (collision.gameObject.tag == "Tools")
         {
             Debug.Log("Weed CUTTTTTT");
@@ -196,7 +196,7 @@ public class Weed : MonoBehaviour
             }
         }
     }
-    private void ReduceHP()
+    public void ReduceHP()
     {
         weedHP--;
         if(weedHP <= 0)
@@ -214,7 +214,7 @@ public class Weed : MonoBehaviour
             treeInArea.Add(other.gameObject);
             //other.gameObject.GetComponent<Seeding>().ChangeWeedCount(1);
             other.gameObject.GetComponent<Seeding>().GotWeedOnTree();
-            isSpreading = false;
+            //isSpreading = false;
         }else if(other.gameObject.tag== "Tools")
         {
             if (!isOnCooldown)

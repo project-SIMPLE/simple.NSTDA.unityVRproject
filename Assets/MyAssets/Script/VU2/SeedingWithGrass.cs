@@ -9,6 +9,7 @@ public class SeedingWithGrass : Seeding
     [SerializeField]
     private int grassCount;
 
+    private bool haveGrasses = false;
     public void GrassesGrow()
     {
         grassCount = 3;
@@ -16,7 +17,12 @@ public class SeedingWithGrass : Seeding
         {
             grass.SetActive(true);
         }
-        GotWeedOnTree();
+        if (!haveGrasses)
+        {
+            GotWeedOnTree();
+            haveGrasses = true;
+        }
+        
     }
     public void GrassCut()
     {
@@ -25,6 +31,7 @@ public class SeedingWithGrass : Seeding
         {
             grassCount = 0;
             RemoveWeedOnTree();
+            haveGrasses = false;
         }
     }
 

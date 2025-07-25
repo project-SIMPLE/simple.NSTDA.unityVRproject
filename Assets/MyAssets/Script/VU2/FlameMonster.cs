@@ -85,10 +85,20 @@ public class FlameMonster : MonoBehaviour
         if (hitPoint == 4) hpUI?.SetActive(true);
         if (hitPoint < 0)
         {
-            this.gameObject.SetActive(false);
-            //Debug.Log("MonsterDie");
+            Debug.Log(this.gameObject.name+" GONE");
+            FlameGone();
         }
         UpdateHPBar();
+    }
+    public void KillFlame()
+    {
+        FlameGone();
+    }
+    private void FlameGone()
+    {
+        //VU2ForestProtectionEventManager.Instance?.ThreatUpdate(this.gameObject.name,"GONE");
+        VU2ForestProtectionEventManager.Instance?.FireRemove(this.gameObject.transform.position);
+        this.gameObject.SetActive(false);
     }
     private void UpdateHPBar()
     {
