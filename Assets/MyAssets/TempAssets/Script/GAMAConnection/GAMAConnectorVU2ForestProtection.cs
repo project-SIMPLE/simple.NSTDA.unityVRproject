@@ -106,7 +106,7 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
     private void ReadListOfMessage(ListOfGAMAMessage lists)
     {
         List<GAMAMessage_edit2> mes = lists.ListOfMessage;
-        //Debug.Log("############################ Lists Size " + mes.Count);
+        Debug.Log("############################ Lists Size " + mes.Count);
         foreach (GAMAMessage_edit2 m in mes)
         {
             UpdateGameManager(m);

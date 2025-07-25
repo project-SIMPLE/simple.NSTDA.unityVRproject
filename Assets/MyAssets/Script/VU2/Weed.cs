@@ -188,7 +188,7 @@ public class Weed : MonoBehaviour
         //Debug.Log("TAG ="+ collision.gameObject.tag);
         if (collision.gameObject.tag == "Tools")
         {
-            Debug.Log("Weed CUTTTTTT");
+            //Debug.Log("Weed CUTTTTTT");
             if(!isOnCooldown)
             {
                 isOnCooldown = true;

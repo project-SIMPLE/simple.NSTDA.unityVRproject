@@ -27,6 +27,14 @@ public class FlameMonster : MonoBehaviour
 
     float timer;
     // Start is called before the first frame update
+    private void OnEnable()
+    {
+        VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect += KillFlame;
+    }
+    private void OnDisable()
+    {
+        VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect -= KillFlame;
+    }
     void Start()
     {
         timer = 0;
@@ -93,6 +101,10 @@ public class FlameMonster : MonoBehaviour
     public void KillFlame()
     {
         FlameGone();
+    }
+    public void KillFlame(bool t)
+    {
+        if (t) FlameGone();
     }
     private void FlameGone()
     {

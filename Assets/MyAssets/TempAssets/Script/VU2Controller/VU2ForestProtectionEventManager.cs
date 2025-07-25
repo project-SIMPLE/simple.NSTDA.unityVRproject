@@ -160,7 +160,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     {
         switch(name)
         {
-            case "Flame":
+            case "Flame1":
                 totalFire++;
                 UpdateFireEffect(true);
                 Instantiate(FlamePrefab,pos, this.transform.rotation);
