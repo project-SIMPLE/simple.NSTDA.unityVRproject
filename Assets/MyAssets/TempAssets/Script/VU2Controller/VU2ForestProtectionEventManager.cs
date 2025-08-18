@@ -11,6 +11,9 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     [SerializeField]
     private GameObject AlienPrefab;
 
+    [SerializeField]
+    private GameObject PauseUI;
+    private VU2EnvironmentController envController;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -22,7 +25,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         {
             Instance = this;
         }
-        
+        envController = this.gameObject.GetComponent<VU2EnvironmentController>();
     }
 
 
@@ -30,6 +33,20 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     {
         
     }
+    public void StartStopGame(bool isRunning)
+    {
+        if (isRunning)
+        {
+            //Time.timeScale = 1f;
+            PauseUI.SetActive(false);
+        }
+        else
+        {
+            PauseUI.SetActive(true);
+            //Time.timeScale = 0f;
+        }
+    }
+    
     private string thisPlayerID;
     public void GetPlayerID(string playerID)
     {
@@ -99,7 +116,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         foreach(GAMAThreatMessage t in threats)
         {
             if (t.PlayerID != thisPlayerID) continue;
-            Debug.Log(t.Name);
+            //Debug.Log(t.Name);
             float GamaX;
             float GamaY;
             float GamaZ;
@@ -150,26 +167,22 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             }
             if (cID == thisPlayerID)
             {
-                Debug.Log("Change background to stage: "+ t.Name);
+                
+                int stage;
+                if(int.TryParse(t.Name,out stage))
+                {
+                    Debug.Log("Change background to stage: " + t.Name);
+                    envController.ShowEnvironment(stage);
+                }
+                else
+                {
+                    Debug.Log("Stage Name error");
+                }
+                
             }
         }
     }
 
-    private int totalFire = 0;
-    private void CreateThreat(string name,Vector3 pos)
-    {
-        switch(name)
-        {
-            case "Flame1":
-                totalFire++;
-                UpdateFireEffect(true);
-                Instantiate(FlamePrefab,pos, this.transform.rotation);
-                break;
-            case "Alien":
-                Instantiate(AlienPrefab, pos, this.transform.rotation);
-                break;
-        }
-    }
     public event Action<string, string> OnTreeChangeState;
     public void TreeChangeState(string treeName, string state)
     {
@@ -228,6 +241,26 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+    private int totalFire = 0;
+    private void CreateThreat(string name, Vector3 pos)
+    {
+        switch (name)
+        {
+            case "Flame1":
+                totalFire++;
+                UpdateFireEffect(true);
+                //Instantiate(FlamePrefab, pos, this.transform.rotation);
+                VU2ObjectPoolManager.Instance?.SpawnObject(FlamePrefab, pos, this.transform.rotation);
+                break;
+            case "Alien":
+                //Instantiate(AlienPrefab, pos, this.transform.rotation);
+                VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab, pos, this.transform.rotation);
+
+                break;
+        }
     }
 
 }

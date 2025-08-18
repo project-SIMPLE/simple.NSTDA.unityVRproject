@@ -110,7 +110,8 @@ public class FlameMonster : MonoBehaviour
     {
         //VU2ForestProtectionEventManager.Instance?.ThreatUpdate(this.gameObject.name,"GONE");
         VU2ForestProtectionEventManager.Instance?.FireRemove(this.gameObject.transform.position);
-        this.gameObject.SetActive(false);
+        VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
+        //this.gameObject.SetActive(false);
     }
     private void UpdateHPBar()
     {

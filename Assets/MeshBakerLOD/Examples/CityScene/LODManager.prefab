@@ -1,0 +1,443 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 400000}
+  - component: {fileID: 11400002}
+  - component: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: MeshBakerWindows
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 400002}
+  - component: {fileID: 11400006}
+  - component: {fileID: 11400004}
+  m_Layer: 0
+  m_Name: MeshBakerHouses
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 400004}
+  - component: {fileID: 11400008}
+  m_Layer: 0
+  m_Name: LODManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 400006}
+  - component: {fileID: 11400010}
+  - component: {fileID: 11400012}
+  m_Layer: 0
+  m_Name: MeshBakerTrees
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400004}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &400002
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400004}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &400004
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 400000}
+  - {fileID: 400002}
+  - {fileID: 400006}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &400006
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400004}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfb9c139ae226346aa7ffa8efb0cca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textureBakeResults: {fileID: 11400000, guid: 4c2cd35c7ac128c4e9f7fe92755fb721, type: 2}
+  objsToMesh: []
+  useObjsToMeshFromTexBaker: 1
+  bakeAssetsInPlaceFolderPath: 
+  resultPrefab: {fileID: 0}
+  resultSceneObject: {fileID: 0}
+  renderType: 0
+  outputOption: 0
+  lightmapOption: 1
+  doNorm: 1
+  doTan: 1
+  doCol: 0
+  doUV: 1
+  doUV1: 0
+  meshCombiner:
+    _doNorm: 1
+    _doTan: 1
+    _doCol: 1
+    _doUV: 1
+    _doUV1: 1
+    lightmapIndex: -1
+    objectsInCombinedMesh: []
+    mbDynamicObjectsInCombinedMesh: []
+    verts: []
+    normals: []
+    tangents: []
+    uvs: []
+    uv1s: []
+    uv2s: []
+    colors: []
+    bindPoses: []
+    bones: []
+    _mesh: {fileID: 0}
+    __name: 
+    __textureBakeResults: {fileID: 0}
+    __targetRenderer: {fileID: 0}
+    __renderType: 0
+    __outputOption: 0
+    __lightmapOption: 0
+    __doNorm: 0
+    __doTan: 0
+    __doCol: 0
+    __doUV: 0
+    __doUV1: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd92fce2e43feb489fafc117b6b569d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textureBakeResults: {fileID: 11400000, guid: 4c2cd35c7ac128c4e9f7fe92755fb721, type: 2}
+  maxTilingBakeSize: 1024
+  doMultiMaterial: 0
+  fixOutOfBoundsUVs: 0
+  resultMaterial: {fileID: 2100000, guid: 9d6cdb2320852da459d53f164d9fed1f, type: 2}
+  resultMaterials: []
+  atlasPadding: 1
+  resizePowerOfTwoTextures: 1
+  texturePackingAlgorithm: 1
+  customShaderPropNames: []
+  objsToMesh:
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfb9c139ae226346aa7ffa8efb0cca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textureBakeResults: {fileID: 11400000, guid: e876fd7581d1d9b4d818bf1482430f38, type: 2}
+  objsToMesh: []
+  useObjsToMeshFromTexBaker: 1
+  bakeAssetsInPlaceFolderPath: 
+  resultPrefab: {fileID: 0}
+  resultSceneObject: {fileID: 0}
+  renderType: 0
+  outputOption: 0
+  lightmapOption: 1
+  doNorm: 1
+  doTan: 1
+  doCol: 0
+  doUV: 1
+  doUV1: 0
+  meshCombiner:
+    _doNorm: 1
+    _doTan: 1
+    _doCol: 1
+    _doUV: 1
+    _doUV1: 1
+    lightmapIndex: -1
+    objectsInCombinedMesh: []
+    mbDynamicObjectsInCombinedMesh: []
+    verts: []
+    normals: []
+    tangents: []
+    uvs: []
+    uv1s: []
+    uv2s: []
+    colors: []
+    bindPoses: []
+    bones: []
+    _mesh: {fileID: 0}
+    __name: 
+    __textureBakeResults: {fileID: 0}
+    __targetRenderer: {fileID: 0}
+    __renderType: 0
+    __outputOption: 0
+    __lightmapOption: 0
+    __doNorm: 0
+    __doTan: 0
+    __doCol: 0
+    __doUV: 0
+    __doUV1: 0
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd92fce2e43feb489fafc117b6b569d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textureBakeResults: {fileID: 11400000, guid: e876fd7581d1d9b4d818bf1482430f38, type: 2}
+  maxTilingBakeSize: 1024
+  doMultiMaterial: 0
+  fixOutOfBoundsUVs: 0
+  resultMaterial: {fileID: 2100000, guid: 50f677a60c72abf47be083e3a6354dee, type: 2}
+  resultMaterials: []
+  atlasPadding: 1
+  resizePowerOfTwoTextures: 1
+  texturePackingAlgorithm: 1
+  customShaderPropNames: []
+  objsToMesh:
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fee975e5ad61db428e7e3343c6bfab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LOG_LEVEL: 3
+  baking_enabled: 1
+  maxCombineTimePerFrame: 0.005
+  ignoreLightmapping: 0
+  bakers:
+  - meshBaker: {fileID: 11400004}
+    lightMapIndex: -1
+    layer: 0
+    castShadow: 1
+    receiveShadow: 1
+    label: 
+    clusterType: 0
+    maxVerticesPerCombinedMesh: 9000
+    gridSize: 100
+    maxNumberPerLevel: 
+    updateSkinnedMeshApproximateBounds: 0
+    numFramesBetweenLODChecks: 20
+  - meshBaker: {fileID: 11400012}
+    lightMapIndex: -1
+    layer: 0
+    castShadow: 1
+    receiveShadow: 1
+    label: 
+    clusterType: 0
+    maxVerticesPerCombinedMesh: 9000
+    gridSize: 100
+    maxNumberPerLevel: 
+    updateSkinnedMeshApproximateBounds: 0
+    numFramesBetweenLODChecks: 20
+  - meshBaker: {fileID: 11400000}
+    lightMapIndex: -1
+    layer: 0
+    castShadow: 1
+    receiveShadow: 1
+    label: 
+    clusterType: 0
+    maxVerticesPerCombinedMesh: 9000
+    gridSize: 100
+    maxNumberPerLevel: 
+    updateSkinnedMeshApproximateBounds: 0
+    numFramesBetweenLODChecks: 20
+  limbo: []
+  numBakersPerGC: 1
+  statTotalNumBakes: 0
+  statAveCombinedMeshBakeTime: 0.03
+  statMaxCombinedMeshBakeTime: 0
+  statMinCombinedMeshBakeTime: 100
+  statTotalCombinedMeshBakeTime: 0.03
+  statLastCombinedMeshBakeTime: 0
+  statLastNumBakes: 0
+  statLastGCFrame: 0
+  statLastGarbageCollectionTime: 0
+  statTotalGarbageCollectionTime: 0
+  statLastBakeFrame: 0
+  statNumDirty: 0
+  statNumSplit: 0
+  statNumMerge: 0
+  statLastMergeTime: 0
+  statLastSplitTime: 0
+  statLastCheckLODNeedToChangeTime: 0
+  statTotalCheckLODNeedToChangeTime: 0
+--- !u!114 &11400010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd92fce2e43feb489fafc117b6b569d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textureBakeResults: {fileID: 11400000, guid: 8145964e1ae28864eb13c9aeab326cbf, type: 2}
+  maxTilingBakeSize: 1024
+  doMultiMaterial: 0
+  fixOutOfBoundsUVs: 0
+  resultMaterial: {fileID: 2100000, guid: 50f677a60c72abf47be083e3a6354dee, type: 2}
+  resultMaterials: []
+  atlasPadding: 1
+  resizePowerOfTwoTextures: 1
+  texturePackingAlgorithm: 1
+  customShaderPropNames: []
+  objsToMesh:
+  - {fileID: 0}
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfb9c139ae226346aa7ffa8efb0cca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textureBakeResults: {fileID: 11400000, guid: 8145964e1ae28864eb13c9aeab326cbf, type: 2}
+  objsToMesh: []
+  useObjsToMeshFromTexBaker: 1
+  bakeAssetsInPlaceFolderPath: 
+  resultPrefab: {fileID: 0}
+  resultSceneObject: {fileID: 0}
+  renderType: 0
+  outputOption: 0
+  lightmapOption: 1
+  doNorm: 1
+  doTan: 1
+  doCol: 0
+  doUV: 1
+  doUV1: 0
+  meshCombiner:
+    _doNorm: 1
+    _doTan: 1
+    _doCol: 1
+    _doUV: 1
+    _doUV1: 1
+    lightmapIndex: -1
+    objectsInCombinedMesh: []
+    mbDynamicObjectsInCombinedMesh: []
+    verts: []
+    normals: []
+    tangents: []
+    uvs: []
+    uv1s: []
+    uv2s: []
+    colors: []
+    bindPoses: []
+    bones: []
+    _mesh: {fileID: 0}
+    __name: 
+    __textureBakeResults: {fileID: 0}
+    __targetRenderer: {fileID: 0}
+    __renderType: 0
+    __outputOption: 0
+    __lightmapOption: 0
+    __doNorm: 0
+    __doTan: 0
+    __doCol: 0
+    __doUV: 0
+    __doUV1: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100004}
+  m_IsPrefabParent: 1

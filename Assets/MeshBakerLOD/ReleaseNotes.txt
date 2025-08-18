@@ -1,0 +1,74 @@
+Version 2.9
+    Converted .js scripts to .cs scripts because javascript is depricated
+
+Version 2.8
+	Removed references to textureBakeResults.materials because it was depricated
+	Updated renderer castShadow API
+
+Version 2.7 Feb. 16, 2016
+	Fixed "don't bake into combined" so that it works with billboard renderers
+
+Version 2.6
+  Fix to work with Mesh Baker 3.7.3 and clean compile on Unity 5
+
+Version 2.5
+	Fixed warnings when compiling
+	Fixed boolean compare bug
+
+Version 2.4
+    Added the ability to move all clusters so that the world can be recentered around the origin 
+    to avoid floating point precision glitches.
+
+Version 2.3
+    Added a new Cluster type Moving
+    Updated the city scene to be more efficient.
+    
+Version 2.2
+	Updated to use Mesh Baker 3 components. Requires MeshBaker version 3 or higher. Read the README
+	for information on upgrading.
+
+Version 2.1
+	Added Cast Receive Shadows option
+	Refactored queue to store the latest transaction.
+	Added split and merge to try to reduce the maximum number of meshes in an atomic bake.
+
+Version 2.0
+	A big refactor and a number of performance improvements
+		Refactored Initialization of LODs it happens in Start instead of on first LOD change
+		Removed changed "Update" to "CheckIfLODNeedsToChange" in MB2_LOD
+		Created a class for checking if LODs need to change. Close-to-camera clusters are checked frequently,
+			distant clusters are checked less frequently
+		Added the check scheduler to the LOD Manager
+		Refactored the Cluster class by splitting into two classes
+			LODCombinedMesh is a wrapper for MB2_CombinedMesh that contains Queues and
+				performs callbacks on baking.
+			Cluster is a defined volume and contains one or more LODCombinedMeshes
+		By splitting the cluster it is possible to bake only part of a combined mesh
+		Added a "SwapMeshWithLOD0" checkbox to the levels in the LOD. This makes
+			managing animations MUCH easier.
+		
+
+Version 1.4
+	A number of performance improvements
+		Added an offset to the LOD frame check so that each cluster's lods check in a different frame
+		Garbage collection time is included in measure of how long a frame is taking
+		Better diagnostic information 	
+
+Version 1.2
+	Fixed serious bug with LOD Manager singleton switching scenes
+	Each LOD level hierarchy is deactivated instead of just the mesh game object
+
+Version 1.1
+	Fixed bug which would cause SkinnedMeshLODs with max per level set to bake every frame
+	Can add and remove bakers at runtime
+	Can use orthographic cameras
+
+Version 1.0.2
+
+	Added force to level for LOD
+	Added max number of LODs at a certain level
+	Fixed bug where LOD object is sometimes not deleted
+	Fixed bug activating and deactivating child objects.
+	Added logging individual objects
+	Added updateSkinnedMeshRender bounds
+	Fixes warnings in Unity 4

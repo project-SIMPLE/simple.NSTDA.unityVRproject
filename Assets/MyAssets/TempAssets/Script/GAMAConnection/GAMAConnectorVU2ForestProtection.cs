@@ -59,8 +59,16 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         switch (jsonHead)
         {
             case "Start":
+                VU2ForestProtectionEventManager.Instance?.StartStopGame(true);
+                break;
+            case "Pause":
+
+                break;
+            case "Continue":
+
                 break;
             case "Stop":
+                VU2ForestProtectionEventManager.Instance?.StartStopGame(false);
                 break;
             case "ReadID":
                 VU2ForestProtectionEventManager.Instance?.GetPlayerID(GetTeamID());

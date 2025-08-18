@@ -202,7 +202,8 @@ public class Weed : MonoBehaviour
         if(weedHP <= 0)
         {
             OnWeedDestroyed();
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
+            VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
         }
     }
     private void OnTriggerEnter(Collider other)
