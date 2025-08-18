@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(FlameMonster))]
-public class FlameMonsterEditor : Editor
+[CustomEditor(typeof(FlameMonster2))]
+public class Flame2Editor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-        FlameMonster script = (FlameMonster)target;
+        FlameMonster2 script = (FlameMonster2)target;
 
 
         if (GUILayout.Button("Kill Flame"))
         {
             script.KillFlame();
         }
-
-
+        if(GUILayout.Button("Shoot Small Fire"))
+        {
+            script.ShootFireParticle();
+        }
     }
 }
