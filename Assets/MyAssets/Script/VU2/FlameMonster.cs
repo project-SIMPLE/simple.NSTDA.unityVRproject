@@ -35,10 +35,19 @@ public class FlameMonster : MonoBehaviour
     {
         VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect -= KillFlame;
     }
-    void Start()
+    public void SetToInitialState()
     {
+        hitPoint = 5;
         timer = 0;
         hitCoolDown = false;
+        hpUI?.SetActive(false);
+
+    }
+    void Start()
+    {
+        SetToInitialState();
+        //timer = 0;
+        //hitCoolDown = false;
         //stopFlame = false;
     }
     private void FixedUpdate()
@@ -108,6 +117,7 @@ public class FlameMonster : MonoBehaviour
     }
     private void FlameGone()
     {
+        SetToInitialState();
         //VU2ForestProtectionEventManager.Instance?.ThreatUpdate(this.gameObject.name,"GONE");
         VU2ForestProtectionEventManager.Instance?.FireRemove(this.gameObject.transform.position);
         VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);

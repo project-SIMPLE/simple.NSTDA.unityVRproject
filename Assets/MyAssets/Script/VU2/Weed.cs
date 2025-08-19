@@ -60,12 +60,16 @@ public class Weed : MonoBehaviour
     }
     private void OnEnable()
     {
+        SetToInitialState();
+    }
+    public void SetToInitialState()
+    {
+        weedHP = 1;
         weedState = WeedState.Growing;
         targetSize = UnityEngine.Random.Range(0.15f, 0.25f);
-        Model.transform.localScale = new Vector3 (0.05f, 0.05f, 0.05f);
+        Model.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
     }
-
-    private void FixedUpdate()
+        private void FixedUpdate()
     {
         if(isOnCooldown)
         {
@@ -142,7 +146,8 @@ public class Weed : MonoBehaviour
                 {
                     if( ((growCount*20f)+50f) < UnityEngine.Random.Range(0f, 100f)) break;
 
-                    GameObject obj = Instantiate(this.gameObject, tmp, this.transform.rotation);
+                    //GameObject obj = Instantiate(this.gameObject, tmp, this.transform.rotation);
+                    GameObject obj = VU2ObjectPoolManager.Instance?.SpawnObject(this.gameObject, tmp, this.transform.rotation);
                     Weed objScript = obj.GetComponent<Weed>();
                     objScript.SetGrowFrom(dir);
                 }
@@ -203,6 +208,7 @@ public class Weed : MonoBehaviour
         {
             OnWeedDestroyed();
             //this.gameObject.SetActive(false);
+            SetToInitialState();
             VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,30 +31,43 @@ public class FlameMonster2 : MonoBehaviour
     private float hitTimer;
 
     // Cooldown for spawn small fire
-    private float normalTimer;
-    private float timerCount = 5.0f;
+    private float fireBallTimer;
+    private float timerToSpawnFireBall = 5.0f;
+    private float fireBallNum;
 
 
     private void OnEnable()
     {
         VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect += KillFlame;
+        SetToInitialState();
     }
     private void OnDisable()
     {
         VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect -= KillFlame;
     }
 
+    public void SetToInitialState()
+    {
+        hitPoint = 5;
+        fireBallTimer = 0;
+        hitTimer = 0;
+        hitCoolDown = false;
+        hpUI?.SetActive(false);
+        fireBallNum = Random.Range(3,5);
+        timerToSpawnFireBall = Random.Range(8f,15f);
+    }
+
     private void FixedUpdate()
     {
         if (!hitCoolDown)
         {
-            if(normalTimer >= timerCount)
+            if(fireBallTimer >= timerToSpawnFireBall)
             {
-                normalTimer = 0;
-
+                fireBallTimer = 0;
+                SpawnFireBall();
 
             }
-            normalTimer += Time.deltaTime;
+            fireBallTimer += Time.deltaTime;
         }
         else
         {
@@ -105,6 +119,7 @@ public class FlameMonster2 : MonoBehaviour
     }
     private void FlameGone()
     {
+        SetToInitialState();
         //VU2ForestProtectionEventManager.Instance?.ThreatUpdate(this.gameObject.name,"GONE");
         VU2ForestProtectionEventManager.Instance?.FireRemove(this.gameObject.transform.position);
         VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
@@ -115,13 +130,29 @@ public class FlameMonster2 : MonoBehaviour
         hpBar.value = hitPoint;
     }
 
+    private void SpawnFireBall()
+    {
+        for(int i=1; i<= fireBallNum; i++) {
+            ShootFireParticle();
+        }
+    }
     public void ShootFireParticle()
     {
-        GameObject fireBall = Instantiate(fireBallPrefab, shootingPoint.transform.position, Quaternion.identity);
+        Vector3 fireBallDirection = new Vector3(0, Random.Range(0f, 359f), 45f);
+
+        //GameObject fireBall = Instantiate(fireBallPrefab, shootingPoint.transform.position, Quaternion.Euler( fireBallDirection));
+        GameObject fireBall =  VU2ObjectPoolManager.Instance?.SpawnObject(fireBallPrefab, shootingPoint.transform.position, Quaternion.Euler(fireBallDirection));
+
         Rigidbody rb = fireBall.GetComponent<Rigidbody>();
 
-        Vector3 fireBallDirection = new Vector3(0, Random.Range(0f, 359f), 30f);
-        rb.velocity = fireBallDirection.normalized * 10f;
-        Debug.Log("Shoot Direction : " + rb.velocity);
+        if (rb != null)
+        {
+            rb.velocity = fireBall.transform.up * Random.Range(5f, 8f);
+        }
+        else
+        {
+            
+        }
+        //Debug.Log("Shoot Direction : " + rb.velocity);
     }
 }

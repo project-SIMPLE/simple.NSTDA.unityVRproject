@@ -9,6 +9,8 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     [SerializeField]
     private GameObject FlamePrefab;
     [SerializeField]
+    private GameObject FlamePrefab2;
+    [SerializeField]
     private GameObject AlienPrefab;
 
     [SerializeField]
@@ -245,7 +247,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
 
     private int totalFire = 0;
-    private void CreateThreat(string name, Vector3 pos)
+    public void CreateThreat(string name, Vector3 pos)
     {
         switch (name)
         {
@@ -254,6 +256,12 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
                 UpdateFireEffect(true);
                 //Instantiate(FlamePrefab, pos, this.transform.rotation);
                 VU2ObjectPoolManager.Instance?.SpawnObject(FlamePrefab, pos, this.transform.rotation);
+                break;
+            case "Flame2":
+                totalFire++;
+                UpdateFireEffect(true);
+                //Instantiate(FlamePrefab, pos, this.transform.rotation);
+                VU2ObjectPoolManager.Instance?.SpawnObject(FlamePrefab2, pos, this.transform.rotation);
                 break;
             case "Alien":
                 //Instantiate(AlienPrefab, pos, this.transform.rotation);
