@@ -39,13 +39,13 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     {
         if (isRunning)
         {
-            //Time.timeScale = 1f;
+            Time.timeScale = 1f;
             PauseUI.SetActive(false);
         }
         else
         {
             PauseUI.SetActive(true);
-            //Time.timeScale = 0f;
+            Time.timeScale = 0f;
         }
     }
     
@@ -269,6 +269,12 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
                 break;
         }
+    }
+
+    public GameObject CreateWeed(Vector3 pos, Quaternion rot)
+    {
+
+        return VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab, pos, rot);
     }
 
 }

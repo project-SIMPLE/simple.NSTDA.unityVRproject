@@ -71,7 +71,7 @@ public class FlameMonster2 : MonoBehaviour
         }
         else
         {
-            if (hitTimer >= 0.5f)
+            if (hitTimer >= 0.25f)
             {
                 hitTimer = 0;
                 hitCoolDown = false;

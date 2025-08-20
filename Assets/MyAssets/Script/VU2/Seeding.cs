@@ -43,8 +43,19 @@ public class Seeding : MonoBehaviour
     {
         
     }
+    private float deathTimer = 0;
+    private float timeUntilDie = 20f;
     private void FixedUpdate()
     {
+        if(WeedCount >= 7 && treeState == 1)
+        {
+            if(deathTimer >= timeUntilDie)
+            {
+                Treeburn();
+                deathTimer = 0;
+            }
+            deathTimer += Time.deltaTime;
+        }
         /*
         if (treeState == maxGrownState || treeState == -1) return;
         grownCount += grownRate * Time.deltaTime;

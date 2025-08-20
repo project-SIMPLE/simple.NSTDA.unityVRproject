@@ -12,7 +12,7 @@ public class SeedingWithGrass : Seeding
     private bool haveGrasses = false;
     public void GrassesGrow()
     {
-        grassCount = 3;
+        grassCount = 1;
         foreach(GameObject grass in grasses)
         {
             grass.SetActive(true);

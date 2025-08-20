@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weed : MonoBehaviour
@@ -52,7 +53,8 @@ public class Weed : MonoBehaviour
     private GameObject Model;
     [SerializeField]
     private float targetSize = 0.2f;
-
+    /*[SerializeField]
+    private GameObject WeedPrefab;*/
 
     void Start()
     {
@@ -135,7 +137,7 @@ public class Weed : MonoBehaviour
     private void CreateNewWeed()
     {
         Vector3 currentPos = this.transform.position;
-
+        
         foreach (GrowDir dir in growPos.Keys.ToList())
         {
             Vector3 pos;
@@ -144,10 +146,11 @@ public class Weed : MonoBehaviour
                 Vector3 tmp = currentPos + (pos * spreadingRadius);
                 if (IsLocationEmpty(tmp))
                 {
-                    if( ((growCount*20f)+50f) < UnityEngine.Random.Range(0f, 100f)) break;
+                    if( ((growCount*20f)+40f) < UnityEngine.Random.Range(0f, 100f)) break;
 
                     //GameObject obj = Instantiate(this.gameObject, tmp, this.transform.rotation);
-                    GameObject obj = VU2ObjectPoolManager.Instance?.SpawnObject(this.gameObject, tmp, this.transform.rotation);
+                    //GameObject obj = VU2ObjectPoolManager.Instance?.SpawnObject(WeedPrefab, tmp, this.transform.rotation);
+                    GameObject obj = VU2ForestProtectionEventManager.Instance?.CreateWeed(tmp, this.transform.rotation);
                     Weed objScript = obj.GetComponent<Weed>();
                     objScript.SetGrowFrom(dir);
                 }
@@ -193,7 +196,7 @@ public class Weed : MonoBehaviour
         //Debug.Log("TAG ="+ collision.gameObject.tag);
         if (collision.gameObject.tag == "Tools")
         {
-            //Debug.Log("Weed CUTTTTTT");
+            Debug.Log("Weed CUTTTTTT");
             if(!isOnCooldown)
             {
                 isOnCooldown = true;
@@ -203,8 +206,9 @@ public class Weed : MonoBehaviour
     }
     public void ReduceHP()
     {
+        
         weedHP--;
-        if(weedHP <= 0)
+        if (weedHP <= 0)
         {
             OnWeedDestroyed();
             //this.gameObject.SetActive(false);
@@ -212,11 +216,20 @@ public class Weed : MonoBehaviour
             VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (!treeInArea.Contains(other.gameObject) && other.gameObject.CompareTag("tree"))
+        {
+            treeInArea.Add(other.gameObject);
+            //other.gameObject.GetComponent<Seeding>().ChangeWeedCount(1);
+            //other.gameObject.GetComponent<Seeding>().GotWeedOnTree();
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Trigger TAG =" + other.gameObject.tag);
 
-        if (!treeInArea.Contains(other.gameObject) && other.gameObject.tag== "tree")
+        if (!treeInArea.Contains(other.gameObject) && other.gameObject.CompareTag("tree"))
         {
             treeInArea.Add(other.gameObject);
             //other.gameObject.GetComponent<Seeding>().ChangeWeedCount(1);

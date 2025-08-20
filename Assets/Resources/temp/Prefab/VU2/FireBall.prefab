@@ -4863,11 +4863,11 @@ GameObject:
   - component: {fileID: 2466331565806604212}
   m_Layer: 6
   m_Name: FireBall
-  m_TagString: Untagged
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8988209953436140189
 Transform:
   m_ObjectHideFlags: 0
@@ -4908,7 +4908,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1

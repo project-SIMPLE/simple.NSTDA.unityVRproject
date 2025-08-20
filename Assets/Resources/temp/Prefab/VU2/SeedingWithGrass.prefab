@@ -57,12 +57,12 @@ Transform:
   m_GameObject: {fileID: 1589840331288335622}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.30173, y: 0.30173, z: 0.30173}
+  m_LocalPosition: {x: 0.30671751, y: 0, z: -0.29375777}
+  m_LocalScale: {x: 0.30172998, y: 0.30172998, z: 0.30172998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6075022979350341185}
-  m_Father: {fileID: 5366486507996227090}
+  m_Father: {fileID: 4716828730448600973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2497897972517681877
 GameObject:
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 3746630167400202701}
   - component: {fileID: 2725534740396398190}
   - component: {fileID: 139991677244514354}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree_State_Dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,8 +262,7 @@ Transform:
   m_LocalPosition: {x: 0.201, y: 0, z: 0.332}
   m_LocalScale: {x: 1.3889, y: 1.3889, z: 1.3889}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5059466611912857053}
+  m_Children: []
   m_Father: {fileID: 8316265695703298516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4084384135181935902
@@ -478,7 +477,7 @@ GameObject:
   - component: {fileID: 3268730852073652787}
   - component: {fileID: 2024217145451125271}
   - component: {fileID: 1230952222111639777}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedingWithGrass
   m_TagString: tree
   m_Icon: {fileID: 0}
@@ -549,8 +548,6 @@ MonoBehaviour:
   WeedCount: 0
   grasses:
   - {fileID: 6465899566778301550}
-  - {fileID: 4960739710458839722}
-  - {fileID: 4128452867796024118}
   grassCount: 0
 --- !u!1 &4702887395276797950
 GameObject:
@@ -618,8 +615,7 @@ Transform:
   m_LocalPosition: {x: 0.07, y: 0, z: -0.346}
   m_LocalScale: {x: 1.3889, y: 1.3889, z: 1.3889}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 9003755224366013620}
+  m_Children: []
   m_Father: {fileID: 8316265695703298516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6262808177492382176
@@ -834,7 +830,7 @@ GameObject:
   - component: {fileID: 4923315351551199217}
   - component: {fileID: 3345641447457730044}
   - component: {fileID: 1727545830309573413}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree_State_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -918,7 +914,7 @@ GameObject:
   - component: {fileID: 1973724556994539474}
   - component: {fileID: 8197497767751792919}
   - component: {fileID: 2666308095895232956}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree_State_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1085,7 +1081,7 @@ GameObject:
   - component: {fileID: 5036397982189385108}
   - component: {fileID: 4681704117714347084}
   - component: {fileID: 3868488658547597911}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1170,7 +1166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4716828730448600973}
-  - component: {fileID: 3470738297327307892}
+  - component: {fileID: 3471840558157138533}
   - component: {fileID: 6371182535022436669}
   - component: {fileID: 1444332821065430012}
   - component: {fileID: 2590859623330918468}
@@ -1195,10 +1191,12 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6528866164395046613}
+  - {fileID: 9003755224366013620}
+  - {fileID: 5059466611912857053}
   m_Father: {fileID: 8316265695703298516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3470738297327307892
-BoxCollider:
+--- !u!135 &3471840558157138533
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1216,8 +1214,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.33565712, y: 0.44920582, z: 0.35468456}
-  m_Center: {x: -0.05255106, y: 0.17442623, z: -0.045249898}
+  m_Radius: 0.6570716
+  m_Center: {x: 0.25000012, y: -0.062949054, z: 0}
 --- !u!54 &6371182535022436669
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1408,7 +1406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 559738531664314543}
   - component: {fileID: 940907202674052468}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1507,12 +1505,12 @@ Transform:
   m_GameObject: {fileID: 8624807957390930538}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.30173, y: 0.30173, z: 0.30173}
+  m_LocalPosition: {x: 0.4010368, y: 0, z: 0.19439827}
+  m_LocalScale: {x: 0.30172998, y: 0.30172998, z: 0.30172998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5910756325263909899}
-  m_Father: {fileID: 5034831233290574388}
+  m_Father: {fileID: 4716828730448600973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9005143148642956452
 GameObject:
@@ -1608,7 +1606,7 @@ GameObject:
   - component: {fileID: 3405241056059607083}
   - component: {fileID: 4927360794371262380}
   - component: {fileID: 824431125336960923}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree_State_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

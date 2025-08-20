@@ -37,6 +37,7 @@ public class FlameMonster : MonoBehaviour
     }
     public void SetToInitialState()
     {
+        auraSize = 1;
         hitPoint = 5;
         timer = 0;
         hitCoolDown = false;

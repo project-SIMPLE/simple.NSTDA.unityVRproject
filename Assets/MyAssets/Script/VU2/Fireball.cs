@@ -8,11 +8,25 @@ public class Fireball : MonoBehaviour
     private bool hasHit = false;
     private float delayTimer;
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        hitPrioritize = 0;
+        VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect += RainingWhileActive;
+        SetToInitialState();
+    }
+    private void OnDisable()
+    {
+        VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect -= RainingWhileActive;
     }
 
+    void Start()
+    {
+        SetToInitialState();
+    }
+    private void SetToInitialState()
+    {
+        hitPrioritize = 0;
+        hasHit = false;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -44,6 +58,13 @@ public class Fireball : MonoBehaviour
         VU2ForestProtectionEventManager.Instance?.CreateThreat("Flame2", this.transform.position);
         RemoveFireBall();
     }
+    private void RainingWhileActive(bool t)
+    {
+        if (t)
+        {
+            RemoveFireBall();
+        }
+    }
     private void RemoveFireBall()
     {
         /*if (!hasHit)
@@ -52,8 +73,8 @@ public class Fireball : MonoBehaviour
             delayTimer = 0;
             VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
         }*/
-        hitPrioritize = 0;
-        hasHit = false;
+        
+        SetToInitialState();
         VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
     }
     
