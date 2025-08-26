@@ -198,7 +198,27 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
             Debug.Log(e);
         }
     }
+
+    public void SendCustomDataToGAMA(string header, string message)
+    {
+        Dictionary<string, string> args = new Dictionary<string, string>
+        {
+            {"Header", header },
+            {"Message",message }
+        };
+        try
+        {
+            ConnectionManager.Instance.SendExecutableAsk("QuestionnaireData", args);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+    }
 }
+
+
+
 
 [System.Serializable]
 public class ListOfGAMAMessage
