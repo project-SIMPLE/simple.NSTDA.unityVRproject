@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class VU2ForestProtectionEventManager : MonoBehaviour
@@ -13,8 +14,8 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     [SerializeField]
     private GameObject AlienPrefab;
 
-    [SerializeField]
-    private GameObject PauseUI;
+    //[SerializeField]
+    //private GameObject PauseUI;
     private VU2EnvironmentController envController;
     // Start is called before the first frame update
     private void Awake()
@@ -39,16 +40,27 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     {
         if (isRunning)
         {
+            StatusUIControl(-1);
             Time.timeScale = 1f;
-            PauseUI.SetActive(false);
+            //PauseUI.SetActive(false);
         }
         else
         {
-            PauseUI.SetActive(true);
+            StatusUIControl(1);
+            //PauseUI.SetActive(true);
             Time.timeScale = 0f;
         }
     }
-    
+    /*
+     * -1 Close all
+     * 0 Ready UI
+     * 1 Finish UI
+     * */
+    public void StatusUIControl(int i)
+    {
+        UpdateStatusUI(i);
+    }
+
     private string thisPlayerID;
     public void GetPlayerID(string playerID)
     {
@@ -214,7 +226,12 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         }
 
     }
-    
+
+    public event Action<int> OnUpdateStateUI;
+    public void UpdateStatusUI(int index)
+    {
+        OnUpdateStateUI?.Invoke(index);
+    }
 
     /*public event Action<string, int> OnRemoveLocalFruitOnTree;
     public void RemoveFruitOnTree(string treeName, int treeIndex)
