@@ -232,30 +232,6 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     {
         OnUpdateStateUI?.Invoke(index);
     }
-
-    /*public event Action<string, int> OnRemoveLocalFruitOnTree;
-    public void RemoveFruitOnTree(string treeName, int treeIndex)
-    {
-        OnRemoveLocalFruitOnTree?.Invoke(treeName,treeIndex);
-    }
-
-    public event Action<string,int,int,Vector3> OnPlayerHitFruitOnTree;
-    public void PlayerHitFruitOnTree(string treeName, int fruitIndex, int fruitID, Vector3 Pos)
-    {
-        OnPlayerHitFruitOnTree?.Invoke(treeName, fruitIndex, fruitID, Pos);
-    }
-
-    public event Action<string> OnPutFruitIntoBucket;
-    public void PutFruitIntoBucket(string seedName)
-    {
-        OnPutFruitIntoBucket?.Invoke(seedName);
-    }
-
-    public event Action OnLoadSeedToNextZone;
-    public void LoadSeedToNextZone()
-    {
-        OnLoadSeedToNextZone?.Invoke();
-    }*/
     // Update is called once per frame
     void Update()
     {
@@ -292,6 +268,11 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     {
 
         return VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab, pos, rot);
+    }
+
+    public void CollectQuestionnaireData(string qType,string data)
+    {
+        Debug.Log($"Questionnaire from :{qType} with Data :{data}");
     }
 
 }

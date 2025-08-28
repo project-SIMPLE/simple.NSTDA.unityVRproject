@@ -7,7 +7,10 @@ using UnityEngine.InputSystem;
 public class QuestionnaireControl : MonoBehaviour
 {
     public UnityEvent OnFinishQuestionnaire;
+    public UnityEvent<string,string> OnSendQuestionnaireData;
 
+    [SerializeField]
+    private string qType;
     [SerializeField]
     private int totalQuestionNum;
     [SerializeField]
@@ -56,7 +59,8 @@ public class QuestionnaireControl : MonoBehaviour
 
     public void FinishQuestionnaire()
     {
-        OnFinishQuestionnaire.Invoke();
+        OnFinishQuestionnaire?.Invoke();
+        OnSendQuestionnaireData?.Invoke(qType,GetQuestionnaireAnswer());
     }
 
     public string GetQuestionnaireAnswer()
