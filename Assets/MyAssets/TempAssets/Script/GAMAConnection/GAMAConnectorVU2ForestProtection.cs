@@ -22,6 +22,8 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         {
             //teamID = GetTeamIDAsInt();
             VU2ForestProtectionEventManager.Instance.OnTreeChangeState += SendTreeStatusToGAMA;
+
+            VU2ForestProtectionEventManager.Instance.OnFinishQuestionnaire += SendCustomDataToGAMA;
             //VU2ForestProtectionEventManager.Instance.OnFireRemove += SendOtherMessageToGAMA;
             isSubscribed = true;
         }
@@ -33,6 +35,8 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         if (isSubscribed)
         {
             VU2ForestProtectionEventManager.Instance.OnTreeChangeState -= SendTreeStatusToGAMA;
+
+            VU2ForestProtectionEventManager.Instance.OnFinishQuestionnaire -= SendCustomDataToGAMA;
             //VU2ForestProtectionEventManager.Instance.OnFireRemove -= SendOtherMessageToGAMA;
             isSubscribed = false;
         }
@@ -58,16 +62,16 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         //Debug.Log(jsonContent.ToString());
         switch (jsonHead)
         {
-            case "Start":
+            case "ReadyCheck":
+                VU2ForestProtectionEventManager.Instance?.StatusUIControl(0);
+                break;
+            case "TutorialStart":
+
+                break;
+            case "StartGame":
                 VU2ForestProtectionEventManager.Instance?.StartStopGame(true);
                 break;
-            case "Pause":
-
-                break;
-            case "Continue":
-
-                break;
-            case "Stop":
+            case "StopGame":
                 VU2ForestProtectionEventManager.Instance?.StartStopGame(false);
                 break;
             case "ReadID":
@@ -182,27 +186,35 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         }
     }
 
-    public void SendOtherMessageToGAMA(string tName, string status)
+    public void SendPlayerReady()
     {
+        Debug.Log("Team ID: " + GetTeamID() + "Ready");
         Dictionary<string, string> args = new Dictionary<string, string>
         {
-            {"tName", tName },
-            {"status",status }
+            { "player_ID",GetTeamID()},
+            { "Ready","true"}
         };
+
         try
         {
-            ConnectionManager.Instance.SendExecutableAsk("OtherUpdate", args);
+            ConnectionManager.Instance.SendExecutableAsk("PlayerID_Ready", args);
         }
         catch (Exception e)
         {
             Debug.Log(e);
         }
-    }
 
+    }
+    /*
+     * Header = "Before" and "After"
+     * message = answer in string
+     * 
+     * */
     public void SendCustomDataToGAMA(string header, string message)
     {
         Dictionary<string, string> args = new Dictionary<string, string>
         {
+            {"PlayerID", GetTeamID() },
             {"Header", header },
             {"Message",message }
         };

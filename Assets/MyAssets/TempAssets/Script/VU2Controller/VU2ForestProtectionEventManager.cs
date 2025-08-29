@@ -232,10 +232,11 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     {
         OnUpdateStateUI?.Invoke(index);
     }
-    // Update is called once per frame
-    void Update()
+
+    public event Action<string,string> OnFinishQuestionnaire;
+    public void FinishQuestionnaire(string qType, string data)
     {
-        
+        OnFinishQuestionnaire?.Invoke(qType, data);
     }
 
 
@@ -273,6 +274,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     public void CollectQuestionnaireData(string qType,string data)
     {
         Debug.Log($"Questionnaire from :{qType} with Data :{data}");
+        FinishQuestionnaire(qType, data);
     }
 
 }
