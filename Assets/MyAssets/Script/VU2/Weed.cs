@@ -146,7 +146,7 @@ public class Weed : MonoBehaviour
                 Vector3 tmp = currentPos + (pos * spreadingRadius);
                 if (IsLocationEmpty(tmp))
                 {
-                    if( ((growCount*20f)+40f) < UnityEngine.Random.Range(0f, 100f)) break;
+                    if( ((growCount*20f)+30f) < UnityEngine.Random.Range(0f, 100f)) break;
 
                     //GameObject obj = Instantiate(this.gameObject, tmp, this.transform.rotation);
                     //GameObject obj = VU2ObjectPoolManager.Instance?.SpawnObject(WeedPrefab, tmp, this.transform.rotation);
