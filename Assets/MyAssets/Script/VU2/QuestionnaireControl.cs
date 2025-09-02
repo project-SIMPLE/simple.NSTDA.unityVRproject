@@ -33,6 +33,7 @@ public class QuestionnaireControl : MonoBehaviour
         totalQuestionNum = this.transform.childCount;
         answerString = "";
         cQuestion = 1;
+        this.transform.GetChild(cQuestion - 1).gameObject.SetActive(true);
     } 
 
     public void NextQuestion()

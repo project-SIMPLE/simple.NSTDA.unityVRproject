@@ -14,8 +14,8 @@ public class VU2PlayerEffectAndUIController : MonoBehaviour
     /**
      * 
      * 0 ReadyUI
-     * 1 Finish UI
-     * 
+     * 1 Result UI
+     * 2 Finish UI
      * */
     [SerializeField]
     private GameObject stateUI;
@@ -65,6 +65,7 @@ public class VU2PlayerEffectAndUIController : MonoBehaviour
 
         if(index != -1)
         {
+            stateUI.transform.GetComponent<UIFollowCam>()?.MoveInFrontOfCamera();
             stateUI.transform.GetChild(index).gameObject.SetActive(true);
         }
     }
@@ -76,19 +77,21 @@ public class VU2PlayerEffectAndUIController : MonoBehaviour
      * */
     public void OpenQuestionnaire(int num)
     {
+        //Debug.Log($"Open Questionnaire: {num}");
+        QuestionnaireUI[0].SetActive(true);
+        QuestionnaireUI[1].SetActive(false);
+        QuestionnaireUI[2].SetActive(false);
+        QuestionnaireUI[0].transform.GetComponent<UIFollowCam>()?.MoveInFrontOfCamera();
+
         switch (num)
         {
             case -1:
                 QuestionnaireUI[0].SetActive(false);
                 break;
             case 1:
-                QuestionnaireUI[0].SetActive(true);
                 QuestionnaireUI[1].SetActive(true);
-                QuestionnaireUI[2].SetActive(false);
                 break;
             case 2:
-                QuestionnaireUI[0].SetActive(true);
-                QuestionnaireUI[1].SetActive(false);
                 QuestionnaireUI[2].SetActive(true);
                 break;
         }

@@ -62,7 +62,13 @@ public class Weed : MonoBehaviour
     }
     private void OnEnable()
     {
+        VU2ForestProtectionEventManager.Instance.OnGameStop += ReturnToPool;
         SetToInitialState();
+    }
+
+    private void OnDisable()
+    {
+        VU2ForestProtectionEventManager.Instance.OnGameStop -= ReturnToPool;
     }
     public void SetToInitialState()
     {
@@ -213,9 +219,15 @@ public class Weed : MonoBehaviour
             OnWeedDestroyed();
             //this.gameObject.SetActive(false);
             SetToInitialState();
-            VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
+            ReturnToPool();
         }
     }
+    private void ReturnToPool()
+    {
+        VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
+    }
+
+
     private void OnTriggerStay(Collider other)
     {
         if (!treeInArea.Contains(other.gameObject) && other.gameObject.CompareTag("tree"))

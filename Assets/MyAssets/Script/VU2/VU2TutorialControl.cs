@@ -1,0 +1,143 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class VU2TutorialControl : MonoBehaviour
+{
+    public UnityEvent OnFinishTutorial;
+    public UnityEvent OnFinishResultAnimation;
+
+    [SerializeField]
+    private GameObject tutorialObj;
+    [SerializeField]
+    private GameObject plantableSeeding;
+    [SerializeField]
+    private Transform seedingSpawnPoint;
+    [SerializeField]
+    private GameObject BGAnimationObj;
+
+    [SerializeField]
+    private GameObject AfterGameAnimation;
+
+    private void OnEnable()
+    {
+        
+    }
+    private void OnDisable()
+    {
+        VU2ForestProtectionEventManager.Instance.OnTutorialStart -= BeginTutorial;
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        VU2ForestProtectionEventManager.Instance.OnTutorialStart += BeginTutorial;
+        SetToInitialState();
+    }
+
+    private void SetToInitialState()
+    {
+        cTutorialStep = 0;
+
+    }
+
+    [SerializeField]
+    private int cTutorialStep;
+    [SerializeField]
+    private int maxTutorialStep;
+
+    private void BeginTutorial()
+    {
+        SetToInitialState();
+        ChangeTutorialStep(cTutorialStep);
+    }
+    /*
+     * Tutorial State
+     * 0 Animation
+     * 1 plant trees
+     * 2 add fertilizer
+     * 3 threat
+     * 
+     */
+    public void ChangeTutorialStep(int state)
+    {
+        
+        switch (state)
+        {
+            case 0:
+                PlayBGAnimation();
+                break;
+            case 1:
+                StartTutorial();
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                break;
+        }
+    }
+    public void ChangeTutorialToNextStep()
+    {
+        cTutorialStep++;
+        if (cTutorialStep > maxTutorialStep)
+        {
+            FinishTutorial();
+            return;
+        }
+        ChangeTutorialStep(cTutorialStep);
+    }
+
+
+    private float timePass = 7.0f;
+    private void PlayBGAnimation()
+    {
+        BGAnimationObj.SetActive (true);
+        Invoke("StopBGAnimation", timePass);
+    }
+    private void StopBGAnimation()
+    {
+        BGAnimationObj.SetActive (false);
+        ChangeTutorialToNextStep();
+    }
+    /*private void CallFunctionAfterTimePass(string functionName, float timePass)
+    {
+        
+        MethodInfo method = this.GetComponent<VU2TutorialControl>().GetType().GetMethod(functionName, BindingFlags.Public | BindingFlags.NonPublic);
+        if(method != null)
+        {
+            Invoke(functionName, timePass);
+        }
+    }*/
+
+    private void StartTutorial()
+    {
+        tutorialObj.SetActive (true);
+        plantableSeeding.transform.position = seedingSpawnPoint.position;
+    }
+    private void FinishTutorial()
+    {
+        tutorialObj.SetActive(false);
+        OnFinishTutorial?.Invoke();
+    }
+
+    private GameObject resultAni;
+    public void ShowResult()
+    {
+        int index = VU2ForestProtectionEventManager.Instance.GetBGStage();
+        
+        resultAni = AfterGameAnimation.transform.GetChild(index-1).gameObject;
+        resultAni?.SetActive (true);
+
+        Invoke("FinishResultAni", timePass);
+    }
+    private void FinishResultAni()
+    {
+        resultAni?.SetActive (false);
+        OnFinishResultAnimation?.Invoke();
+    }
+
+}

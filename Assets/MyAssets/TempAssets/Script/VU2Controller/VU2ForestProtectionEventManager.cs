@@ -41,20 +41,23 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         if (isRunning)
         {
             StatusUIControl(-1);
-            Time.timeScale = 1f;
+            //Time.timeScale = 1f;
             //PauseUI.SetActive(false);
         }
         else
         {
             StatusUIControl(1);
+            UpdateRainEffect(false);
+            RemoveAllActiveObjectOnMap();
             //PauseUI.SetActive(true);
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
         }
     }
     /*
      * -1 Close all
      * 0 Ready UI
-     * 1 Finish UI
+     * 1 Result UI
+     * 2 Finish UI
      * */
     public void StatusUIControl(int i)
     {
@@ -67,6 +70,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         //Debug.Log("#################### Plater ID:  "+ playerID);
         thisPlayerID = playerID;
     }
+    private List<GameObject> cPlayerTrees = new List<GameObject>();
     public void RemoveOtherPlayerTree(List<GAMATreesMessage> tree)
     {
         foreach (GAMATreesMessage t in tree) 
@@ -81,10 +85,25 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             }
             if (cID != thisPlayerID)
             {
-                GameObject.Find(t.Name)?.gameObject.SetActive(false);
+                //GameObject.Find(t.Name)?.gameObject.SetActive(false);
+                Destroy(GameObject.Find(t.Name)?.gameObject);
+            }
+            else
+            {
+                cPlayerTrees.Add(GameObject.Find(t.Name)?.gameObject);
             }
         }
     }
+
+    private void RemovePreviousPlayerTree()
+    {
+        foreach(var t in cPlayerTrees)
+        {
+            Destroy(t.gameObject);
+        }
+        cPlayerTrees.Clear();
+    }
+
     public void UpdateTreeFromGAMA(List<GAMATreesMessage> tree)
     {
         //GameObject.Find(treeName)?.GetComponent<Seeding>()?.ChangeGrowState(Int32.Parse(status));
@@ -162,6 +181,11 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         }
 
     }
+    public event Action OnTutorialStart;
+    public void TutorialStart()
+    {
+        OnTutorialStart?.Invoke();
+    }
 
     public event Action<bool> OnUpdateRainEffect;
     public void UpdateRainEffect(bool t)
@@ -169,6 +193,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         OnUpdateRainEffect?.Invoke(t);
     }
 
+    private int cBGStage;
     public void UpdatePlayerBackground(List<GAMATreesMessage> message)
     {
         foreach(GAMATreesMessage t in message)
@@ -186,6 +211,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
                 if(int.TryParse(t.Name,out stage))
                 {
                     Debug.Log("Change background to stage: " + t.Name);
+                    cBGStage = stage;
                     envController.ShowEnvironment(stage);
                 }
                 else
@@ -195,6 +221,11 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
                 
             }
         }
+    }
+    public int GetBGStage()
+    {
+
+        return cBGStage;
     }
 
     public event Action<string, string> OnTreeChangeState;
@@ -231,6 +262,13 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     public void UpdateStatusUI(int index)
     {
         OnUpdateStateUI?.Invoke(index);
+    }
+
+    public event Action OnGameStop;
+    public void RemoveAllActiveObjectOnMap()
+    {
+        OnGameStop?.Invoke();
+        //RemovePreviousPlayerTree();
     }
 
     public event Action<string,string> OnFinishQuestionnaire;

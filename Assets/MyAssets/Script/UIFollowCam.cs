@@ -1,11 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
 public class UIFollowCam : MonoBehaviour
 {
+    [SerializeField]
+    private float CameraDistance = 2f;
+
+    private void OnEnable()
+    {
+        FacingCamera();
+        MoveInFrontOfCamera();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -16,20 +25,27 @@ public class UIFollowCam : MonoBehaviour
     void Update()
     {
         FacingCamera();
-        if (!IsUIInforntOfCamera())
+        if (!IsUIInforntOfCamera() || !IsUIOnCorrectDistanceFromCamera())
         {
-            MoveInFrontOfCamera();
+            SmoothMoveInFrontOfCamera();
         }
     }
 
-    private float CameraDistance = 2f;
+    
     private Vector3 velocity = Vector3.zero;
-    private float smoothTime = 0.3F;
+    private float smoothTime = 0.1f;
 
-    private void MoveInFrontOfCamera()
+    private void SmoothMoveInFrontOfCamera()
     {
         Vector3 targetPos = Camera.main.transform.TransformPoint(new Vector3(0, 0, CameraDistance));
+        targetPos.y = 1.2f;
         this.transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
+    }
+    public void MoveInFrontOfCamera()
+    {
+        Vector3 targetPos = Camera.main.transform.TransformPoint(new Vector3(0, 0, CameraDistance));
+        targetPos.y = 1.2f;
+        this.transform.position = targetPos;
     }
 
     private bool IsUIInforntOfCamera()
@@ -41,11 +57,20 @@ public class UIFollowCam : MonoBehaviour
 
         return inView;
     }
-    private float followSpeed = 5f;
+    private float followSpeed = 20f;
     private void FacingCamera()
     {
-        Quaternion lookRotation = Quaternion.LookRotation(this.transform.position - Camera.main.transform.position);
+        Quaternion lookRotation = Quaternion.LookRotation(this.transform.position - Camera.main.transform.position,Vector3.up);
 
         this.transform.rotation = Quaternion.Lerp(this.transform.rotation, lookRotation, Time.deltaTime * followSpeed);
+    }
+    private bool IsUIOnCorrectDistanceFromCamera()
+    {
+        float distance = Vector3.Distance(this.transform.position, Camera.main.transform.position);
+        if(distance >= 2.0f)
+        {
+            return false;
+        }
+        else return true;
     }
 }

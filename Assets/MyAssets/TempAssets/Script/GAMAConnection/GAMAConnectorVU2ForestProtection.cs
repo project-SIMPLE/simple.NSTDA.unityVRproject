@@ -66,7 +66,7 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
                 VU2ForestProtectionEventManager.Instance?.StatusUIControl(0);
                 break;
             case "TutorialStart":
-
+                VU2ForestProtectionEventManager.Instance?.TutorialStart();
                 break;
             case "StartGame":
                 VU2ForestProtectionEventManager.Instance?.StartStopGame(true);
