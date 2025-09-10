@@ -107,7 +107,14 @@ public class VU2ObjectPoolManager : MonoBehaviour
         { 
             if(objectPools.TryGetValue(prefab, out ObjectPool<GameObject> pool))
             {
-                pool.Release(returnPrefab);
+                try
+                {
+                    pool.Release(returnPrefab);
+                }
+                catch
+                {
+
+                }
             }
 
         }

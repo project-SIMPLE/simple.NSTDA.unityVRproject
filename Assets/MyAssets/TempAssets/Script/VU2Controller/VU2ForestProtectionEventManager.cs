@@ -48,6 +48,8 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         {
             StatusUIControl(1);
             UpdateRainEffect(false);
+
+            ResetAllFire();
             RemoveAllActiveObjectOnMap();
             //PauseUI.SetActive(true);
             //Time.timeScale = 0f;
@@ -256,6 +258,11 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             UpdateFireEffect(false);
         }
 
+    }
+    public void ResetAllFire()
+    {
+        totalFire = 0;
+        UpdateFireEffect(false);
     }
 
     public event Action<int> OnUpdateStateUI;
