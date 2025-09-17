@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class VU2ForestProtectionEventManager : MonoBehaviour
@@ -55,6 +56,24 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             //Time.timeScale = 0f;
         }
     }
+    private string playerScore = "";
+    public void ShowPlayerScore(List<GAMATreesMessage> players)
+    {
+        foreach (GAMATreesMessage p in players)
+        {
+            string cID = p.PlayerID;
+            if (cID == thisPlayerID)
+            {
+                Debug.Log($"Player ID: {p.PlayerID} got score = {p.Name}");
+                playerScore = p.Name;
+                
+
+
+            }
+        }
+    }
+    public string GetPlayerScore() { return playerScore; }
+
     /*
      * -1 Close all
      * 0 Ready UI
@@ -253,8 +272,9 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
         OnFireRemove?.Invoke(location);
         totalFire--;
-        if(totalFire == 0)
+        if(totalFire <= 0)
         {
+            totalFire = 0;
             UpdateFireEffect(false);
         }
 

@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VU2PlayerEffectAndUIController : MonoBehaviour
 {
@@ -30,6 +32,9 @@ public class VU2PlayerEffectAndUIController : MonoBehaviour
     private GameObject[] QuestionnaireUI;
     // Start is cal
     // led before the first frame update
+    [SerializeField]
+    private TextMeshProUGUI scoreText;
+
 
     private void Start()
     {
@@ -56,17 +61,30 @@ public class VU2PlayerEffectAndUIController : MonoBehaviour
 
     }
 
+    public void SetScoreText(string score)
+    {
+        //Debug.Log(score);
+        scoreText.text = score;
+    }
+
     public void StatusUI(int index)
     {
         for(int i=0; i< stateUI.transform.childCount; i++)
         {
             stateUI.transform.GetChild(i).gameObject.SetActive(false);
         }
-
+        
         if(index != -1)
         {
             stateUI.transform.GetComponent<UIFollowCam>()?.MoveInFrontOfCamera();
             stateUI.transform.GetChild(index).gameObject.SetActive(true);
+
+        }
+
+        if (index == 1)
+        {
+            SetScoreText(VU2ForestProtectionEventManager.Instance?.GetPlayerScore());
+            Debug.Log(VU2ForestProtectionEventManager.Instance?.GetPlayerScore());
         }
     }
     /*

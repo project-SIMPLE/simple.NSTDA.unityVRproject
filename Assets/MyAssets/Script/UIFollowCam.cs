@@ -9,6 +9,8 @@ public class UIFollowCam : MonoBehaviour
 {
     [SerializeField]
     private float CameraDistance = 2f;
+    [SerializeField]
+    private float CameraMinimumDistance = 0.5f;
 
     private void OnEnable()
     {
@@ -18,7 +20,7 @@ public class UIFollowCam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -31,7 +33,7 @@ public class UIFollowCam : MonoBehaviour
         }
     }
 
-    
+
     private Vector3 velocity = Vector3.zero;
     private float smoothTime = 0.1f;
 
@@ -60,14 +62,14 @@ public class UIFollowCam : MonoBehaviour
     private float followSpeed = 20f;
     private void FacingCamera()
     {
-        Quaternion lookRotation = Quaternion.LookRotation(this.transform.position - Camera.main.transform.position,Vector3.up);
+        Quaternion lookRotation = Quaternion.LookRotation(this.transform.position - Camera.main.transform.position, Vector3.up);
 
         this.transform.rotation = Quaternion.Lerp(this.transform.rotation, lookRotation, Time.deltaTime * followSpeed);
     }
     private bool IsUIOnCorrectDistanceFromCamera()
     {
         float distance = Vector3.Distance(this.transform.position, Camera.main.transform.position);
-        if(distance >= 2.0f)
+        if (distance >= 2.0f || distance <= CameraMinimumDistance)
         {
             return false;
         }

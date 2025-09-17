@@ -72,7 +72,10 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
                 VU2ForestProtectionEventManager.Instance?.StartStopGame(true);
                 break;
             case "StopGame":
+
+                VU2ForestProtectionEventManager.Instance?.ShowPlayerScore(m.Trees);
                 VU2ForestProtectionEventManager.Instance?.StartStopGame(false);
+
                 break;
             case "ReadID":
                 VU2ForestProtectionEventManager.Instance?.GetPlayerID(GetTeamID());
