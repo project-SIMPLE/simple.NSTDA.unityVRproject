@@ -77,7 +77,7 @@ public class Weed : MonoBehaviour
         targetSize = UnityEngine.Random.Range(0.15f, 0.25f);
         Model.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
     }
-        private void FixedUpdate()
+    private void FixedUpdate()
     {
         if(isOnCooldown)
         {

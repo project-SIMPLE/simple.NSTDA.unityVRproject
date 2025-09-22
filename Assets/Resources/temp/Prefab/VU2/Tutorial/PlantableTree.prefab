@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 7469143329233083234}
   - component: {fileID: 3824381805885907698}
   - component: {fileID: 6509972562135276880}
+  - component: {fileID: 5815808050840841930}
   m_Layer: 6
   m_Name: PlantableTree
   m_TagString: Untagged
@@ -144,7 +145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2543717075817796628}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.29000092, y: 0.178, z: 3.3699994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -255,7 +256,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5815808050840841930}
+        m_TargetAssemblyTypeName: VU2PlantableTree, Assembly-CSharp
+        m_MethodName: OnReleaseObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -396,6 +409,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.04652378, y: 0.6440209, z: 0.0521276}
   m_Center: {x: 0.0031298548, y: 0.35897797, z: 0.0021711588}
+--- !u!114 &5815808050840841930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2543717075817796628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8daf31119164484b853af29868aff5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 2678452961394181887}
+  grabScript: {fileID: 7469143329233083234}
+  onSocket: 1
 --- !u!1 &8088649229762732888
 GameObject:
   m_ObjectHideFlags: 0
