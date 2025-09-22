@@ -30,10 +30,12 @@ public class FlameMonster : MonoBehaviour
     private void OnEnable()
     {
         VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect += KillFlame;
+        VU2ForestProtectionEventManager.Instance.OnGameStop += KillFlame;
     }
     private void OnDisable()
     {
         VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect -= KillFlame;
+        VU2ForestProtectionEventManager.Instance.OnGameStop -= KillFlame;
     }
     public void SetToInitialState()
     {
