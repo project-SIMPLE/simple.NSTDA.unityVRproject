@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: TitleSceneAsset Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: TitleSceneAsset
+  m_TableCollectionNameGuidString: eabaf0ea9fae68f4181d60756e5fcc19
+  m_Entries:
+  - m_Id: 4424572923904
+    m_Key: TitleScene/WorldUI/MainUI/ObjectivePanel/LocalTH_Button/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4424623255552
+    m_Key: TitleScene/WorldUI/MainUI/ObjectivePanel/LocalTH_Button/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4991605075968
+    m_Key: TitleScene/WorldUI/MainUI/ObjectivePanel/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4991613464576
+    m_Key: TitleScene/WorldUI/MainUI/ObjectivePanel/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5177643429888
+    m_Key: TitleScene/WorldUI/MainUI/ObjectivePanel/Main Panel/Text (TMP) (1)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5177656012800
+    m_Key: TitleScene/WorldUI/MainUI/ObjectivePanel/Main Panel/Text (TMP) (1) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5664392409088
+    m_Key: TitleScene/WorldUI/MainUI/ObjectivePanel/Main Panel/Text (TMP) (2)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5664409186304
+    m_Key: TitleScene/WorldUI/MainUI/ObjectivePanel/Main Panel/Text (TMP) (2) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5931468910592
+    m_Key: TitleScene/WorldUI/MainUI/ObjectivePanel/Online_Pannel/Back_B/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5931485687808
+    m_Key: TitleScene/WorldUI/MainUI/ObjectivePanel/Online_Pannel/Back_B/Text (TMP)
+      1
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items:
+    - rid: 818883803452276782
+    - rid: 818883803452276785
+  m_KeyGenerator:
+    rid: 818883803452276753
+  references:
+    version: 2
+    RefIds:
+    - rid: 818883803452276753
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1758614371053
+    - rid: 818883803452276782
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 4424572923904
+          m_TableCodes:
+          - en
+          - th
+        - m_KeyId: 4991605075968
+          m_TableCodes:
+          - en
+          - th
+        - m_KeyId: 5177643429888
+          m_TableCodes:
+          - en
+          - th
+        - m_KeyId: 5664392409088
+          m_TableCodes:
+          - en
+          - th
+        - m_KeyId: 5931468910592
+          m_TableCodes:
+          - en
+          - th
+        m_TypeString: TMPro.TMP_FontAsset, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+    - rid: 818883803452276785
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 4424623255552
+          m_TableCodes:
+          - en
+          - th
+        - m_KeyId: 4991613464576
+          m_TableCodes:
+          - en
+          - th
+        - m_KeyId: 5177656012800
+          m_TableCodes:
+          - en
+          - th
+        - m_KeyId: 5664409186304
+          m_TableCodes:
+          - en
+          - th
+        - m_KeyId: 5931485687808
+          m_TableCodes:
+          - en
+          - th
+        m_TypeString: UnityEngine.Material, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
