@@ -11,6 +11,7 @@ public class VU2TutorialControl : MonoBehaviour
 {
     public UnityEvent OnFinishTutorial;
     public UnityEvent OnFinishResultAnimation;
+    public UnityEvent OnFinishIntroAnimation;
 
     [SerializeField]
     private GameObject tutorialObj;
@@ -103,6 +104,7 @@ public class VU2TutorialControl : MonoBehaviour
     {
         BGAnimationObj.SetActive(true);
         Invoke("StopBGAnimation", timePass);
+        OnFinishIntroAnimation?.Invoke();
     }
     private void StopBGAnimation()
     {

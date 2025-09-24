@@ -47,7 +47,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         }
         else
         {
-            StatusUIControl(1);
+            StatusUIControl(3);
             UpdateRainEffect(false);
 
             ResetAllFire();
@@ -205,6 +205,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     public event Action OnTutorialStart;
     public void TutorialStart()
     {
+        
         OnTutorialStart?.Invoke();
     }
 

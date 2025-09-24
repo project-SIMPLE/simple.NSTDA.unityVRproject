@@ -4,6 +4,7 @@ using System.Data;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class VU2PlayerEffectAndUIController : MonoBehaviour
@@ -14,18 +15,20 @@ public class VU2PlayerEffectAndUIController : MonoBehaviour
     private GameObject fireEffect;
 
     /**
+     * 0 Ready pannel
+     * 1 Brfore Tutorial
+     * 2 After tutorial Q1
+     * 3 Finish Game score UI
+     * 4 After Q2 & Change player
      * 
-     * 0 ReadyUI
-     * 1 Result UI
-     * 2 Finish UI
      * */
     [SerializeField]
     private GameObject stateUI;
 
     /*
-     * 0 main pannel
-     * 1 Before Play Q
-     * 2 After Play Q
+     * 0 pannel
+     * 1 Before play Q (Q1)
+     * 2 After play Q (Q2)
      * 
      * */
     [SerializeField]
@@ -81,12 +84,16 @@ public class VU2PlayerEffectAndUIController : MonoBehaviour
 
         }
 
-        if (index == 1)
+        if (index == 3)
         {
             SetScoreText(VU2ForestProtectionEventManager.Instance?.GetPlayerScore());
-            Debug.Log(VU2ForestProtectionEventManager.Instance?.GetPlayerScore());
+            //Debug.Log(VU2ForestProtectionEventManager.Instance?.GetPlayerScore());
         }
     }
+
+
+
+
     /*
      * -1 Close
      * 1 before play Q
@@ -116,9 +123,14 @@ public class VU2PlayerEffectAndUIController : MonoBehaviour
     }
 
 
-    // Update is called once per frame
-    void Update()
+    /*public enum UIPannel
     {
-        
-    }
+        None = -1,
+        ReadyUI = 0,
+        BeforeTutorial = 1,
+        AfterQ1 = 2,
+        ScoreUI = 3,
+        FinishUI = 4
+    }*/
+
 }
