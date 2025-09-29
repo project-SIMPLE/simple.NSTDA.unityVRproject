@@ -177,7 +177,7 @@ public class Seeding : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         string tag = other.gameObject.tag;
-        if(tag == "Fire")
+        if(tag == "Fire" || other.gameObject.CompareTag("Tools"))
         {
             Debug.Log("Tree Burn");
             Treeburn();

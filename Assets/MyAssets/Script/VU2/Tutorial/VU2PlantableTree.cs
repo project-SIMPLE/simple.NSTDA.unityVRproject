@@ -40,9 +40,14 @@ public class VU2PlantableTree : MonoBehaviour
     {
         if (onSocket)
         {
-            rb.useGravity = false;
-            rb.isKinematic = true;
-            grabScript.enabled = false;
+            Invoke("DelayDisable", 0.5f);
         }
+    }
+
+    private void DelayDisable()
+    {
+        rb.useGravity = false;
+        rb.isKinematic = true;
+        grabScript.enabled = false;
     }
 }

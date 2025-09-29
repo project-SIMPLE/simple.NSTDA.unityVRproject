@@ -104,11 +104,12 @@ public class VU2TutorialControl : MonoBehaviour
     {
         BGAnimationObj.SetActive(true);
         Invoke("StopBGAnimation", timePass);
-        OnFinishIntroAnimation?.Invoke();
+        
     }
     private void StopBGAnimation()
     {
         BGAnimationObj.SetActive (false);
+        OnFinishIntroAnimation?.Invoke();
         ChangeTutorialToNextStep();
     }
     /*private void CallFunctionAfterTimePass(string functionName, float timePass)
@@ -161,16 +162,42 @@ public class VU2TutorialControl : MonoBehaviour
         tutorialObj.SetActive(false);
         OnFinishTutorial?.Invoke();
     }
+    /*
+     * 40 -> -50
+     * 41 -> 110
+     * 111 -> 150
+     * */
+
 
     private GameObject resultAni;
     public void ShowResult()
     {
-        int index = VU2ForestProtectionEventManager.Instance.GetBGStage();
+        /*int index = VU2ForestProtectionEventManager.Instance.GetBGStage();
         if(index <0 || index> AfterGameAnimation.transform.childCount)
         {
             index = 1;
+        }*/
+        int index;
+        int score;
+        if (int.TryParse(VU2ForestProtectionEventManager.Instance.GetPlayerScore(), out score))
+        {
+            if(score <= 40)
+            {
+                index = 0;
+            }else if(score >40 && score <= 110){
+                index = 1;
+            }
+            else
+            {
+                index = 2;
+            }
         }
-        resultAni = AfterGameAnimation.transform.GetChild(index-1).gameObject;
+        else
+        {
+            index = 0;
+        }
+
+        resultAni = AfterGameAnimation.transform.GetChild(index).gameObject;
         resultAni?.SetActive (true);
 
         Invoke("FinishResultAni", timePass);

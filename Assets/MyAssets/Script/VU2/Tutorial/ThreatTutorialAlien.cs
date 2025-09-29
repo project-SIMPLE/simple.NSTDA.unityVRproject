@@ -30,6 +30,13 @@ public class ThreatTutorialAlien : MonoBehaviour
             KillWeed();
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Tools")
+        {
+            KillWeed();
+        }
+    }
     public void KillWeed()
     {
         OnTaskFinish?.Invoke();

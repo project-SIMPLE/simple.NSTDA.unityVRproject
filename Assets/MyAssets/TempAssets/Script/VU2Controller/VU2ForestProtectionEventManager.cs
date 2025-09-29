@@ -14,6 +14,8 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     private GameObject FlamePrefab2;
     [SerializeField]
     private GameObject AlienPrefab;
+    [SerializeField]
+    private GameObject AlienPrefab2;
 
     //[SerializeField]
     //private GameObject PauseUI;
@@ -326,6 +328,9 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             case "Alien":
                 //Instantiate(AlienPrefab, pos, this.transform.rotation);
                 VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab, pos, this.transform.rotation);
+                break;
+            case "Alien2":
+                VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab2, pos, this.transform.rotation);
 
                 break;
         }
