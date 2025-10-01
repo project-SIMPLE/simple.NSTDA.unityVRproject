@@ -167,7 +167,7 @@ public class Seeding : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Tree Burn1");
+        
         if (other.transform.tag == "Fire")
         {
             Debug.Log("Tree Burn");
@@ -177,10 +177,25 @@ public class Seeding : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         string tag = other.gameObject.tag;
-        if(tag == "Fire" || other.gameObject.CompareTag("Tools"))
+        if(other.gameObject.CompareTag("Fire"))
         {
             Debug.Log("Tree Burn");
             Treeburn();
+        }
+        if (other.gameObject.CompareTag("Tools"))
+        {
+            if (other.gameObject.transform.parent == null) return;
+
+
+            if(other.gameObject.transform.parent.TryGetComponent<WeedCutter>(out WeedCutter weedScript))
+            {
+                if (weedScript.IsItemOnPlayerHand())
+                {
+                    
+                    Debug.Log("Player cut tree");
+                    Treeburn();
+                }
+            }
         }
         /*
         if (other.gameObject.tag == "Weed")

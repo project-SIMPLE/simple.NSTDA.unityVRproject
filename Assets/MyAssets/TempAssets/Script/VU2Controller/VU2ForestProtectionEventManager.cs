@@ -108,8 +108,8 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             }
             if (cID != thisPlayerID)
             {
-                //GameObject.Find(t.Name)?.gameObject.SetActive(false);
-                Destroy(GameObject.Find(t.Name)?.gameObject);
+                GameObject.Find(t.Name)?.gameObject.SetActive(false);
+                //Destroy(GameObject.Find(t.Name)?.gameObject);
             }
             else
             {
@@ -336,10 +336,17 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         }
     }
 
-    public GameObject CreateWeed(Vector3 pos, Quaternion rot)
+    public GameObject CreateWeed(Vector3 pos, Quaternion rot, int weedType)
     {
-
-        return VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab, pos, rot);
+        if(weedType == 1)
+        {
+            return VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab, pos, rot);
+        }
+        else
+        {
+            return VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab2, pos, rot);
+        }
+        
     }
 
     public void CollectQuestionnaireData(string qType,string data)

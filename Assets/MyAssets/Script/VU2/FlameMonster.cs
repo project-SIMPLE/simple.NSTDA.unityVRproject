@@ -96,8 +96,6 @@ public class FlameMonster : MonoBehaviour
         {
 
         }
-        
-        
     }
     private void ReduceHitPoint()
     {

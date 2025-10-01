@@ -200,7 +200,7 @@ public class VU2TutorialControl : MonoBehaviour
         resultAni = AfterGameAnimation.transform.GetChild(index).gameObject;
         resultAni?.SetActive (true);
 
-        Invoke("FinishResultAni", timePass);
+        Invoke("FinishResultAni", 10f);
     }
     private void FinishResultAni()
     {

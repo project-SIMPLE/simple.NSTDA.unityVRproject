@@ -10,6 +10,8 @@ public class Weed : MonoBehaviour
     [SerializeField]
     private List<GameObject> treeInArea;
 
+    [SerializeField]
+    private int type;
 
     [SerializeField]
     private int weedHP = 1;
@@ -156,7 +158,7 @@ public class Weed : MonoBehaviour
 
                     //GameObject obj = Instantiate(this.gameObject, tmp, this.transform.rotation);
                     //GameObject obj = VU2ObjectPoolManager.Instance?.SpawnObject(WeedPrefab, tmp, this.transform.rotation);
-                    GameObject obj = VU2ForestProtectionEventManager.Instance?.CreateWeed(tmp, this.transform.rotation);
+                    GameObject obj = VU2ForestProtectionEventManager.Instance?.CreateWeed(tmp, this.transform.rotation,type);
                     Weed objScript = obj.GetComponent<Weed>();
                     objScript.SetGrowFrom(dir);
                 }

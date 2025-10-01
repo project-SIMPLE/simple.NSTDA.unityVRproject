@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: 3268730852073652787}
   - component: {fileID: 2024217145451125271}
   - component: {fileID: 1230952222111639777}
+  - component: {fileID: 2300782199457207428}
   m_Layer: 6
   m_Name: SeedingWithGrass
   m_TagString: tree
@@ -515,7 +516,7 @@ SphereCollider:
     m_Bits: 1024
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -549,6 +550,29 @@ MonoBehaviour:
   grasses:
   - {fileID: 6465899566778301550}
   grassCount: 0
+--- !u!136 &2300782199457207428
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302837759142238792}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4096
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4095
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.09
+  m_Height: 1.7789428
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7408191, z: 0}
 --- !u!1 &4702887395276797950
 GameObject:
   m_ObjectHideFlags: 0
