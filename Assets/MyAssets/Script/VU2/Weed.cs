@@ -74,8 +74,11 @@ public class Weed : MonoBehaviour
     }
     public void SetToInitialState()
     {
+        weedTimer = 0;
         weedHP = 1;
         weedState = WeedState.Growing;
+        isSpreading = true;
+        growCount = 4;
         targetSize = UnityEngine.Random.Range(0.15f, 0.25f);
         Model.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
     }
