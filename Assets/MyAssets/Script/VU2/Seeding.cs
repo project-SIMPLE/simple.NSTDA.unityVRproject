@@ -20,22 +20,28 @@ public class Seeding : MonoBehaviour
     private float timeToGrow;
     [SerializeField]
     private float growTimer = 0f;
-    [SerializeField]
+    /*[SerializeField]
     private float growRate = 1.0f;
 
     [SerializeField]
-    private int maxGrowState;
+    private int maxGrowState;*/
 
+    [SerializeField]
+    private GameObject alertIcon;
 
     [SerializeField]
     private int WeedCount = 0;
+
+    [SerializeField]
+    private bool isTreeDying;
     // Start is called before the first frame update
     void Start()
     {
         treeState = 1;
         treeStateModels[treeState].SetActive(true);
-
-        maxGrowState = treeStateModels.Length -1;
+        alertIcon.SetActive(false);
+        isTreeDying = false;
+        //maxGrowState = treeStateModels.Length -1;
     }
 
     // Update is called once per frame
@@ -47,15 +53,20 @@ public class Seeding : MonoBehaviour
     private float timeUntilDie = 20f;
     private void FixedUpdate()
     {
-        if(WeedCount >= 7 && treeState == 1)
+        if(isTreeDying)
         {
-            if(deathTimer >= timeUntilDie)
+            if (deathTimer >= timeUntilDie)
             {
-                Treeburn();
+                TreeDied();
                 deathTimer = 0;
             }
             deathTimer += Time.deltaTime;
         }
+/*
+        if(WeedCount >= 7 && treeState == 1)
+        {
+            
+        }*/
         /*
         if (treeState == maxGrownState || treeState == -1) return;
         grownCount += grownRate * Time.deltaTime;
@@ -94,8 +105,12 @@ public class Seeding : MonoBehaviour
         treeStateModels[treeState].SetActive(false);
         treeState = state;
         treeStateModels[treeState].SetActive(true);
-
+        if (alertIcon.activeSelf && state != 1)
+        {
+            alertIcon.SetActive(false);
+        }
     }
+/*
     private void ChangeGrownRate()
     {
         switch(WeedCount)
@@ -117,11 +132,31 @@ public class Seeding : MonoBehaviour
                 break;
 
         }
-    }
-    private void AddFertilizer()
+    }*/
+    /*private void AddFertilizer()
     {
         float tmp = (timeToGrow - growTimer)/2;
         growTimer += tmp;
+    }*/
+
+    private void IsTreeDysing()
+    {
+        if (WeedCount >= 7 && treeState == 1)
+        {
+            isTreeDying = true;
+            alertIcon.SetActive(true);
+
+        }
+        else
+        {
+            alertIcon.SetActive(false);
+            if (fireOnTree != 0)
+            {
+                isTreeDying = false;
+            }
+        }
+        
+        
     }
 
     public void ChangeWeedCount(int num)
@@ -135,13 +170,30 @@ public class Seeding : MonoBehaviour
     //  0 = die
     //  1 = growing
     //
-    private void Treeburn()
+    private void TreeDied()
     {
         /*treeStateModels[treeState].SetActive(false);
         treeState = -1;*/
         ChangeGrowState(0);
         VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name, "0");
     }
+
+    private int fireOnTree = 0;
+    public void TreeBurn()
+    {
+        isTreeDying = true;
+        fireOnTree++;
+    }
+    public void UnburnTree()
+    {
+        fireOnTree--;
+        if( fireOnTree <= 0)
+        {
+            fireOnTree = 0;
+            isTreeDying = false;
+        }
+    }
+
     
     public void GotWeedOnTree()
     {
@@ -150,6 +202,7 @@ public class Seeding : MonoBehaviour
             VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name,"-1");
         }
         WeedCount++;
+        IsTreeDysing();
     }
     
     public void RemoveWeedOnTree()
@@ -162,16 +215,18 @@ public class Seeding : MonoBehaviour
         if(WeedCount == 0 && treeState != 0)
         {
             VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name,"1");
+            
         }
-        
+        IsTreeDysing();
     }
     private void OnParticleCollision(GameObject other)
     {
         
         if (other.transform.tag == "Fire")
         {
-            Debug.Log("Tree Burn");
-            Treeburn();
+            Debug.Log("Tree Burn1");
+            /*TreeDied();*/
+            TreeBurn();
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -179,8 +234,9 @@ public class Seeding : MonoBehaviour
         string tag = other.gameObject.tag;
         if(other.gameObject.CompareTag("Fire"))
         {
-            Debug.Log("Tree Burn");
-            Treeburn();
+            Debug.Log("Tree Burn2");
+            //TreeDied();
+            TreeBurn();
         }
         if (other.gameObject.CompareTag("Tools"))
         {
@@ -193,7 +249,7 @@ public class Seeding : MonoBehaviour
                 {
                     
                     Debug.Log("Player cut tree");
-                    Treeburn();
+                    TreeDied();
                 }
             }
         }

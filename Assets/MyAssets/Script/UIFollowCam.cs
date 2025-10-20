@@ -24,13 +24,17 @@ public class UIFollowCam : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
         FacingCamera();
         if (!IsUIInforntOfCamera() || !IsUIOnCorrectDistanceFromCamera())
         {
             SmoothMoveInFrontOfCamera();
         }
+    }
+    void Update()
+    {
+        
     }
 
 

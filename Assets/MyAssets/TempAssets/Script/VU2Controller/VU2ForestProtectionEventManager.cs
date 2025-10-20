@@ -215,6 +215,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     public void UpdateRainEffect(bool t)
     {
         OnUpdateRainEffect?.Invoke(t);
+        VU2BGSoundManager.Instance?.PlayRainSFX(t);
     }
 
     private int cBGStage;
@@ -264,6 +265,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     public void UpdateFireEffect(bool t)
     {
         OnUpdateFireEffect?.Invoke(t);
+        VU2BGSoundManager.Instance?.PlayFireSFX(t);
     }
 
 
