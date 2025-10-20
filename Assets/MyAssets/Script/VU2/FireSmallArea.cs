@@ -5,7 +5,9 @@ using UnityEngine;
 public class FireSmallArea : BaseFire
 {
     [SerializeField]
-    private float auraSize = 7;
+    private float targetAuraSize = 7;
+    [SerializeField]
+    private float fireSpreadRate = 0.3f;
 
     private void OnEnable()
     {
@@ -21,20 +23,27 @@ public class FireSmallArea : BaseFire
     protected override void SetToInitialState()
     {
         base.SetToInitialState();
-        auraSize = 1;
+        flameHitBox.radius = 2;
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
     }
 
     protected override void FlameGrowingByTime()
     {
+       
         base.FlameGrowingByTime();
         IncreaseFireSize();
     }
 
     private void IncreaseFireSize()
     {
-        if (flameHitBox.radius < auraSize)
+        if (flameHitBox.radius < targetAuraSize)
         {
-            flameHitBox.radius += 0.1f * Time.deltaTime;
+            Debug.Log("Test");
+            flameHitBox.radius += fireSpreadRate * Time.deltaTime;
         }
     }
 

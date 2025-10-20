@@ -28,7 +28,7 @@ public class BaseFire : MonoBehaviour
         SetToInitialState();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!hitByWater)
         {
