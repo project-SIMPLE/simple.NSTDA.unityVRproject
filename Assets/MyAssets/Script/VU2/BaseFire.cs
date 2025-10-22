@@ -62,13 +62,14 @@ public class BaseFire : MonoBehaviour
         hitByWater = false;
         hpUI?.SetActive(false);
         revocerTimer = 0;
+        hpBar.value = cHP;
     }
 
     protected virtual void ReduceHitPoint()
     {
         cHP -= 1;
-        if (cHP == 4) hpUI?.SetActive(true);
-        if (cHP < 0)
+        if (cHP >0) hpUI?.SetActive(true);
+        if (cHP <= 0)
         {
             Debug.Log(this.gameObject.name + " GONE");
             KillFire();
@@ -83,6 +84,8 @@ public class BaseFire : MonoBehaviour
 
     protected virtual void KillFire()
     {
+        VU2ForestProtectionEventManager.Instance?.FireRemove(this.gameObject.transform.position);
+        VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
         SetToInitialState();
     }
 

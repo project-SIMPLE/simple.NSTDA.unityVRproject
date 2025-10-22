@@ -112,7 +112,8 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
                 VU2ForestProtectionEventManager.Instance?.UpdatePlayerBackground(jsonTrees);
                 break;
             case "Announce":
-                Debug.Log("Annouce STH");
+                //Debug.Log("Annouce STH");
+                VU2BGSoundManager.Instance?.AnnouanceOneMinRemained();
                 break;
         }
 

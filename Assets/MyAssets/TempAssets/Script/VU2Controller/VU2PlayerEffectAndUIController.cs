@@ -54,6 +54,10 @@ public class VU2PlayerEffectAndUIController : MonoBehaviour
     private void UpdateRainEffect(bool t)
     {
         rainEffect.SetActive(t);
+        if (t)
+        {
+            UpdateFireEffect(false);
+        }
     }
     private void UpdateFireEffect(bool t)
     {

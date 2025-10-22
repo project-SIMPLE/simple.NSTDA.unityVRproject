@@ -6,6 +6,7 @@ public class BillboardImage : MonoBehaviour
 {
     private void OnEnable()
     {
+        
         if (!GetComponent<Renderer>().isVisible)
         {
             enabled = false;

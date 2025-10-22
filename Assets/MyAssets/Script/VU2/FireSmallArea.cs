@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class FireSmallArea : BaseFire
+public class FireSmallArea : BaseFire,ICreateFireOnTree
 {
     [SerializeField]
     private List<GameObject> treeInArea;
@@ -13,10 +14,12 @@ public class FireSmallArea : BaseFire
     private float fireSpreadRate = 0.3f;
     [SerializeField]
     private GameObject flameOnTreePrefab;
-
+    [SerializeField]
+    private List<GameObject> flameEffectLists;
 
     private void OnEnable()
     {
+        
         VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect += OnRainShow;
         VU2ForestProtectionEventManager.Instance.OnGameStop += KillFire;
     }
@@ -48,7 +51,7 @@ public class FireSmallArea : BaseFire
     {
         if (flameHitBox.radius < targetAuraSize)
         {
-            Debug.Log("Test");
+            
             flameHitBox.radius += fireSpreadRate * Time.deltaTime;
         }
     }
@@ -60,38 +63,59 @@ public class FireSmallArea : BaseFire
 
     protected override void KillFire()
     {
-        base.KillFire();
+        if (treeInArea == null) return;
 
         foreach (GameObject tree in treeInArea)
         {
-            if (tree == null) return;
+            if (tree == null) break;
             tree.gameObject.GetComponent<Seeding>().UnburnTree();
         }
-        VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
+        treeInArea.Clear();
+        //VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
+        //this.gameObject.SetActive(false);
         RemoveAllFireOnTree();
+        base.KillFire();
     }
     private void OnRainShow(bool isRain)
     {
         if (isRain) KillFire();
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        /*
+        if (!treeInArea.Contains(other.gameObject) && other.gameObject.CompareTag("tree"))
+        {
+            treeInArea.Add(other.gameObject);
+            other.gameObject.GetComponent<Seeding>().TreeBurn();
+            CreateFireOnTree(other.gameObject);
+        }
+*/
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
+/*
+        Debug.Log("HIT Tree!!");
         if (!treeInArea.Contains(collision.gameObject) && collision.gameObject.CompareTag("tree"))
         {
             treeInArea.Add(collision.gameObject);
             collision.gameObject.GetComponent<Seeding>().TreeBurn();
             CreateFireOnTree(collision.gameObject);
         }
+*/
     }
     private void OnCollisionStay(Collision collision)
     {
         
     }
-    private List<GameObject> flameEffectLists;
+    
+
     private void CreateFireOnTree(GameObject target)
     {
-        if (flameOnTreePrefab == null) return;
+        if (flameEffectLists == null)
+        {
+            flameEffectLists = new List<GameObject>();
+        }
         GameObject tmp = VU2ObjectPoolManager.Instance?.SpawnObject(flameOnTreePrefab, target.transform.position, this.transform.rotation);
         if (!flameEffectLists.Contains(tmp))
         {
@@ -101,11 +125,24 @@ public class FireSmallArea : BaseFire
     }
     private void RemoveAllFireOnTree()
     {
+        if (flameEffectLists == null) return;
         foreach (GameObject fire in flameEffectLists)
         {
             if (fire == null) return;
+            //flameEffectLists.Remove(fire);
             VU2ObjectPoolManager.Instance?.ReturnObjectToPool(fire);
+            
         }
+        flameEffectLists.Clear();
     }
 
+    public void OnFireHitTree(GameObject tree)
+    {
+        //Debug.Log("HIT Tree!!");
+        if (!treeInArea.Contains(tree) && tree.CompareTag("tree"))
+        {
+            treeInArea.Add(tree);
+            CreateFireOnTree(tree);
+        }
+    }
 }

@@ -179,8 +179,16 @@ public class Seeding : MonoBehaviour
     }
 
     private int fireOnTree = 0;
-    public void TreeBurn()
+    public void TreeBurn(GameObject other)
     {
+        //Debug.Log(other);
+        
+        if (other.transform.parent.TryGetComponent<ICreateFireOnTree>(out ICreateFireOnTree fire))
+        {
+            
+            fire.OnFireHitTree(this.gameObject);
+        }
+
         isTreeDying = true;
         fireOnTree++;
     }
@@ -226,7 +234,7 @@ public class Seeding : MonoBehaviour
         {
             Debug.Log("Tree Burn1");
             /*TreeDied();*/
-            TreeBurn();
+            TreeBurn(other);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -236,7 +244,7 @@ public class Seeding : MonoBehaviour
         {
             Debug.Log("Tree Burn2");
             //TreeDied();
-            TreeBurn();
+            TreeBurn(other.gameObject);
         }
         if (other.gameObject.CompareTag("Tools"))
         {

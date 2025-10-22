@@ -20,6 +20,10 @@ public class VU2BGSoundManager : MonoBehaviour
     [SerializeField]
     private AudioClip s_Rain;
 
+    [Header("----Audio Annouance----")]
+    [SerializeField]
+    private AudioClip s_1MinRemained;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -63,6 +67,11 @@ public class VU2BGSoundManager : MonoBehaviour
             StopAllCoroutines();
             camAudioSource.Stop();
         }
+    }
+
+    public void AnnouanceOneMinRemained()
+    {
+        camAudioSource.PlayOneShot(s_1MinRemained);
     }
 
     IEnumerator ThunderAndRainSoundCoroutine()
