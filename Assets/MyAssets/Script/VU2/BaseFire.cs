@@ -82,7 +82,7 @@ public class BaseFire : MonoBehaviour
         hpBar.value = cHP;
     }
 
-    protected virtual void KillFire()
+    public virtual void KillFire()
     {
         VU2ForestProtectionEventManager.Instance?.FireRemove(this.gameObject.transform.position);
         VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);

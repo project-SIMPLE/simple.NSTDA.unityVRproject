@@ -24,6 +24,12 @@ public class VU2BGSoundManager : MonoBehaviour
     [SerializeField]
     private AudioClip s_1MinRemained;
 
+    [Header("----Tree Audio----")]
+    [SerializeField]
+    private AudioClip s_helpMe;
+    [SerializeField]
+    private AudioClip s_wilhelmScream;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -42,8 +48,9 @@ public class VU2BGSoundManager : MonoBehaviour
 
     public void PlayFireSFX(bool play)
     {
-        
-        StopAllCoroutines();
+
+        //StopAllCoroutines();
+        StopCoroutine(ThunderAndRainSoundCoroutine());
         if (play)
         {
             camAudioSource.clip = s_Fire;
@@ -64,7 +71,8 @@ public class VU2BGSoundManager : MonoBehaviour
         }
         else
         {
-            StopAllCoroutines();
+            //StopAllCoroutines();
+            StopCoroutine(ThunderAndRainSoundCoroutine());
             camAudioSource.Stop();
         }
     }
@@ -91,5 +99,39 @@ public class VU2BGSoundManager : MonoBehaviour
         camAudioSource.clip = audC;
         camAudioSource.loop = true;
         camAudioSource.Play();
+    }
+    [SerializeField]
+    private bool isLocalPlaying = false;
+    [SerializeField]
+    private float clipLength = 0f;
+    public void PlayTreeSoundEffect(GameObject tree,int type)
+    {
+        if (!isLocalPlaying)
+        {
+            switch (type)
+            {
+                /// Help ME
+                case 0:
+                    localAudioSource.clip = s_helpMe;
+                    clipLength = 4f;
+                    break;
+                /// Wilhlem 
+                case 1:
+                    localAudioSource.clip = s_wilhelmScream;
+                    clipLength = s_wilhelmScream.length;
+                    break;
+            }
+            localAudioSource.gameObject.transform.position = tree.transform.position;
+            localAudioSource.Play();
+            StartCoroutine(LocalTreeSoundEffectCoroutine());
+        }
+    }
+
+    
+    IEnumerator LocalTreeSoundEffectCoroutine()
+    {
+        isLocalPlaying = true;
+        yield return new WaitForSeconds(clipLength);
+        isLocalPlaying = false;
     }
 }

@@ -115,6 +115,9 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
                 //Debug.Log("Annouce STH");
                 VU2BGSoundManager.Instance?.AnnouanceOneMinRemained();
                 break;
+            case "RemoveThreat":
+                VU2ForestProtectionEventManager.Instance?.HandleRemoveThreatsMessageFromGAMA(jsonThreats);
+                break;
         }
 
     }

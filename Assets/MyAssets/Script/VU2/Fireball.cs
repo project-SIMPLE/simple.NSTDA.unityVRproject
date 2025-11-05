@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
 
-public class Fireball : MonoBehaviour
+public class Fireball : MonoBehaviour,IGlobalThreat
 {
     private bool hasHit = false;
     private float delayTimer;
@@ -11,11 +11,13 @@ public class Fireball : MonoBehaviour
     private void OnEnable()
     {
         VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect += RainingWhileActive;
+        VU2ForestProtectionEventManager.Instance.OnRemoveGlobalThreat += RemoveGlobalThreat;
         SetToInitialState();
     }
     private void OnDisable()
     {
         VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect -= RainingWhileActive;
+        VU2ForestProtectionEventManager.Instance.OnRemoveGlobalThreat -= RemoveGlobalThreat;
     }
 
     void Start()
@@ -55,7 +57,7 @@ public class Fireball : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0,0,0);
 
-        VU2ForestProtectionEventManager.Instance?.CreateThreat("Flame2", this.transform.position);
+        VU2ForestProtectionEventManager.Instance?.CreateThreat("Flame22", this.transform.position);
         RemoveFireBall();
     }
     private void RainingWhileActive(bool t)
@@ -108,6 +110,13 @@ public class Fireball : MonoBehaviour
 
             }
             delayTimer += Time.deltaTime;
+        }
+    }
+
+    public void RemoveGlobalThreat(GlobalThreat type)
+    {
+        if (type == GlobalThreat.Fire) {
+            RemoveFireBall();
         }
     }
 }

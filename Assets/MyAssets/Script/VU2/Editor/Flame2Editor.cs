@@ -14,7 +14,7 @@ public class Flame2Editor : Editor
 
         if (GUILayout.Button("Kill Flame"))
         {
-            script.KillFlame();
+            script.KillFire();
         }
         if(GUILayout.Button("Shoot Small Fire"))
         {

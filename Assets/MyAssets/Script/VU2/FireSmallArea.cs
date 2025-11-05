@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FireSmallArea : BaseFire,ICreateFireOnTree
+public class FireSmallArea : BaseFire,ICreateFireOnTree,IGlobalThreat
 {
     [SerializeField]
     private List<GameObject> treeInArea;
 
     [SerializeField]
-    private float targetAuraSize = 7;
+    protected float targetAuraSize = 7;
     [SerializeField]
     private float fireSpreadRate = 0.3f;
     [SerializeField]
@@ -22,11 +22,13 @@ public class FireSmallArea : BaseFire,ICreateFireOnTree
         
         VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect += OnRainShow;
         VU2ForestProtectionEventManager.Instance.OnGameStop += KillFire;
+        VU2ForestProtectionEventManager.Instance.OnRemoveGlobalThreat += RemoveGlobalThreat;
     }
     private void OnDisable()
     {
         VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect -= OnRainShow;
         VU2ForestProtectionEventManager.Instance.OnGameStop -= KillFire;
+        VU2ForestProtectionEventManager.Instance.OnRemoveGlobalThreat -= RemoveGlobalThreat;
     }
 
     protected override void SetToInitialState()
@@ -51,7 +53,6 @@ public class FireSmallArea : BaseFire,ICreateFireOnTree
     {
         if (flameHitBox.radius < targetAuraSize)
         {
-            
             flameHitBox.radius += fireSpreadRate * Time.deltaTime;
         }
     }
@@ -61,7 +62,7 @@ public class FireSmallArea : BaseFire,ICreateFireOnTree
         base.FlameRecoverFromWater();
     }
 
-    protected override void KillFire()
+    public override void KillFire()
     {
         if (treeInArea == null) return;
 
@@ -108,9 +109,9 @@ public class FireSmallArea : BaseFire,ICreateFireOnTree
     {
         
     }
-    
 
-    private void CreateFireOnTree(GameObject target)
+
+    protected virtual void CreateFireOnTree(GameObject target)
     {
         if (flameEffectLists == null)
         {
@@ -123,7 +124,7 @@ public class FireSmallArea : BaseFire,ICreateFireOnTree
         }
 
     }
-    private void RemoveAllFireOnTree()
+    protected virtual void RemoveAllFireOnTree()
     {
         if (flameEffectLists == null) return;
         foreach (GameObject fire in flameEffectLists)
@@ -136,13 +137,21 @@ public class FireSmallArea : BaseFire,ICreateFireOnTree
         flameEffectLists.Clear();
     }
 
-    public void OnFireHitTree(GameObject tree)
+    public virtual void OnFireHitTree(GameObject tree)
     {
         //Debug.Log("HIT Tree!!");
         if (!treeInArea.Contains(tree) && tree.CompareTag("tree"))
         {
             treeInArea.Add(tree);
             CreateFireOnTree(tree);
+        }
+    }
+
+    public void RemoveGlobalThreat(GlobalThreat type)
+    {
+        if(type == GlobalThreat.Fire)
+        {
+            KillFire();
         }
     }
 }

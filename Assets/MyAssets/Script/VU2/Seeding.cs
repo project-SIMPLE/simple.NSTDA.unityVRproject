@@ -27,7 +27,7 @@ public class Seeding : MonoBehaviour
     private int maxGrowState;*/
 
     [SerializeField]
-    private GameObject alertIcon;
+    private GameObject[] treeEmojiIcon;
 
     [SerializeField]
     private int WeedCount = 0;
@@ -39,7 +39,8 @@ public class Seeding : MonoBehaviour
     {
         treeState = 1;
         treeStateModels[treeState].SetActive(true);
-        alertIcon.SetActive(false);
+        //treeEmojiIcon.SetActive(false);
+        ShowEmojiOnTree(0);
         isTreeDying = false;
         //maxGrowState = treeStateModels.Length -1;
     }
@@ -51,9 +52,30 @@ public class Seeding : MonoBehaviour
     }
     private float deathTimer = 0;
     private float timeUntilDie = 20f;
+
+    private void ShowEmojiOnTree(int index)
+    {
+        foreach (GameObject emoji in treeEmojiIcon)
+        {
+            emoji.SetActive(false);
+        }
+        switch (index)
+        {
+            case 0: 
+                
+                break;
+            case 1:
+                treeEmojiIcon[0].SetActive(true);
+                break;
+            case 2:
+                treeEmojiIcon[1].SetActive(true);
+                break;
+        }
+    }
+
     private void FixedUpdate()
     {
-        if(isTreeDying)
+        if(isTreeDying && treeState != 0)
         {
             if (deathTimer >= timeUntilDie)
             {
@@ -105,9 +127,10 @@ public class Seeding : MonoBehaviour
         treeStateModels[treeState].SetActive(false);
         treeState = state;
         treeStateModels[treeState].SetActive(true);
-        if (alertIcon.activeSelf && state != 1)
+        if ( state >2)
         {
-            alertIcon.SetActive(false);
+            //treeEmojiIcon.SetActive(false);
+            ShowEmojiOnTree(0);
         }
     }
 /*
@@ -139,17 +162,56 @@ public class Seeding : MonoBehaviour
         growTimer += tmp;
     }*/
 
-    private void IsTreeDysing()
+    private void CheckIsTreeDying()
     {
-        if (WeedCount >= 7 && treeState == 1)
+        /*if(treeState == 1 || treeState == 2)
         {
-            isTreeDying = true;
-            alertIcon.SetActive(true);
+            if(WeedCount <7 && WeedCount > 0)
+            {
+                ShowEmojiOnTree(1);
+            }
+            else if(WeedCount >=7)
+            {
 
+                timeUntilDie = 20f;
+                isTreeDying = true;
+                //treeEmojiIcon.SetActive(true);
+                ShowEmojiOnTree(2);
+
+                VU2BGSoundManager.Instance?.PlayTreeSoundEffect(this.gameObject, 0);
+            }
+            else
+            {
+                ShowEmojiOnTree(0);
+            }
+        }*/
+        if (WeedCount >4 && (treeState == 1 || treeState == 2))
+        {
+            if (WeedCount >= 7)
+            {
+                timeUntilDie = 20f;
+                isTreeDying = true;
+                //treeEmojiIcon.SetActive(true);
+                ShowEmojiOnTree(2);
+                VU2BGSoundManager.Instance?.PlayTreeSoundEffect(this.gameObject, 0);
+            }
+            else if (WeedCount < 7)
+            {
+                isTreeDying = false;
+                ShowEmojiOnTree(1);
+            }
         }
+        /*else if (WeedCount >= 7 && (treeState == 1 || treeState == 2))
+        {
+            timeUntilDie = 20f;
+            isTreeDying = true;
+            //treeEmojiIcon.SetActive(true);
+            ShowEmojiOnTree(2);
+        }*/
         else
         {
-            alertIcon.SetActive(false);
+            ShowEmojiOnTree(0);
+            //treeEmojiIcon.SetActive(false);
             if (fireOnTree != 0)
             {
                 isTreeDying = false;
@@ -175,7 +237,10 @@ public class Seeding : MonoBehaviour
         /*treeStateModels[treeState].SetActive(false);
         treeState = -1;*/
         ChangeGrowState(0);
+        ShowEmojiOnTree(0);
+        //isTreeDying = false;
         VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name, "0");
+        VU2BGSoundManager.Instance?.PlayTreeSoundEffect(this.gameObject, 1);
     }
 
     private int fireOnTree = 0;
@@ -188,8 +253,12 @@ public class Seeding : MonoBehaviour
             
             fire.OnFireHitTree(this.gameObject);
         }
-
+        if(deathTimer > 10f)
+        {
+            timeUntilDie = 10f;
+        }
         isTreeDying = true;
+
         fireOnTree++;
     }
     public void UnburnTree()
@@ -210,7 +279,7 @@ public class Seeding : MonoBehaviour
             VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name,"-1");
         }
         WeedCount++;
-        IsTreeDysing();
+        CheckIsTreeDying();
     }
     
     public void RemoveWeedOnTree()
@@ -225,14 +294,14 @@ public class Seeding : MonoBehaviour
             VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name,"1");
             
         }
-        IsTreeDysing();
+        CheckIsTreeDying();
     }
     private void OnParticleCollision(GameObject other)
     {
         
         if (other.transform.tag == "Fire")
         {
-            Debug.Log("Tree Burn1");
+            //Debug.Log("Tree Burn1");
             /*TreeDied();*/
             TreeBurn(other);
         }
@@ -242,7 +311,7 @@ public class Seeding : MonoBehaviour
         string tag = other.gameObject.tag;
         if(other.gameObject.CompareTag("Fire"))
         {
-            Debug.Log("Tree Burn2");
+            //Debug.Log("Tree Burn2");
             //TreeDied();
             TreeBurn(other.gameObject);
         }

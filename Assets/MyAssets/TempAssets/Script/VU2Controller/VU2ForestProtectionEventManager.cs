@@ -12,6 +12,8 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     private GameObject FlamePrefab;
     [SerializeField]
     private GameObject FlamePrefab2;
+    [SerializeField] 
+    private GameObject FlamePrefab2sub2;
     [SerializeField]
     private GameObject AlienPrefab;
     [SerializeField]
@@ -329,12 +331,25 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
                 break;
             case "Alien":
                 //Instantiate(AlienPrefab, pos, this.transform.rotation);
-                VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab, pos, this.transform.rotation);
+                GameObject tmp = VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab, pos, this.transform.rotation);
+                if(tmp.TryGetComponent<Weed>(out Weed script)){
+                    script.SetGrowFrom(Weed.GrowDir.Center, 3);
+                }
                 break;
             case "Alien2":
-                VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab2, pos, this.transform.rotation);
-
+                GameObject tmp2 = VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab2, pos, this.transform.rotation);
+                if (tmp2.TryGetComponent<Weed>(out Weed script2))
+                {
+                    script2.SetGrowFrom(Weed.GrowDir.Center, 3);
+                }
                 break;
+            case "Flame22":
+                totalFire++;
+                UpdateFireEffect(true);
+                //Instantiate(FlamePrefab, pos, this.transform.rotation);
+                VU2ObjectPoolManager.Instance?.SpawnObject(FlamePrefab2sub2, pos, this.transform.rotation);
+                break;
+
         }
     }
 
@@ -357,4 +372,43 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         FinishQuestionnaire(qType, data);
     }
 
+    public event Action<GlobalThreat> OnRemoveGlobalThreat;
+    public void RemoveGlobalThreat(GlobalThreat type)
+    {
+        OnRemoveGlobalThreat?.Invoke(type);
+    }
+
+    public void HandleRemoveThreatsMessageFromGAMA(List<GAMAThreatMessage> threats)
+    {
+        foreach (GAMAThreatMessage t in threats)
+        {
+            if (t.PlayerID != thisPlayerID) continue;
+            GlobalThreat tmp = GlobalThreat.Non;
+            switch(t.Name)
+            {
+                case "Fire":
+                    tmp = GlobalThreat.Fire;
+                    break;
+                case "Aliens":
+                    tmp = GlobalThreat.AlienPlant;
+                    break;
+                case "Grasses":
+                    
+                    tmp = GlobalThreat.Grasses;
+                    break;
+            }
+            
+            RemoveGlobalThreat(tmp);
+
+        }
+    }
+
+}
+
+public enum GlobalThreat
+{
+    Fire,
+    Grasses,
+    AlienPlant,
+    Non
 }

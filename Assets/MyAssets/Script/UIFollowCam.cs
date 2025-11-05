@@ -44,7 +44,7 @@ public class UIFollowCam : MonoBehaviour
     private void SmoothMoveInFrontOfCamera()
     {
         Vector3 targetPos = Camera.main.transform.TransformPoint(new Vector3(0, 0, CameraDistance));
-        targetPos.y = 1.2f;
+        targetPos.y = Camera.main.transform.position.y; //+ 1.2f;
         this.transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
     }
     public void MoveInFrontOfCamera()

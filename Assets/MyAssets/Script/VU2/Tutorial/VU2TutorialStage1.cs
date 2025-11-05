@@ -10,7 +10,8 @@ public class VU2TutorialStage1 : VU2TutorialStage
     private Transform[] seedingSpawnPoint;
 
     private List<GameObject> seedlingLists;
-
+    [SerializeField]
+    private List<GameObject> socketList;
 
     public override void SetToInitialState()
     {
@@ -29,6 +30,7 @@ public class VU2TutorialStage1 : VU2TutorialStage
     {
         SetToInitialState();
         SetUpTutorialObject();
+        ResetSocket();
     }
 
     private void SetUpTutorialObject()
@@ -37,7 +39,7 @@ public class VU2TutorialStage1 : VU2TutorialStage
         foreach (Transform t in seedingSpawnPoint)
         {
             GameObject tmp = Instantiate(plantableSeeding, t.position, t.rotation);
-            seedlingLists.Add(tmp);
+            //seedlingLists.Add(tmp);
         }
     }
 
@@ -53,6 +55,7 @@ public class VU2TutorialStage1 : VU2TutorialStage
     public override void FinishStage()
     {
         RemoveSeedling();
+        
         base.FinishStage();
     }
 
@@ -61,6 +64,16 @@ public class VU2TutorialStage1 : VU2TutorialStage
         foreach(GameObject s in seedlingLists)
         {
             Destroy(s);
+        }
+    }
+    private void ResetSocket()
+    {
+        foreach (GameObject s in socketList)
+        {
+            if (s.TryGetComponent<VU2PlantingSocket>(out VU2PlantingSocket socket))
+            {
+                socket.SetToInitialState();
+            }
         }
     }
 }

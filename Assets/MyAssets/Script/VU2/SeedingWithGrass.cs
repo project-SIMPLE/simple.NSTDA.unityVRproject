@@ -9,6 +9,8 @@ public class SeedingWithGrass : Seeding
     [SerializeField]
     private int grassCount;
 
+    
+
     private bool haveGrasses = false;
     public void GrassesGrow()
     {
@@ -35,6 +37,5 @@ public class SeedingWithGrass : Seeding
         }
     }
 
-
-
+    
 }

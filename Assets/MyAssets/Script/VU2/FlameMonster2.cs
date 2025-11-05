@@ -4,13 +4,14 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FlameMonster2 : MonoBehaviour
+public class FlameMonster2 : FireSmallArea, ICreateFireOnTree, IGlobalThreat
 {
-    [SerializeField]
-    private CapsuleCollider flameHitBox;
-    // Start is called before the first frame update
-    [SerializeField]
-    private bool hitCoolDown;
+    public enum FireState
+    {
+        Growing,
+        Shooting
+    }
+
     //[SerializeField]
     //private bool stopFlame;
     [SerializeField]
@@ -19,122 +20,125 @@ public class FlameMonster2 : MonoBehaviour
     [SerializeField]
     private GameObject shootingPoint;
 
-
     [SerializeField]
-    private int hitPoint = 5;
+    private FireState fs = FireState.Growing;
     [SerializeField]
-    private GameObject hpUI;
-    [SerializeField]
-    private Slider hpBar;
-
-    // Cooldown for Hited rate
-    private float hitTimer;
-
+    private bool spawnOnMax = false;
     // Cooldown for spawn small fire
+    //private float timeToChangeState = 10f;
+    [SerializeField]
     private float fireBallTimer;
-    private float timerToSpawnFireBall = 5.0f;
+    private float timerToSpawnFireBall = 20.0f;
     private float fireBallNum;
+
 
 
     private void OnEnable()
     {
-        VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect += KillFlame;
-        VU2ForestProtectionEventManager.Instance.OnGameStop += KillFlame;
-        SetToInitialState();
+        VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect += OnRainShow;
+        VU2ForestProtectionEventManager.Instance.OnGameStop += KillFire;
+        VU2ForestProtectionEventManager.Instance.OnRemoveGlobalThreat += RemoveGlobalThreat;
     }
     private void OnDisable()
     {
-        VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect -= KillFlame;
-        VU2ForestProtectionEventManager.Instance.OnGameStop -= KillFlame;
+        VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect -= OnRainShow;
+        VU2ForestProtectionEventManager.Instance.OnGameStop -= KillFire;
+        VU2ForestProtectionEventManager.Instance.OnRemoveGlobalThreat -= RemoveGlobalThreat;
     }
 
-    public void SetToInitialState()
+    protected override void SetToInitialState()
     {
-        hitPoint = 5;
+        fs = FireState.Growing;
         fireBallTimer = 0;
-        hitTimer = 0;
-        hitCoolDown = false;
-        hpUI?.SetActive(false);
-        fireBallNum = Random.Range(3,5);
-        timerToSpawnFireBall = Random.Range(8f,15f);
+        base.SetToInitialState();
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
-        if (!hitCoolDown)
+        base.FixedUpdate();
+    }
+
+    /*
+        private void FixedUpdate()
         {
-            if(fireBallTimer >= timerToSpawnFireBall)
+            if (!hitCoolDown)
             {
-                fireBallTimer = 0;
+                if(fireBallTimer >= timerToSpawnFireBall)
+                {
+                    fireBallTimer = 0;
+                    SpawnFireBall();
+
+                }
+                fireBallTimer += Time.deltaTime;
+            }
+            else
+            {
+                if (hitTimer >= 0.25f)
+                {
+                    hitTimer = 0;
+                    hitCoolDown = false;
+                }
+                hitTimer += Time.deltaTime;
+            }
+        }
+    */
+    protected override void FlameGrowingByTime()
+    {
+        
+
+        if (fs == FireState.Growing)
+        {
+            base.FlameGrowingByTime();
+        }else if(fs == FireState.Shooting)
+        {
+            CountDownToShootFireBall();
+        }
+
+        if (flameHitBox.radius >= targetAuraSize && fs != FireState.Shooting)
+        {
+
+            fs = FireState.Shooting;
+            if (spawnOnMax)
+            {
                 SpawnFireBall();
-
             }
-            fireBallTimer += Time.deltaTime;
+            //SpawnFireBall();
         }
-        else
+
+    }
+    protected void CountDownToShootFireBall()
+    {
+        if (fireBallTimer >= timerToSpawnFireBall)
         {
-            if (hitTimer >= 0.25f)
-            {
-                hitTimer = 0;
-                hitCoolDown = false;
-            }
-            hitTimer += Time.deltaTime;
-        }
-    }
+            
 
-    private void OnParticleCollision(GameObject other)
-    {
-        if (other.transform.tag != "Water") return;
-
-        if (!hitCoolDown)
-        {
-            //Debug.LogFormat("HP--");
-            //stopFlame = true;
-            hitCoolDown = true;
-            ReduceHitPoint();
-        }
-        else
-        {
+            SpawnFireBall();
+            fireBallTimer = 0;
 
         }
+        fireBallTimer += Time.deltaTime;
+    }
 
+    protected override void FlameRecoverFromWater()
+    {
+        base.FlameRecoverFromWater();
+    }
 
-    }
-    private void ReduceHitPoint()
+    public override void KillFire()
     {
-        hitPoint -= 1;
-        if (hitPoint == 4) hpUI?.SetActive(true);
-        if (hitPoint < 0)
-        {
-            Debug.Log(this.gameObject.name + " GONE");
-            FlameGone();
-        }
-        UpdateHPBar();
+        base.KillFire();
     }
-    public void KillFlame()
+    private void OnRainShow(bool isRain)
     {
-        FlameGone();
+        if (isRain) KillFire();
     }
-    public void KillFlame(bool t)
-    {
-        if (t) FlameGone();
-    }
-    private void FlameGone()
-    {
-        SetToInitialState();
-        //VU2ForestProtectionEventManager.Instance?.ThreatUpdate(this.gameObject.name,"GONE");
-        VU2ForestProtectionEventManager.Instance?.FireRemove(this.gameObject.transform.position);
-        VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
-        //this.gameObject.SetActive(false);
-    }
-    private void UpdateHPBar()
-    {
-        hpBar.value = hitPoint;
-    }
+    
 
     private void SpawnFireBall()
     {
-        for(int i=1; i<= fireBallNum; i++) {
+        fireBallNum = Random.Range(1, 2);
+
+        for (int i=1; i<= fireBallNum; i++) {
             ShootFireParticle();
         }
     }
@@ -149,12 +153,37 @@ public class FlameMonster2 : MonoBehaviour
 
         if (rb != null)
         {
-            rb.velocity = fireBall.transform.up * Random.Range(5f, 8f);
+            rb.velocity = fireBall.transform.up * Random.Range(6f, 10f);
         }
         else
         {
             
         }
-        //Debug.Log("Shoot Direction : " + rb.velocity);
+        
+    }
+
+    protected override void CreateFireOnTree(GameObject target)
+    {
+        base.CreateFireOnTree(target);
+
+    }
+    protected override void RemoveAllFireOnTree()
+    {
+        base.RemoveAllFireOnTree();
+
+    }
+
+    public override void OnFireHitTree(GameObject tree)
+    {
+        base.OnFireHitTree(tree);
+       
+    }
+
+    public void RemoveGlobalThreat(GlobalThreat type)
+    {
+        if(type == GlobalThreat.Fire)
+        {
+            KillFire();
+        }
     }
 }

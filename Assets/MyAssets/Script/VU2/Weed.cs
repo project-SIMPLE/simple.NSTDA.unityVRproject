@@ -5,8 +5,9 @@ using System.Xml;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Weed : MonoBehaviour
+public class Weed : MonoBehaviour, IGlobalThreat
 {
+    
     [SerializeField]
     private List<GameObject> treeInArea;
 
@@ -58,6 +59,8 @@ public class Weed : MonoBehaviour
     /*[SerializeField]
     private GameObject WeedPrefab;*/
 
+    private bool isDestroy;
+
     void Start()
     {
         treeInArea = new List<GameObject>();
@@ -65,20 +68,24 @@ public class Weed : MonoBehaviour
     private void OnEnable()
     {
         VU2ForestProtectionEventManager.Instance.OnGameStop += ReturnToPool;
+        VU2ForestProtectionEventManager.Instance.OnRemoveGlobalThreat += RemoveGlobalThreat;
+
         SetToInitialState();
     }
 
     private void OnDisable()
     {
         VU2ForestProtectionEventManager.Instance.OnGameStop -= ReturnToPool;
+        VU2ForestProtectionEventManager.Instance.OnRemoveGlobalThreat -= RemoveGlobalThreat;
     }
     public void SetToInitialState()
     {
+        isDestroy = false;
         weedTimer = 0;
         weedHP = 1;
         weedState = WeedState.Growing;
         isSpreading = true;
-        growCount = 4;
+        //growCount = 3;
         targetSize = UnityEngine.Random.Range(0.15f, 0.25f);
         Model.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
     }
@@ -105,7 +112,7 @@ public class Weed : MonoBehaviour
 
                         if(Model.transform.localScale.x < targetSize)
                         {
-                            Model.transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 0.008f;
+                            Model.transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 0.0073f;
                         }
                         else
                         {
@@ -163,7 +170,7 @@ public class Weed : MonoBehaviour
                     //GameObject obj = VU2ObjectPoolManager.Instance?.SpawnObject(WeedPrefab, tmp, this.transform.rotation);
                     GameObject obj = VU2ForestProtectionEventManager.Instance?.CreateWeed(tmp, this.transform.rotation,type);
                     Weed objScript = obj.GetComponent<Weed>();
-                    objScript.SetGrowFrom(dir);
+                    objScript.SetGrowFrom(dir, growCount-1);
                 }
             }
         }
@@ -204,6 +211,7 @@ public class Weed : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        
         //Debug.Log("TAG ="+ collision.gameObject.tag);
         if (collision.gameObject.tag == "Tools")
         {
@@ -224,6 +232,7 @@ public class Weed : MonoBehaviour
             OnWeedDestroyed();
             //this.gameObject.SetActive(false);
             SetToInitialState();
+            ClearTreeList();
             ReturnToPool();
         }
     }
@@ -235,6 +244,7 @@ public class Weed : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (isDestroy) return;
         if (!treeInArea.Contains(other.gameObject) && other.gameObject.CompareTag("tree"))
         {
             treeInArea.Add(other.gameObject);
@@ -245,7 +255,7 @@ public class Weed : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Trigger TAG =" + other.gameObject.tag);
-
+        if (isDestroy) return;
         if (!treeInArea.Contains(other.gameObject) && other.gameObject.CompareTag("tree"))
         {
             treeInArea.Add(other.gameObject);
@@ -270,30 +280,47 @@ public class Weed : MonoBehaviour
 
     private void OnWeedDestroyed()
     {
+        isDestroy = true;
         if (treeInArea.Count <= 0) return;
 
         foreach (GameObject tree in treeInArea)
         {
-            if (tree == null) return;
+            if (tree == null) break ;
             //tree.gameObject.GetComponent<Seeding>().ChangeWeedCount(-1);
             tree.gameObject.GetComponent<Seeding>().RemoveWeedOnTree();
         }
+        
     }
-    public void SetGrowFrom(GrowDir dir)
+
+    private void ClearTreeList()
     {
+        if (treeInArea.Count <= 0) return;
+        treeInArea.Clear(); 
+    }
+    public void SetGrowFrom(GrowDir dir,float growC)
+    {
+        isDestroy = false;
         growFrom = dir;
         
-        growCount--;
+        growCount = growC;
         if(growCount <= 0) { growCount = 0; }
     }
-    
-/*
-    private struct WeedGrowDir
+
+    public void RemoveGlobalThreat(GlobalThreat type)
     {
-        GrowDir posIndex;
-        Vector3[] Pos;
+        if(type == GlobalThreat.AlienPlant)
+        {
+            ReduceHP();
+        }
     }
-*/
+
+    /*
+        private struct WeedGrowDir
+        {
+            GrowDir posIndex;
+            Vector3[] Pos;
+        }
+    */
     private enum WeedState
     {
         Growing,
