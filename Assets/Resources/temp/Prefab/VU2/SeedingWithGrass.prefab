@@ -707,6 +707,9 @@ GameObject:
   - component: {fileID: 3268730852073652787}
   - component: {fileID: 2024217145451125271}
   - component: {fileID: 1230952222111639777}
+  - component: {fileID: 2264270219861953696}
+  - component: {fileID: 5152839396325417708}
+  - component: {fileID: 6127323717155242028}
   - component: {fileID: 2300782199457207428}
   m_Layer: 6
   m_Name: SeedingWithGrass
@@ -780,10 +783,38 @@ MonoBehaviour:
   - {fileID: 7602127897258132676}
   WeedCount: 0
   isTreeDying: 0
+  treeColliders:
+  - {fileID: 2264270219861953696}
+  - {fileID: 5152839396325417708}
+  - {fileID: 6127323717155242028}
+  - {fileID: 2300782199457207428}
   grasses:
   - {fileID: 6465899566778301550}
   grassCount: 0
---- !u!136 &2300782199457207428
+--- !u!136 &2264270219861953696
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302837759142238792}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4096
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4095
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.09
+  m_Height: 0.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.15, z: 0}
+--- !u!136 &5152839396325417708
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -803,9 +834,55 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.09
-  m_Height: 1.7789428
+  m_Height: 0.9580555
   m_Direction: 1
-  m_Center: {x: 0, y: 0.7408191, z: 0}
+  m_Center: {x: 0, y: 0.33037543, z: 0}
+--- !u!136 &6127323717155242028
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302837759142238792}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4096
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4095
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.09
+  m_Height: 1.5802959
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.64149565, z: 0}
+--- !u!136 &2300782199457207428
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302837759142238792}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4096
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4095
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.09
+  m_Height: 2.1546407
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.928668, z: 0}
 --- !u!1 &4702887395276797950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,7 +1458,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.11
   m_Height: 0.6597483
@@ -1682,8 +1759,8 @@ Transform:
   m_GameObject: {fileID: 6909195438998640359}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.10528618, y: 0.10528618, z: 0.10528618}
+  m_LocalPosition: {x: 0, y: -0.115, z: 0}
+  m_LocalScale: {x: 0.053172678, y: 0.053172678, z: 0.053172678}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 136681543092890237}
@@ -1880,6 +1957,7 @@ GameObject:
   - component: {fileID: 1060282479995100175}
   - component: {fileID: 3295821042148353041}
   - component: {fileID: 4079843010628701535}
+  - component: {fileID: 7397828411999063197}
   m_Layer: 0
   m_Name: cryingTreeCartoon
   m_TagString: Untagged
@@ -1966,6 +2044,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c5a99b793eafd458a3da6ced4611a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &7397828411999063197
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7602127897258132676}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 66ceefab331195d40bc4769a70e59bd9, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 66ceefab331195d40bc4769a70e59bd9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 1
 --- !u!1 &8624807957390930538
 GameObject:
   m_ObjectHideFlags: 0

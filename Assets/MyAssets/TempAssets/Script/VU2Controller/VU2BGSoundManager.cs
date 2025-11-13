@@ -118,7 +118,7 @@ public class VU2BGSoundManager : MonoBehaviour
                 /// Wilhlem 
                 case 1:
                     localAudioSource.clip = s_wilhelmScream;
-                    clipLength = s_wilhelmScream.length;
+                    clipLength = 1.5f;
                     break;
             }
             localAudioSource.gameObject.transform.position = tree.transform.position;

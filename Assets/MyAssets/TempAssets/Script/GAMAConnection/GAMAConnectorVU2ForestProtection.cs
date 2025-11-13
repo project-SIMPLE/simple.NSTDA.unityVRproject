@@ -193,13 +193,13 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         }
     }
 
-    public void SendPlayerReady()
+    public void SendPlayerReady(string readytype)
     {
         Debug.Log("Team ID: " + GetTeamID() + "Ready");
         Dictionary<string, string> args = new Dictionary<string, string>
         {
             { "player_ID",GetTeamID()},
-            { "Ready","true"}
+            { "Ready",readytype}
         };
 
         try
@@ -210,8 +210,9 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         {
             Debug.Log(e);
         }
-
     }
+
+
     /*
      * Header = "Before" and "After"
      * message = answer in string

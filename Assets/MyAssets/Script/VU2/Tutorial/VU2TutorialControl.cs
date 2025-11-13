@@ -11,7 +11,14 @@ public class VU2TutorialControl : MonoBehaviour
 {
     public UnityEvent OnFinishTutorial;
     public UnityEvent OnFinishResultAnimation;
+
+    // Forest Degrading
+    // 
     public UnityEvent OnFinishIntroAnimation;
+
+    // Charactor planting seedling
+    //
+    public UnityEvent OnFinishTutorialIntroAnimation;
 
     [SerializeField]
     private GameObject tutorialObj;
@@ -21,10 +28,16 @@ public class VU2TutorialControl : MonoBehaviour
     private Transform[] seedingSpawnPoint;
     */
     [SerializeField]
-    private GameObject BGAnimationObj;
+    private GameObject[] ForestIntroAnimationObj;
+    [SerializeField]
+    private GameObject CharactorPlantingAnimationObj;
+    [SerializeField]
+    private GameObject SeedlingObj;
 
     [SerializeField]
     private GameObject AfterGameAnimation;
+
+    
 
     private void OnEnable()
     {
@@ -45,6 +58,8 @@ public class VU2TutorialControl : MonoBehaviour
     {
         cTutorialStep = 0;
         tutorialStage = 0;
+        SeedlingObj.SetActive(false);
+        //ForestIntroAnimationObj[0].SetActive(true);
     }
 
     [SerializeField]
@@ -75,13 +90,13 @@ public class VU2TutorialControl : MonoBehaviour
         switch (state)
         {
             case 0:
-                PlayBGAnimation();
+                PlayForestDegradeAnimation();
                 break;
             case 1:
-                StartTutorial();
+                StartTutorialIntroAnimation();
                 break;
             case 2:
-                
+                StartTutorial();
                 break;
             case 3:
                 break;
@@ -99,17 +114,39 @@ public class VU2TutorialControl : MonoBehaviour
     }
 
 
-    private float timePass = 7.0f;
-    private void PlayBGAnimation()
+    private float timePass = 10.0f;
+    private void PlayForestDegradeAnimation()
     {
-        BGAnimationObj.SetActive(true);
-        Invoke("StopBGAnimation", timePass);
-        
+        ForestIntroAnimationObj[0].SetActive(false);
+        ForestIntroAnimationObj[1].SetActive(true);
+        //Invoke("StopBGAnimation", timePass);
+        Invoke("FinishIntroAnimation", timePass);
     }
+    private void FinishIntroAnimation()
+    {
+        //ForestIntroAnimationObj.SetActive(false);
+        OnFinishIntroAnimation?.Invoke();
+    }
+
+    public void StartTutorialIntroAnimation() 
+    {
+        ForestIntroAnimationObj[1].SetActive(false);
+        CharactorPlantingAnimationObj.SetActive(true);
+        Invoke("FinishTutorialIntroAnimation",17f);
+    }
+
+    private void FinishTutorialIntroAnimation()
+    {
+        SeedlingObj.SetActive(true);
+        CharactorPlantingAnimationObj.SetActive(false);
+        OnFinishTutorialIntroAnimation?.Invoke();
+        ChangeTutorialToNextStep();
+    }
+
     private void StopBGAnimation()
     {
-        BGAnimationObj.SetActive (false);
-        OnFinishIntroAnimation?.Invoke();
+        //ForestIntroAnimationObj.SetActive (false);
+        //OnFinishIntroAnimation?.Invoke();
         ChangeTutorialToNextStep();
     }
     /*private void CallFunctionAfterTimePass(string functionName, float timePass)

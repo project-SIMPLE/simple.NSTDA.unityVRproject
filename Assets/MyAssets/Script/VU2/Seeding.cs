@@ -35,6 +35,10 @@ public class Seeding : MonoBehaviour
     [SerializeField]
     private bool isTreeDying;
     // Start is called before the first frame update
+
+    [SerializeField]
+    private CapsuleCollider[] treeColliders;
+
     void Start()
     {
         treeState = 1;
@@ -114,18 +118,25 @@ public class Seeding : MonoBehaviour
         if (treeState == 0) return;
 
         treeStateModels[treeState].SetActive(false);
+        
         treeState -= 1;
         treeStateModels[treeState].SetActive(true);
         
     }
     public void ChangeGrowState(int state)
     {
+        if (treeState == 0)
+        {
+            return;
+        }
         if(state == 99)
         {
             return;
         }
+        treeColliders[treeState].enabled = false;
         treeStateModels[treeState].SetActive(false);
         treeState = state;
+        treeColliders[treeState].enabled = true;
         treeStateModels[treeState].SetActive(true);
         if ( state >2)
         {
