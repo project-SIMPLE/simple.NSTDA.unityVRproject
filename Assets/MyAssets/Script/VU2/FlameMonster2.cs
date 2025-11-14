@@ -136,7 +136,7 @@ public class FlameMonster2 : FireSmallArea, ICreateFireOnTree, IGlobalThreat
 
     private void SpawnFireBall()
     {
-        fireBallNum = Random.Range(1, 2);
+        fireBallNum = Random.Range(1, 4);
 
         for (int i=1; i<= fireBallNum; i++) {
             ShootFireParticle();

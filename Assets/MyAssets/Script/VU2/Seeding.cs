@@ -198,7 +198,7 @@ public class Seeding : MonoBehaviour
         }*/
         if (WeedCount >4 && (treeState == 1 || treeState == 2))
         {
-            if (WeedCount >= 7)
+            if (WeedCount >= 6)
             {
                 timeUntilDie = 20f;
                 isTreeDying = true;
@@ -206,7 +206,7 @@ public class Seeding : MonoBehaviour
                 ShowEmojiOnTree(2);
                 VU2BGSoundManager.Instance?.PlayTreeSoundEffect(this.gameObject, 0);
             }
-            else if (WeedCount < 7)
+            else if (WeedCount < 6)
             {
                 isTreeDying = false;
                 ShowEmojiOnTree(1);

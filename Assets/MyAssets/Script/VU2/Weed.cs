@@ -112,7 +112,7 @@ public class Weed : MonoBehaviour, IGlobalThreat
 
                         if(Model.transform.localScale.x < targetSize)
                         {
-                            Model.transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 0.0073f;
+                            Model.transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 0.008f;
                         }
                         else
                         {
@@ -164,7 +164,7 @@ public class Weed : MonoBehaviour, IGlobalThreat
                 Vector3 tmp = currentPos + (pos * spreadingRadius);
                 if (IsLocationEmpty(tmp))
                 {
-                    if( ((growCount*20f)+30f) < UnityEngine.Random.Range(0f, 100f)) break;
+                    if( ((growCount*20f)+35f) < UnityEngine.Random.Range(0f, 100f)) break;
 
                     //GameObject obj = Instantiate(this.gameObject, tmp, this.transform.rotation);
                     //GameObject obj = VU2ObjectPoolManager.Instance?.SpawnObject(WeedPrefab, tmp, this.transform.rotation);
