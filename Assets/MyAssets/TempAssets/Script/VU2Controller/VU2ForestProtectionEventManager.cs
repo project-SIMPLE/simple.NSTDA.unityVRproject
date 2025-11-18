@@ -22,6 +22,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     //[SerializeField]
     //private GameObject PauseUI;
     private VU2EnvironmentController envController;
+    private VU2PlayerInteractionControl pInteractControler;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             Instance = this;
         }
         envController = this.gameObject.GetComponent<VU2EnvironmentController>();
+        pInteractControler = this.gameObject.GetComponent<VU2PlayerInteractionControl>();
     }
 
 
@@ -46,6 +48,8 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         if (isRunning)
         {
             StatusUIControl(-1);
+            pInteractControler.EnableTools(true);
+            pInteractControler.EnableLocomotion(true);
             //Time.timeScale = 1f;
             //PauseUI.SetActive(false);
         }
@@ -56,6 +60,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
             ResetAllFire();
             RemoveAllActiveObjectOnMap();
+            VU2BGSoundManager.Instance.StopAllSFX();
             //PauseUI.SetActive(true);
             //Time.timeScale = 0f;
         }

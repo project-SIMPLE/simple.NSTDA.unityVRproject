@@ -236,8 +236,8 @@ public class VU2TutorialControl : MonoBehaviour
 
         resultAni = AfterGameAnimation.transform.GetChild(index).gameObject;
         resultAni?.SetActive (true);
-
-        Invoke("FinishResultAni", 10f);
+        VU2BGSoundManager.Instance?.PlayEndingBGSFX(index);
+        Invoke("FinishResultAni", 20f);
     }
     private void FinishResultAni()
     {

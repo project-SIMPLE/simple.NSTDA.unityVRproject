@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class VU2BGSoundManager : MonoBehaviour
@@ -30,6 +31,14 @@ public class VU2BGSoundManager : MonoBehaviour
     [SerializeField]
     private AudioClip s_wilhelmScream;
 
+    [Header("----Ending BG Audio ----")]
+    /// 1 Worst
+    /// 2 Normal
+    /// 3 Best
+    [SerializeField]
+    private AudioClip[] s_Endings;
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -43,7 +52,25 @@ public class VU2BGSoundManager : MonoBehaviour
     }
     private void Start()
     {
-        
+        VU2ForestProtectionEventManager.Instance.OnGameStop += StopAllSFX;
+    }
+    private void OnDisable()
+    {
+        VU2ForestProtectionEventManager.Instance.OnGameStop -= StopAllSFX;
+    }
+
+    public void StopAllSFX()
+    {
+        StopAllCoroutines();
+        if(camAudioSource.isPlaying) camAudioSource.Stop();
+        if(localAudioSource.isPlaying) localAudioSource.Stop();
+
+    }
+
+    public void PlayEndingBGSFX(int index)
+    {
+        if (s_Endings[index] == null) return;
+        camAudioSource.PlayOneShot(s_Endings[index]);
     }
 
     public void PlayFireSFX(bool play)
