@@ -36,7 +36,12 @@ public class VU2BGSoundManager : MonoBehaviour
     /// 2 Normal
     /// 3 Best
     [SerializeField]
+
     private AudioClip[] s_Endings;
+
+    [Header("----Coin SFX ----")]
+    [SerializeField]
+    private AudioClip s_Coin;
 
 
     private void Awake()
@@ -57,6 +62,10 @@ public class VU2BGSoundManager : MonoBehaviour
     private void OnDisable()
     {
         VU2ForestProtectionEventManager.Instance.OnGameStop -= StopAllSFX;
+    }
+    public void PlayCoinSFX()
+    {
+        PlaySoundOnce(s_Coin);
     }
 
     public void StopAllSFX()

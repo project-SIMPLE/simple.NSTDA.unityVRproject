@@ -76,6 +76,7 @@ public class VU2PlantingSocket : MonoBehaviour
         }
         else if( thisSocketState == SocketState.Fertilizing && itemState == 2 )
         {
+            VU2BGSoundManager.Instance?.PlayCoinSFX();
             thisSocketState = SocketState.Finish;
             ChangeSocketDisplayModel(3);
             TaskComplete();

@@ -218,10 +218,10 @@ public class VU2TutorialControl : MonoBehaviour
         int score;
         if (int.TryParse(VU2ForestProtectionEventManager.Instance.GetPlayerScore(), out score))
         {
-            if(score <= 49)
+            if(score < 150)
             {
                 index = 0;
-            }else if(score >49 && score <= 74){
+            }else if(score >=150 && score < 240){
                 index = 1;
             }
             else
