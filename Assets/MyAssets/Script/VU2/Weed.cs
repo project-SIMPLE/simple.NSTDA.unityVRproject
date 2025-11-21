@@ -233,6 +233,7 @@ public class Weed : MonoBehaviour, IGlobalThreat
             //this.gameObject.SetActive(false);
             SetToInitialState();
             ClearTreeList();
+            VU2BGSoundManager.Instance?.PlayTreeSoundEffect(this.gameObject, 2);
             ReturnToPool();
         }
     }
@@ -285,7 +286,7 @@ public class Weed : MonoBehaviour, IGlobalThreat
 
         foreach (GameObject tree in treeInArea)
         {
-            if (tree == null) break ;
+            if (tree == null) continue ;
             //tree.gameObject.GetComponent<Seeding>().ChangeWeedCount(-1);
             tree.gameObject.GetComponent<Seeding>().RemoveWeedOnTree();
         }

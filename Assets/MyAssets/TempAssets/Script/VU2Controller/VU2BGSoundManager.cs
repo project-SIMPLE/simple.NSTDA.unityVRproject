@@ -43,6 +43,10 @@ public class VU2BGSoundManager : MonoBehaviour
     [SerializeField]
     private AudioClip s_Coin;
 
+    [Header("----Cutting SFX ----")]
+    [SerializeField]
+    private AudioClip s_Cutting;
+
 
     private void Awake()
     {
@@ -73,7 +77,7 @@ public class VU2BGSoundManager : MonoBehaviour
         StopAllCoroutines();
         if(camAudioSource.isPlaying) camAudioSource.Stop();
         if(localAudioSource.isPlaying) localAudioSource.Stop();
-
+        isLocalPlaying = false;
     }
 
     public void PlayEndingBGSFX(int index)
@@ -140,9 +144,39 @@ public class VU2BGSoundManager : MonoBehaviour
     private bool isLocalPlaying = false;
     [SerializeField]
     private float clipLength = 0f;
+
+
+
+    //private List<GameObject> cAudioObjects;
     public void PlayTreeSoundEffect(GameObject tree,int type)
     {
-        if (!isLocalPlaying)
+        //if (cAudioObjects.Contains(tree)) return;
+
+        //cAudioObjects.Add(tree);
+        AudioSource audioS = Instantiate(localAudioSource, tree.transform.position, Quaternion.identity);
+        switch (type)
+        {
+            /// Help ME
+            case 0:
+                audioS.clip = s_helpMe;
+                clipLength = s_helpMe.length;
+                break;
+            /// Wilhlem 
+            case 1:
+                audioS.clip = s_wilhelmScream;
+                clipLength = s_wilhelmScream.length;
+                break;
+            case 2:
+                audioS.clip = s_Cutting;
+                clipLength = s_Cutting.length;
+                break;
+        }
+        
+        audioS.Play();
+        //StartCoroutine(RemoveAuidoSourceAfter(audioS.gameObject, tree, clipLength));
+        Destroy(audioS.gameObject, clipLength);
+
+        /*if (!isLocalPlaying)
         {
             switch (type)
             {
@@ -160,10 +194,23 @@ public class VU2BGSoundManager : MonoBehaviour
             localAudioSource.gameObject.transform.position = tree.transform.position;
             localAudioSource.Play();
             StartCoroutine(LocalTreeSoundEffectCoroutine());
-        }
+        }*/
+
+
+    }
+    /*private void RemoveAudioObject(GameObject audObj, GameObject tree)
+    {
+        Destroy(audObj);
+        cAudioObjects.Remove(tree);
+    }*/
+    
+    IEnumerator RemoveAuidoSourceAfter(GameObject audObj, GameObject tree,float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(audObj);
+        //cAudioObjects.Remove(tree);
     }
 
-    
     IEnumerator LocalTreeSoundEffectCoroutine()
     {
         isLocalPlaying = true;

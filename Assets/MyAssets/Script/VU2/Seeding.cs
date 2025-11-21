@@ -32,8 +32,7 @@ public class Seeding : MonoBehaviour
     [SerializeField]
     private int WeedCount = 0;
 
-    [SerializeField]
-    private bool isTreeDying;
+    
     // Start is called before the first frame update
 
     [SerializeField]
@@ -46,6 +45,9 @@ public class Seeding : MonoBehaviour
         //treeEmojiIcon.SetActive(false);
         ShowEmojiOnTree(0);
         isTreeDying = false;
+        isTreeBurning = false;
+        timeUntilDie = 20f;
+        timeUntilBurn = 10f;
         //maxGrowState = treeStateModels.Length -1;
     }
 
@@ -54,8 +56,7 @@ public class Seeding : MonoBehaviour
     {
         
     }
-    private float deathTimer = 0;
-    private float timeUntilDie = 20f;
+    
 
     private void ShowEmojiOnTree(int index)
     {
@@ -75,31 +76,6 @@ public class Seeding : MonoBehaviour
                 treeEmojiIcon[1].SetActive(true);
                 break;
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if(isTreeDying && treeState != 0)
-        {
-            if (deathTimer >= timeUntilDie)
-            {
-                TreeDied();
-                deathTimer = 0;
-            }
-            deathTimer += Time.deltaTime;
-        }
-/*
-        if(WeedCount >= 7 && treeState == 1)
-        {
-            
-        }*/
-        /*
-        if (treeState == maxGrownState || treeState == -1) return;
-        grownCount += grownRate * Time.deltaTime;
-        if(grownCount >= timeToGrow) 
-        {
-            TreeGrown();
-        }*/
     }
     private void TreeGrown()
     {
@@ -144,67 +120,65 @@ public class Seeding : MonoBehaviour
             ShowEmojiOnTree(0);
         }
     }
-/*
-    private void ChangeGrownRate()
-    {
-        switch(WeedCount)
-        {
-            case 0:
-                growRate = 1.0f;
-                break;
-            case 1:
-                growRate = 0.8f;
-                break;
-            case 2:
-                growRate = 0.6f;
-                break;
-            case 3:
-                growRate = 0.4f;
-                break;
-            default:
-                growRate = 0f;
-                break;
 
-        }
-    }*/
-    /*private void AddFertilizer()
+    [SerializeField]
+    private bool isTreeDying;
+    [SerializeField]
+    private bool isTreeBurning;
+
+    //private float deathTimer = 20f;
+    private float timeUntilDie = 20f;
+    private float timeUntilBurn = 10f;
+
+    private void FixedUpdate()
     {
-        float tmp = (timeToGrow - growTimer)/2;
-        growTimer += tmp;
-    }*/
+        /*if(isTreeDying && treeState != 0)
+        {
+            if (deathTimer >= timeUntilDie)
+            {
+                TreeDied();
+                deathTimer = 0;
+            }
+            deathTimer += Time.deltaTime;
+        }
+        else if(isTreeDying && treeState == 0)
+        {
+            isTreeDying = false;
+        }*/
+
+        if (isTreeBurning && treeState != 0 )
+        {
+            if(timeUntilBurn <= 0)
+            {
+                TreeDied();
+            }
+            timeUntilBurn -= Time.deltaTime;
+        }
+        else if (isTreeDying && treeState != 0)
+        {
+            if(timeUntilDie <= 0)
+            {
+                TreeDied();
+            }
+            timeUntilDie -= Time.deltaTime;
+        }
+
+    }
 
     private void CheckIsTreeDying()
     {
-        /*if(treeState == 1 || treeState == 2)
-        {
-            if(WeedCount <7 && WeedCount > 0)
-            {
-                ShowEmojiOnTree(1);
-            }
-            else if(WeedCount >=7)
-            {
-
-                timeUntilDie = 20f;
-                isTreeDying = true;
-                //treeEmojiIcon.SetActive(true);
-                ShowEmojiOnTree(2);
-
-                VU2BGSoundManager.Instance?.PlayTreeSoundEffect(this.gameObject, 0);
-            }
-            else
-            {
-                ShowEmojiOnTree(0);
-            }
-        }*/
+        
         if (WeedCount >4 && (treeState == 1 || treeState == 2))
         {
             if (WeedCount >= 6)
             {
-                timeUntilDie = 20f;
+                if(!isTreeDying) VU2BGSoundManager.Instance?.PlayTreeSoundEffect(this.gameObject, 0);
+
+                //timeUntilDie = 20f;
                 isTreeDying = true;
                 //treeEmojiIcon.SetActive(true);
                 ShowEmojiOnTree(2);
-                VU2BGSoundManager.Instance?.PlayTreeSoundEffect(this.gameObject, 0);
+                
             }
             else if (WeedCount < 6)
             {
@@ -212,21 +186,10 @@ public class Seeding : MonoBehaviour
                 ShowEmojiOnTree(1);
             }
         }
-        /*else if (WeedCount >= 7 && (treeState == 1 || treeState == 2))
-        {
-            timeUntilDie = 20f;
-            isTreeDying = true;
-            //treeEmojiIcon.SetActive(true);
-            ShowEmojiOnTree(2);
-        }*/
         else
         {
             ShowEmojiOnTree(0);
-            //treeEmojiIcon.SetActive(false);
-            if (fireOnTree != 0)
-            {
-                isTreeDying = false;
-            }
+            isTreeDying = false;
         }
         
         
@@ -245,16 +208,22 @@ public class Seeding : MonoBehaviour
     //
     private void TreeDied()
     {
+        if(treeState != 0) VU2BGSoundManager.Instance?.PlayTreeSoundEffect(this.gameObject, 1);
         /*treeStateModels[treeState].SetActive(false);
         treeState = -1;*/
         ChangeGrowState(0);
         ShowEmojiOnTree(0);
         //isTreeDying = false;
+        //isTreeBurning = false;
+        treeState = 0;
         VU2ForestProtectionEventManager.Instance?.TreeChangeState(this.gameObject.name, "0");
-        VU2BGSoundManager.Instance?.PlayTreeSoundEffect(this.gameObject, 1);
+        
     }
-
+    [SerializeField]
     private int fireOnTree = 0;
+    
+
+
     public void TreeBurn(GameObject other)
     {
         //Debug.Log(other);
@@ -264,11 +233,16 @@ public class Seeding : MonoBehaviour
             
             fire.OnFireHitTree(this.gameObject);
         }
-        if(deathTimer > 10f)
+        /*if(timeUntilDie > 10f)
         {
             timeUntilDie = 10f;
+            deathTimer = 0;
+        }*/
+        if (fireOnTree == 0)
+        {
+            isTreeBurning = true;
+            
         }
-        isTreeDying = true;
 
         fireOnTree++;
     }
@@ -278,7 +252,9 @@ public class Seeding : MonoBehaviour
         if( fireOnTree <= 0)
         {
             fireOnTree = 0;
-            isTreeDying = false;
+            //isTreeDying = false;
+            isTreeBurning = false;
+            CheckIsTreeDying();
         }
     }
 

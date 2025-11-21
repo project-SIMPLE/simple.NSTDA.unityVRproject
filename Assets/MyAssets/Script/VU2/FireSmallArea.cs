@@ -35,6 +35,7 @@ public class FireSmallArea : BaseFire,ICreateFireOnTree,IGlobalThreat
     {
         base.SetToInitialState();
         flameHitBox.radius = 2;
+        treeInArea = new List<GameObject>();
     }
 
     protected override void FixedUpdate()
@@ -68,7 +69,7 @@ public class FireSmallArea : BaseFire,ICreateFireOnTree,IGlobalThreat
 
         foreach (GameObject tree in treeInArea)
         {
-            if (tree == null) break;
+            if (tree == null) continue;
             tree.gameObject.GetComponent<Seeding>().UnburnTree();
         }
         treeInArea.Clear();
@@ -129,7 +130,7 @@ public class FireSmallArea : BaseFire,ICreateFireOnTree,IGlobalThreat
         if (flameEffectLists == null) return;
         foreach (GameObject fire in flameEffectLists)
         {
-            if (fire == null) return;
+            if (fire == null) continue;
             //flameEffectLists.Remove(fire);
             VU2ObjectPoolManager.Instance?.ReturnObjectToPool(fire);
             
@@ -139,6 +140,10 @@ public class FireSmallArea : BaseFire,ICreateFireOnTree,IGlobalThreat
 
     public virtual void OnFireHitTree(GameObject tree)
     {
+        if (treeInArea == null)
+        {
+            treeInArea = new List<GameObject>();
+        }
         //Debug.Log("HIT Tree!!");
         if (!treeInArea.Contains(tree) && tree.CompareTag("tree"))
         {

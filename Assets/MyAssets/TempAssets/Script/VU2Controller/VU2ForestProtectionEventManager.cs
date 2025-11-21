@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VU2ForestProtectionEventManager : MonoBehaviour
 {   
@@ -95,7 +96,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     }
 
     private string thisPlayerID;
-    public void GetPlayerID(string playerID)
+    public void SetPlayerID(string playerID)
     {
         //Debug.Log("#################### Plater ID:  "+ playerID);
         thisPlayerID = playerID;
@@ -171,6 +172,8 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
                 GameObject.Find(t.Name)?.GetComponent<SeedingWithGrass>()?.GrassesGrow();
                 //GameObject.Find(t.Name).gameObject.SetActive(false);
             }
+
+            
         }
     }
 
@@ -406,6 +409,11 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             RemoveGlobalThreat(tmp);
 
         }
+    }
+    public void ReloadScene(string playerID)
+    {
+        if (playerID != thisPlayerID) return;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

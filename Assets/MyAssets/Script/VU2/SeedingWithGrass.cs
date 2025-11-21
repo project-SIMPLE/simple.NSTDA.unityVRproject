@@ -33,6 +33,7 @@ public class SeedingWithGrass : Seeding
         {
             grassCount = 0;
             RemoveWeedOnTree();
+            VU2BGSoundManager.Instance?.PlayTreeSoundEffect(this.gameObject,2);
             haveGrasses = false;
         }
     }

@@ -78,10 +78,10 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
 
                 break;
             case "ReadID":
-                VU2ForestProtectionEventManager.Instance?.GetPlayerID(GetTeamID());
+                VU2ForestProtectionEventManager.Instance?.SetPlayerID(GetTeamID());
                 if (jsonTrees != null)
                 {
-                    VU2ForestProtectionEventManager.Instance?.RemoveOtherPlayerTree(m.Trees);
+                    //VU2ForestProtectionEventManager.Instance?.RemoveOtherPlayerTree(m.Trees);
                 }
                 else
                 {
@@ -117,6 +117,9 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
                 break;
             case "RemoveThreat":
                 VU2ForestProtectionEventManager.Instance?.HandleRemoveThreatsMessageFromGAMA(jsonThreats);
+                break;
+            case "Reload":
+                VU2ForestProtectionEventManager.Instance?.ReloadScene(jsonBody);
                 break;
         }
 
@@ -180,7 +183,8 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         Dictionary<string, string> args = new Dictionary<string, string>
         {
             {"tree_Name", treeName },
-            {"status",status }
+            {"status",status },
+            {"player_ID",GetTeamID() }
         };
 
         try

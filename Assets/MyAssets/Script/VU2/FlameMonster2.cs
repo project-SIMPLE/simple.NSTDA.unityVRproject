@@ -179,11 +179,11 @@ public class FlameMonster2 : FireSmallArea, ICreateFireOnTree, IGlobalThreat
        
     }
 
-    public void RemoveGlobalThreat(GlobalThreat type)
+    /*public void RemoveGlobalThreat(GlobalThreat type)
     {
         if(type == GlobalThreat.Fire)
         {
             KillFire();
         }
-    }
+    }*/
 }
