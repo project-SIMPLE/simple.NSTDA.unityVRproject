@@ -57,11 +57,17 @@ public class QuestionnaireControl : MonoBehaviour
         answerString += answer;
         NextQuestion();
     }
-
+    
     public void FinishQuestionnaire()
     {
-        OnFinishQuestionnaire?.Invoke();
         OnSendQuestionnaireData?.Invoke(qType,GetQuestionnaireAnswer());
+        OnFinishQuestionnaire?.Invoke();
+        
+    }
+
+    public void ResendQuestionnaireData()
+    {
+        OnSendQuestionnaireData?.Invoke(qType, GetQuestionnaireAnswer());
     }
 
     public string GetQuestionnaireAnswer()

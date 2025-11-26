@@ -114,7 +114,7 @@ public class VU2TutorialControl : MonoBehaviour
     }
 
 
-    private float timePass = 10.0f;
+    private float timePass = 8.0f;
     private void PlayForestDegradeAnimation()
     {
         ForestIntroAnimationObj[0].SetActive(false);
@@ -132,15 +132,20 @@ public class VU2TutorialControl : MonoBehaviour
     {
         ForestIntroAnimationObj[1].SetActive(false);
         CharactorPlantingAnimationObj.SetActive(true);
-        Invoke("FinishTutorialIntroAnimation",17f);
+        Invoke("FinishTutorialIntroAnimation",2);
+        Invoke("StopTutorialIntroAnimation",12f);
     }
 
     private void FinishTutorialIntroAnimation()
     {
         SeedlingObj.SetActive(true);
-        CharactorPlantingAnimationObj.SetActive(false);
+        //CharactorPlantingAnimationObj.SetActive(false);
         OnFinishTutorialIntroAnimation?.Invoke();
         ChangeTutorialToNextStep();
+    }
+    private void StopTutorialIntroAnimation()
+    {
+        CharactorPlantingAnimationObj.SetActive(false);
     }
 
     private void StopBGAnimation()
@@ -237,7 +242,7 @@ public class VU2TutorialControl : MonoBehaviour
         resultAni = AfterGameAnimation.transform.GetChild(index).gameObject;
         resultAni?.SetActive (true);
         //VU2BGSoundManager.Instance?.PlayEndingBGSFX(index);
-        Invoke("FinishResultAni", 20f);
+        Invoke("FinishResultAni", 10f);
     }
     private void FinishResultAni()
     {

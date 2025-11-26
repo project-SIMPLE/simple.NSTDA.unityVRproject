@@ -63,7 +63,7 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         switch (jsonHead)
         {
             case "ReadyCheck":
-                VU2ForestProtectionEventManager.Instance?.StatusUIControl(0);
+                //VU2ForestProtectionEventManager.Instance?.StatusUIControl(0);
                 break;
             case "TutorialStart":
                 VU2ForestProtectionEventManager.Instance?.TutorialStart();
@@ -120,6 +120,12 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
                 break;
             case "Reload":
                 VU2ForestProtectionEventManager.Instance?.ReloadScene(jsonBody);
+                break;
+            case "ReQuestionnaire":
+                VU2ForestProtectionEventManager.Instance?.ResendQuestionnaireData(jsonBody);
+                break;
+            case "ReceiveQuestionnaire":
+                VU2ForestProtectionEventManager.Instance.GAMAReceieveQuestionnaireData();
                 break;
         }
 

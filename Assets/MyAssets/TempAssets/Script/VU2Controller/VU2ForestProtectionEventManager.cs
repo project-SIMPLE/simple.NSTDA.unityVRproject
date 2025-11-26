@@ -24,6 +24,11 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     //private GameObject PauseUI;
     private VU2EnvironmentController envController;
     private VU2PlayerInteractionControl pInteractControler;
+
+    [SerializeField]
+    private QuestionnaireControl Q1Script;
+    [SerializeField]
+    private QuestionnaireControl Q2Script;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -313,12 +318,6 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         //RemovePreviousPlayerTree();
     }
 
-    public event Action<string,string> OnFinishQuestionnaire;
-    public void FinishQuestionnaire(string qType, string data)
-    {
-        OnFinishQuestionnaire?.Invoke(qType, data);
-    }
-
 
     private int totalFire = 0;
     public void CreateThreat(string name, Vector3 pos)
@@ -374,12 +373,6 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         
     }
 
-    public void CollectQuestionnaireData(string qType,string data)
-    {
-        Debug.Log($"Questionnaire from :{qType} with Data :{data}");
-        FinishQuestionnaire(qType, data);
-    }
-
     public event Action<GlobalThreat> OnRemoveGlobalThreat;
     public void RemoveGlobalThreat(GlobalThreat type)
     {
@@ -413,9 +406,77 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     public void ReloadScene(string playerID)
     {
         if (playerID != thisPlayerID) return;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("TitleScene");
     }
 
+
+
+    public event Action<string, string> OnFinishQuestionnaire;
+    public void FinishQuestionnaire(string qType, string data)
+    {
+        OnFinishQuestionnaire?.Invoke(qType, data);
+    }
+
+
+    public void CollectQuestionnaireData(string qType, string data)
+    {
+        Debug.Log($"Questionnaire from :{qType} with Data :{data}");
+        FinishQuestionnaire(qType, data);
+        isGAMAReceieveData = false;
+        StartCoroutine(RepeatSendingQuestionnaireData(qType));
+
+        /*switch (qType)
+        {
+            case"before":
+                StartCoroutine(RepeatSendingQuestionnaireData(qType));
+                break;
+            case "after":
+                StartCoroutine(RepeatSendingQuestionnaireData(qType));
+                break;
+        }*/
+    }
+
+    public void GAMAReceieveQuestionnaireData()
+    {
+        isGAMAReceieveData = true;
+        //StopCoroutine("RepeatSendingQuestionnaireData",);
+        /*switch (qType)
+        {
+            case "before":
+                isGAMAReceieveData = true;
+                break;
+            case "after":
+                isGAMAReceieveData = true;
+                break;
+        }*/
+    }
+    public void ResendQuestionnaireData(string type)
+    {
+        if (type == null) return;
+        switch(type)
+        {
+            case "before":
+                Q1Script.ResendQuestionnaireData();
+                break;
+            case "after":
+                Q2Script.ResendQuestionnaireData();
+                break;
+        }
+    }
+    [SerializeField]
+    private bool isGAMAReceieveData;
+
+
+    IEnumerator RepeatSendingQuestionnaireData(string type)
+    {
+        while (!isGAMAReceieveData)
+        {
+            Debug.Log("ReSending Questionnaire Data");
+            ResendQuestionnaireData(type);
+            yield return new WaitForSeconds(2f);
+        }
+        Debug.Log("GAMA has replies message");
+    }
 }
 
 public enum GlobalThreat
