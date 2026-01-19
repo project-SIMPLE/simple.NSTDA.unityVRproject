@@ -58,7 +58,7 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         string jsonBody = m.Body;
         List<GAMATreesMessage> jsonTrees = m.Trees;
         List<GAMAThreatMessage> jsonThreats = m.Threats;
-        Debug.Log("++++++++++++++++++++++++++++++   " + m.Head + " - " + m.Body + " - " + jsonTrees.Count + " - " + jsonThreats.Count);
+        //Debug.Log("++++++++++++++++++++++++++++++   " + m.Head + " - " + m.Body + " - " + jsonTrees.Count + " - " + jsonThreats.Count);
         //Debug.Log(jsonContent.ToString());
         switch (jsonHead)
         {
@@ -101,7 +101,7 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
 
                 if(jsonThreats.Count > 0 && jsonThreats != null)
                 {
-                    Debug.Log("Got Threats");
+                    //Debug.Log("Got Threats");
                     VU2ForestProtectionEventManager.Instance?.UpdateThreatsMessageFromGAMA(jsonThreats);
                 }
                 break;
@@ -134,7 +134,7 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
     private void ReadListOfMessage(ListOfGAMAMessage lists)
     {
         List<GAMAMessage_edit2> mes = lists.ListOfMessage;
-        Debug.Log("############################ Lists Size " + mes.Count);
+        //Debug.Log("############################ Lists Size " + mes.Count);
         foreach (GAMAMessage_edit2 m in mes)
         {
             UpdateGameManager(m);

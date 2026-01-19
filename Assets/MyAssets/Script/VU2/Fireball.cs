@@ -57,7 +57,9 @@ public class Fireball : MonoBehaviour,IGlobalThreat
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0,0,0);
 
-        VU2ForestProtectionEventManager.Instance?.CreateThreat("Flame22", this.transform.position);
+        Vector3 groundPos = this.transform.position;
+        groundPos.y = 0;
+        VU2ForestProtectionEventManager.Instance?.CreateThreat("Flame22", groundPos);
         RemoveFireBall();
     }
     private void RainingWhileActive(bool t)

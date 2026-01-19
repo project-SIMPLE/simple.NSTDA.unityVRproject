@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class FireSmallArea : BaseFire,ICreateFireOnTree,IGlobalThreat
@@ -66,11 +67,14 @@ public class FireSmallArea : BaseFire,ICreateFireOnTree,IGlobalThreat
     public override void KillFire()
     {
         if (treeInArea == null) return;
+        ///////////////////////////////////////////////////////////////////////
+        Debug.Log("Total # of unburn tree: " + treeInArea.Count);
 
         foreach (GameObject tree in treeInArea)
         {
             if (tree == null) continue;
             tree.gameObject.GetComponent<Seeding>().UnburnTree();
+            Debug.Log("UnBurn Tree: " + tree);
         }
         treeInArea.Clear();
         //VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
@@ -149,6 +153,9 @@ public class FireSmallArea : BaseFire,ICreateFireOnTree,IGlobalThreat
         {
             treeInArea.Add(tree);
             CreateFireOnTree(tree);
+
+            ///////////////////////////////////////////////////////////////////////
+            Debug.Log("Fire On :"+tree.name +"  Total # of burn tree: "+ treeInArea.Count );
         }
     }
 

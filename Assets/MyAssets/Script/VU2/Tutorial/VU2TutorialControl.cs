@@ -10,6 +10,9 @@ using UnityEngine.Events;
 public class VU2TutorialControl : MonoBehaviour
 {
     public UnityEvent OnFinishTutorial;
+    /// <summary>
+    /// EndingResultAnimation
+    /// </summary>
     public UnityEvent OnFinishResultAnimation;
 
     // Forest Degrading
@@ -138,13 +141,14 @@ public class VU2TutorialControl : MonoBehaviour
 
     private void FinishTutorialIntroAnimation()
     {
-        SeedlingObj.SetActive(true);
+        //SeedlingObj.SetActive(true);
         //CharactorPlantingAnimationObj.SetActive(false);
         OnFinishTutorialIntroAnimation?.Invoke();
         ChangeTutorialToNextStep();
     }
     private void StopTutorialIntroAnimation()
     {
+        SeedlingObj.SetActive(true);
         CharactorPlantingAnimationObj.SetActive(false);
     }
 
@@ -242,7 +246,7 @@ public class VU2TutorialControl : MonoBehaviour
         resultAni = AfterGameAnimation.transform.GetChild(index).gameObject;
         resultAni?.SetActive (true);
         //VU2BGSoundManager.Instance?.PlayEndingBGSFX(index);
-        Invoke("FinishResultAni", 10f);
+        Invoke("FinishResultAni", 15f);
     }
     private void FinishResultAni()
     {

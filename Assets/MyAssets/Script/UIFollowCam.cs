@@ -11,6 +11,8 @@ public class UIFollowCam : MonoBehaviour
     private float CameraDistance = 2f;
     [SerializeField]
     private float CameraMinimumDistance = 0.5f;
+    [SerializeField]
+    private float CameraInstanceMoveDistance = 10f;
 
     private void OnEnable()
     {
@@ -27,7 +29,11 @@ public class UIFollowCam : MonoBehaviour
     private void LateUpdate()
     {
         FacingCamera();
-        if (!IsUIInforntOfCamera() || !IsUIOnCorrectDistanceFromCamera())
+        if (IsCameraTooFar())
+        {
+            InstanceMoveInFrontOfCameara();
+        }
+        else if (!IsUIInforntOfCamera() || !IsUIOnCorrectDistanceFromCamera())
         {
             SmoothMoveInFrontOfCamera();
         }
@@ -46,6 +52,12 @@ public class UIFollowCam : MonoBehaviour
         Vector3 targetPos = Camera.main.transform.TransformPoint(new Vector3(0, 0, CameraDistance));
         targetPos.y = Camera.main.transform.position.y; //+ 1.2f;
         this.transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
+    }
+    private void InstanceMoveInFrontOfCameara()
+    {
+        Vector3 targetPos = Camera.main.transform.TransformPoint(new Vector3(0, 0, CameraDistance));
+        targetPos.y = Camera.main.transform.position.y;
+        this.transform.position = targetPos;
     }
     public void MoveInFrontOfCamera()
     {
@@ -78,5 +90,17 @@ public class UIFollowCam : MonoBehaviour
             return false;
         }
         else return true;
+    }
+    private bool IsCameraTooFar()
+    {
+        float distance = Vector3.Distance(this.transform.position, Camera.main.transform.position);
+        if(distance >= CameraInstanceMoveDistance)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

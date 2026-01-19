@@ -38,6 +38,22 @@ public class Seeding : MonoBehaviour
     [SerializeField]
     private CapsuleCollider[] treeColliders;
 
+    
+    [SerializeField]
+    private GameObject debugIconOnFire;
+    [SerializeField]
+    private GameObject debugIconOnConverByGrasses;
+
+
+    private void OnEnable()
+    {
+        //VU2ForestProtectionEventManager.Instance.OnUpdateTreeState += OnTreeUpdateStateListener;
+    }
+    private void OnDisable()
+    {
+        //VU2ForestProtectionEventManager.Instance.OnUpdateTreeState -= OnTreeUpdateStateListener;
+    }
+
     void Start()
     {
         treeState = 1;
@@ -57,7 +73,15 @@ public class Seeding : MonoBehaviour
         
     }
     
-
+/*
+    private void OnTreeUpdateStateListener(string name, int state)
+    {
+        if(this.name.Equals(name))
+        {
+            ChangeGrowState(state);
+        }
+    }
+*/
     private void ShowEmojiOnTree(int index)
     {
         foreach (GameObject emoji in treeEmojiIcon)
@@ -178,18 +202,23 @@ public class Seeding : MonoBehaviour
                 isTreeDying = true;
                 //treeEmojiIcon.SetActive(true);
                 ShowEmojiOnTree(2);
+
+
+                //debugIconOnConverByGrasses.SetActive(true);
                 
             }
             else if (WeedCount < 6)
             {
                 isTreeDying = false;
                 ShowEmojiOnTree(1);
+                //debugIconOnConverByGrasses.SetActive(false);
             }
         }
         else
         {
             ShowEmojiOnTree(0);
             isTreeDying = false;
+            //debugIconOnConverByGrasses.SetActive(false);
         }
         
         
@@ -227,8 +256,15 @@ public class Seeding : MonoBehaviour
     public void TreeBurn(GameObject other)
     {
         //Debug.Log(other);
-        
-        if (other.transform.parent.TryGetComponent<ICreateFireOnTree>(out ICreateFireOnTree fire))
+
+        if (!other.gameObject.name.Equals("FlameAura"))
+        {
+            if (other.TryGetComponent<ICreateFireOnTree>(out ICreateFireOnTree fire2))
+            {
+                fire2.OnFireHitTree(this.gameObject);
+            }
+        }
+        else if (other.transform.parent.TryGetComponent<ICreateFireOnTree>(out ICreateFireOnTree fire))
         {
             
             fire.OnFireHitTree(this.gameObject);
@@ -241,20 +277,27 @@ public class Seeding : MonoBehaviour
         if (fireOnTree == 0)
         {
             isTreeBurning = true;
-            
+
+
+            //debugIconOnFire.SetActive(true);
         }
 
         fireOnTree++;
+        //Debug.Log("//////// :"+ other.name +" Burn On Tree  "+this.name+ " # :" + fireOnTree);
     }
     public void UnburnTree()
     {
         fireOnTree--;
-        if( fireOnTree <= 0)
+        //Debug.Log("////////UNBURN On Tree  " + this.name + " # :" + fireOnTree);
+        if ( fireOnTree <= 0)
         {
             fireOnTree = 0;
             //isTreeDying = false;
             isTreeBurning = false;
             CheckIsTreeDying();
+
+            //debugIconOnFire.SetActive(false);
+            FireOnTree.Clear();
         }
     }
 
@@ -293,14 +336,31 @@ public class Seeding : MonoBehaviour
             TreeBurn(other);
         }
     }
+    private List<GameObject> FireOnTree;
     private void OnTriggerEnter(Collider other)
     {
+        if(FireOnTree == null) FireOnTree = new List<GameObject>();
+        
         string tag = other.gameObject.tag;
         if(other.gameObject.CompareTag("Fire"))
         {
-            //Debug.Log("Tree Burn2");
-            //TreeDied();
-            TreeBurn(other.gameObject);
+            GameObject parent;
+            if (other.gameObject.name.Equals("FlameAura"))
+            {
+                 parent = other.gameObject.transform.parent.gameObject;
+            }
+            else
+            {
+                parent = other.gameObject;
+            }
+
+            if (!FireOnTree.Contains(parent))
+            {
+                FireOnTree.Add(parent);
+                TreeBurn(other.gameObject);
+            }
+            
+            
         }
         if (other.gameObject.CompareTag("Tools"))
         {

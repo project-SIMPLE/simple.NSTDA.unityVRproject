@@ -140,6 +140,9 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         cPlayerTrees.Clear();
     }
 
+    public event Action<string, int> OnUpdateTreeState;
+    public event Action<string> OnUpdateGrassOnTree;
+
     public void UpdateTreeFromGAMA(List<GAMATreesMessage> tree)
     {
         //GameObject.Find(treeName)?.GetComponent<Seeding>()?.ChangeGrowState(Int32.Parse(status));
@@ -155,7 +158,8 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             if (cID == thisPlayerID)
             {
                 //Debug.Log("Player : "+ cID);
-                GameObject.Find(t.Name)?.GetComponent<Seeding>()?.ChangeGrowState(Int32.Parse(t.State));
+                //GameObject.Find(t.Name)?.GetComponent<Seeding>()?.ChangeGrowState(Int32.Parse(t.State));
+                OnUpdateTreeState?.Invoke(t.Name, Int32.Parse(t.State));
                 //GameObject.Find(t.Name).gameObject.SetActive(false);
             }
         }
@@ -174,7 +178,8 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             if (cID == thisPlayerID)
             {
                 //Debug.Log("Player : "+ cID);
-                GameObject.Find(t.Name)?.GetComponent<SeedingWithGrass>()?.GrassesGrow();
+                //GameObject.Find(t.Name)?.GetComponent<SeedingWithGrass>()?.GrassesGrow();
+                OnUpdateGrassOnTree?.Invoke(t.Name);
                 //GameObject.Find(t.Name).gameObject.SetActive(false);
             }
 

@@ -84,9 +84,10 @@ public class BaseFire : MonoBehaviour
 
     public virtual void KillFire()
     {
+        SetToInitialState();
         VU2ForestProtectionEventManager.Instance?.FireRemove(this.gameObject.transform.position);
         VU2ObjectPoolManager.Instance?.ReturnObjectToPool(this.gameObject);
-        SetToInitialState();
+        
     }
 
     protected virtual void OnParticleCollision(GameObject other)
