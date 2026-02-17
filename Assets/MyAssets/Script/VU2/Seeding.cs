@@ -32,13 +32,13 @@ public class Seeding : MonoBehaviour
     [SerializeField]
     private int WeedCount = 0;
 
-    
+
     // Start is called before the first frame update
 
     [SerializeField]
     private CapsuleCollider[] treeColliders;
 
-    
+
     [SerializeField]
     private GameObject debugIconOnFire;
     [SerializeField]
@@ -70,18 +70,18 @@ public class Seeding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    
-/*
-    private void OnTreeUpdateStateListener(string name, int state)
-    {
-        if(this.name.Equals(name))
+
+    /*
+        private void OnTreeUpdateStateListener(string name, int state)
         {
-            ChangeGrowState(state);
+            if(this.name.Equals(name))
+            {
+                ChangeGrowState(state);
+            }
         }
-    }
-*/
+    */
     private void ShowEmojiOnTree(int index)
     {
         foreach (GameObject emoji in treeEmojiIcon)
@@ -90,8 +90,8 @@ public class Seeding : MonoBehaviour
         }
         switch (index)
         {
-            case 0: 
-                
+            case 0:
+
                 break;
             case 1:
                 treeEmojiIcon[0].SetActive(true);
@@ -109,7 +109,7 @@ public class Seeding : MonoBehaviour
         treeStateModels[treeState].SetActive(false);
         treeState += 1;
         treeStateModels[treeState].SetActive(true);
-        
+
     }
 
     private void TreeDegrown()
@@ -118,10 +118,10 @@ public class Seeding : MonoBehaviour
         if (treeState == 0) return;
 
         treeStateModels[treeState].SetActive(false);
-        
+
         treeState -= 1;
         treeStateModels[treeState].SetActive(true);
-        
+
     }
     public void ChangeGrowState(int state)
     {
@@ -129,7 +129,7 @@ public class Seeding : MonoBehaviour
         {
             return;
         }
-        if(state == 99)
+        if (state == 99)
         {
             return;
         }
@@ -138,7 +138,7 @@ public class Seeding : MonoBehaviour
         treeState = state;
         treeColliders[treeState].enabled = true;
         treeStateModels[treeState].SetActive(true);
-        if ( state >2)
+        if (state > 2 || state <=0)
         {
             //treeEmojiIcon.SetActive(false);
             ShowEmojiOnTree(0);
