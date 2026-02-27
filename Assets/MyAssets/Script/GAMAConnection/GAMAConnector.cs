@@ -49,6 +49,12 @@ public class GAMAConnector : SimulationManager
             case "Start":
                 Debug.Log("JSON HEAD START");
                 OnlineModeGameManager.Instance?.GameStart();
+                int tmp;
+                if(int.TryParse(jsonBody, out tmp))
+                {
+                    OnlineModeGameManager.Instance?.SetSeasonNumber(tmp);
+                }
+                
                 break;
             case "Stop":
                 OnlineModeGameManager.Instance?.GameStop();

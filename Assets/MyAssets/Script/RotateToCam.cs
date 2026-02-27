@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RotateToCam : MonoBehaviour
 {
+    [SerializeField]
+    private bool rotate1Axis = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +16,16 @@ public class RotateToCam : MonoBehaviour
     void Update()
     {
         //this.transform.rotation = Quaternion.LookRotation(Camera.main.transform.position, Vector3.up);
-        this.transform.LookAt(Camera.main.transform.position, Vector3.up);
+        if (!rotate1Axis)
+        {
+            this.transform.LookAt(Camera.main.transform.position, Vector3.up);
+        }
+        else
+        {
+            var camPos = Camera.main.transform.position;
+            camPos.y = transform.position.y;
+            this.transform.LookAt(camPos, Vector3.up);
+        }
+       
     }
 }

@@ -5,6 +5,7 @@ using System.Data;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEditor.FilePathAttribute;
 
 public class VU2ForestProtectionEventManager : MonoBehaviour
 {   
@@ -291,11 +292,15 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
 
 
-    public event Action<Vector3> OnFireRemove;
-    public void FireRemove(Vector3 location) 
+    //public event Action<Vector3> OnFireRemove;
+    //public void FireRemove(Vector3 location)
+
+    public event Action OnFireRemove;
+    public void FireRemove()
     {
 
-        OnFireRemove?.Invoke(location);
+        //OnFireRemove?.Invoke(location);
+        OnFireRemove?.Invoke();
         totalFire--;
         if(totalFire <= 0)
         {

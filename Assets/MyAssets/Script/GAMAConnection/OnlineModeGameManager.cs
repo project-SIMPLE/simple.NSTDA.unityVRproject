@@ -13,9 +13,10 @@ public class OnlineModeGameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject[] interactableItemAndTools;
-    [SerializeField]
+    //[SerializeField]
     //private GameObject Tutorial_Area;
-
+    [SerializeField]
+    private int Seasons;
 
     private void Awake()
     {
@@ -124,6 +125,14 @@ public class OnlineModeGameManager : MonoBehaviour
         {
             OnSeedCollected(seedID);
         }
+    }
+
+    public event Action<int> OnSetSeason;
+    public void SetSeasonNumber(int i)
+    {
+        Seasons = i-1;
+
+        OnSetSeason?.Invoke(Seasons);
     }
 
 }
