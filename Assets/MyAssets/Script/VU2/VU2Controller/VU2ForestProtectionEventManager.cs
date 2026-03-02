@@ -413,11 +413,11 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
         }
     }
-    public void ReloadScene(string playerID)
+    /*public void ReloadScene(string playerID)
     {
         if (playerID != thisPlayerID) return;
         SceneManager.LoadScene("TitleScene");
-    }
+    }*/
 
 
 

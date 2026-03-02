@@ -113,14 +113,14 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
                 break;
             case "Announce":
                 //Debug.Log("Annouce STH");
-                VU2BGSoundManager.Instance?.AnnouanceOneMinRemained();
+                VU2BGSoundManager.Instance?.AnnounceOneMinRemained();
                 break;
             case "RemoveThreat":
                 VU2ForestProtectionEventManager.Instance?.HandleRemoveThreatsMessageFromGAMA(jsonThreats);
                 break;
-            case "Reload":
+            /*case "Reload":
                 VU2ForestProtectionEventManager.Instance?.ReloadScene(jsonBody);
-                break;
+                break;*/
             case "ReQuestionnaire":
                 VU2ForestProtectionEventManager.Instance?.ResendQuestionnaireData(jsonBody);
                 break;

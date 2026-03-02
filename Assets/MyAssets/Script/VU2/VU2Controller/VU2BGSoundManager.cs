@@ -116,8 +116,8 @@ public class VU2BGSoundManager : MonoBehaviour
             camAudioSource.Stop();
         }
     }
-
-    public void AnnouanceOneMinRemained()
+    
+    public void AnnounceOneMinRemained()
     {
         camAudioSource.PlayOneShot(s_1MinRemained);
     }
