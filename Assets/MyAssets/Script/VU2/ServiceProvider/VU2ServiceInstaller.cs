@@ -17,13 +17,22 @@ public class VU2ServiceInstaller : MonoBehaviour
     private void Awake()
     {
         sl = VU2ServiceLocator.Instance;
-
+        InstallService();
     }
 
     private void InstallService()
     {
         if (_eventManager != null)
         {
-            sl.Register(IVU2EventManager, _eventManager);
+            sl.Register( _eventManager);
         }
+        if (_commandLogic != null)
+        {
+            sl.Register( _commandLogic);
+        }
+        if(_questionnaireManager != null)
+        {
+            sl.Register( _questionnaireManager);
+        }
+    }
 }

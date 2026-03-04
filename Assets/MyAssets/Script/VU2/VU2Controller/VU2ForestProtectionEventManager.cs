@@ -11,6 +11,10 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 {   
     public static VU2ForestProtectionEventManager Instance { get; private set; }
     [SerializeField]
+    private IVU2GameLogic gameLogic;
+
+/*
+    [SerializeField]
     private GameObject FlamePrefab;
     [SerializeField]
     private GameObject FlamePrefab2;
@@ -30,7 +34,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     private QuestionnaireControl Q1Script;
     [SerializeField]
     private QuestionnaireControl Q2Script;
-    // Start is called before the first frame update
+    // Start is called before the first frame update*/
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -41,8 +45,9 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         {
             Instance = this;
         }
-        envController = this.gameObject.GetComponent<VU2EnvironmentController>();
-        pInteractControler = this.gameObject.GetComponent<VU2PlayerInteractionControl>();
+        /*envController = this.gameObject.GetComponent<VU2EnvironmentController>();
+        pInteractControler = this.gameObject.GetComponent<VU2PlayerInteractionControl>();*/
+        gameLogic = this.gameObject.GetComponent<IVU2GameLogic>();
     }
 
 
@@ -50,9 +55,11 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     {
         
     }
+
+
     public void StartStopGame(bool isRunning)
     {
-        if (isRunning)
+        /*if (isRunning)
         {
             StatusUIControl(-1);
             pInteractControler.EnableTools(true);
@@ -70,12 +77,13 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             VU2BGSoundManager.Instance.StopAllSFX();
             //PauseUI.SetActive(true);
             //Time.timeScale = 0f;
-        }
+        }*/
+        gameLogic.LogicStartStopGame(isRunning);
     }
     private string playerScore = "";
     public void ShowPlayerScore(List<GAMATreesMessage> players)
     {
-        foreach (GAMATreesMessage p in players)
+        /*foreach (GAMATreesMessage p in players)
         {
             string cID = p.PlayerID;
             if (cID == thisPlayerID)
@@ -86,9 +94,14 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
 
             }
-        }
+        }*/
+        gameLogic.LogicShowPlayerScore(players);
     }
-    public string GetPlayerScore() { return playerScore; }
+    public string GetPlayerScore() {
+        
+        return gameLogic.LogicGetplayerScore(); 
+    
+    }
 
     /*
      * -1 Close all
@@ -101,16 +114,18 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         UpdateStatusUI(i);
     }
 
-    private string thisPlayerID;
+    //private string thisPlayerID;
     public void SetPlayerID(string playerID)
     {
         //Debug.Log("#################### Plater ID:  "+ playerID);
-        thisPlayerID = playerID;
+        //thisPlayerID = playerID;
+        gameLogic.LogicSetPlayerID(playerID);
+
     }
-    private List<GameObject> cPlayerTrees = new List<GameObject>();
+    //private List<GameObject> cPlayerTrees = new List<GameObject>();
     public void RemoveOtherPlayerTree(List<GAMATreesMessage> tree)
     {
-        foreach (GAMATreesMessage t in tree) 
+        /*foreach (GAMATreesMessage t in tree) 
         {
             string cID = t.PlayerID;
             //Debug.Log("#################  cID "+ cID);
@@ -129,9 +144,11 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             {
                 cPlayerTrees.Add(GameObject.Find(t.Name)?.gameObject);
             }
-        }
-    }
+        }*/
 
+        gameLogic.LogicRemoveOtherPlayerTree(tree);
+    }
+/*
     private void RemovePreviousPlayerTree()
     {
         foreach(var t in cPlayerTrees)
@@ -139,36 +156,47 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             Destroy(t.gameObject);
         }
         cPlayerTrees.Clear();
-    }
+    }*/
 
     public event Action<string, int> OnUpdateTreeState;
     public event Action<string> OnUpdateGrassOnTree;
 
+    public void UpdatePlayerTreeFromGAMA(string name, int state)
+    {
+        OnUpdateTreeState?.Invoke(name, state);
+    }
+    public void UpdatePlayerGrassOnTreeFromGAMA(string name)
+    {
+        OnUpdateGrassOnTree?.Invoke(name);
+    }
     public void UpdateTreeFromGAMA(List<GAMATreesMessage> tree)
     {
         //GameObject.Find(treeName)?.GetComponent<Seeding>()?.ChangeGrowState(Int32.Parse(status));
+        /*
+                foreach (GAMATreesMessage t in tree)
+                {
+                    string cID = t.PlayerID;
+                    if (cID == null)
+                    {
+                        Debug.Log("PlayerID error");
+                        return;
+                    }
+                    if (cID == thisPlayerID)
+                    {
+                        //Debug.Log("Player : "+ cID);
+                        //GameObject.Find(t.Name)?.GetComponent<Seeding>()?.ChangeGrowState(Int32.Parse(t.State));
+                        OnUpdateTreeState?.Invoke(t.Name, Int32.Parse(t.State));
+                        //GameObject.Find(t.Name).gameObject.SetActive(false);
+                    }
+                }*/
 
-        foreach (GAMATreesMessage t in tree)
-        {
-            string cID = t.PlayerID;
-            if (cID == null)
-            {
-                Debug.Log("PlayerID error");
-                return;
-            }
-            if (cID == thisPlayerID)
-            {
-                //Debug.Log("Player : "+ cID);
-                //GameObject.Find(t.Name)?.GetComponent<Seeding>()?.ChangeGrowState(Int32.Parse(t.State));
-                OnUpdateTreeState?.Invoke(t.Name, Int32.Parse(t.State));
-                //GameObject.Find(t.Name).gameObject.SetActive(false);
-            }
-        }
+        gameLogic.LogicUpdateTreeFromGAMA(tree);
+
     }
 
     public void UpdateGrassOnTreeFromGAMA(List<GAMATreesMessage> tree)
     {
-        foreach (GAMATreesMessage t in tree)
+        /*foreach (GAMATreesMessage t in tree)
         {
             string cID = t.PlayerID;
             if (cID == null)
@@ -183,14 +211,13 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
                 OnUpdateGrassOnTree?.Invoke(t.Name);
                 //GameObject.Find(t.Name).gameObject.SetActive(false);
             }
-
-            
-        }
+        }*/
+        gameLogic.LogicUpdateGrassOnTreeFromGAMA(tree);
     }
 
     public void UpdateThreatsMessageFromGAMA(List<GAMAThreatMessage> threats)
     {
-        foreach(GAMAThreatMessage t in threats)
+        /*foreach(GAMAThreatMessage t in threats)
         {
             if (t.PlayerID != thisPlayerID) continue;
             //Debug.Log(t.Name);
@@ -209,11 +236,14 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
                 Debug.Log("Error : Cannot convert to Float Number");
             }
                 
-        }
+        }*/
+
+        gameLogic.LogicUpdateThreatsMessageFromGAMA(threats);
+
     }
     public void GetPlayerRainEffect(string effect)
     {
-        Debug.Log("+++++++++++++ Rain : " + effect);
+        /*Debug.Log("+++++++++++++ Rain : " + effect);
        
         if(effect == "Start")
         {
@@ -222,7 +252,8 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         else if (effect == "Stop")
         {
             UpdateRainEffect(false);
-        }
+        }*/
+        gameLogic.LogicGetPlayerRainEffect(effect);
 
     }
     public event Action OnTutorialStart;
@@ -236,13 +267,13 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     public void UpdateRainEffect(bool t)
     {
         OnUpdateRainEffect?.Invoke(t);
-        VU2BGSoundManager.Instance?.PlayRainSFX(t);
+        //VU2BGSoundManager.Instance?.PlayRainSFX(t);
     }
 
     private int cBGStage;
     public void UpdatePlayerBackground(List<GAMATreesMessage> message)
     {
-        foreach(GAMATreesMessage t in message)
+        /*foreach(GAMATreesMessage t in message)
         {
             string cID = t.PlayerID;
             if (cID == null)
@@ -266,12 +297,16 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
                 }
                 
             }
-        }
+        }*/
+
+        gameLogic.LogicUpdatePlayerBackground(message);
+
     }
     public int GetBGStage()
     {
 
-        return cBGStage;
+        //return cBGStage;
+        return gameLogic.LogicGetBGStage();
     }
 
     public event Action<string, string> OnTreeChangeState;
@@ -286,7 +321,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     public void UpdateFireEffect(bool t)
     {
         OnUpdateFireEffect?.Invoke(t);
-        VU2BGSoundManager.Instance?.PlayFireSFX(t);
+        //VU2BGSoundManager.Instance?.PlayFireSFX(t);
     }
 
 
@@ -301,18 +336,20 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
         //OnFireRemove?.Invoke(location);
         OnFireRemove?.Invoke();
-        totalFire--;
+        /*totalFire--;
         if(totalFire <= 0)
         {
             totalFire = 0;
             UpdateFireEffect(false);
-        }
+        }*/
+        gameLogic.LogicFireRemove();
 
     }
     public void ResetAllFire()
     {
-        totalFire = 0;
-        UpdateFireEffect(false);
+        /*totalFire = 0;
+        UpdateFireEffect(false);*/
+        gameLogic.LogicResetAllFire();
     }
 
     public event Action<int> OnUpdateStateUI;
@@ -329,10 +366,10 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     }
 
 
-    private int totalFire = 0;
+    //private int totalFire = 0;
     public void CreateThreat(string name, Vector3 pos)
     {
-        switch (name)
+        /*switch (name)
         {
             case "Flame1":
                 totalFire++;
@@ -367,20 +404,21 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
                 VU2ObjectPoolManager.Instance?.SpawnObject(FlamePrefab2sub2, pos, this.transform.rotation);
                 break;
 
-        }
+        }*/
+        gameLogic.LogicCreateThreat(name, pos);
     }
 
     public GameObject CreateWeed(Vector3 pos, Quaternion rot, int weedType)
     {
-        if(weedType == 1)
+        /*if(weedType == 1)
         {
             return VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab, pos, rot);
         }
         else
         {
             return VU2ObjectPoolManager.Instance?.SpawnObject(AlienPrefab2, pos, rot);
-        }
-        
+        }*/
+        return gameLogic.LogicCreateWeed(pos, rot, weedType);
     }
 
     public event Action<GlobalThreat> OnRemoveGlobalThreat;
@@ -391,7 +429,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
     public void HandleRemoveThreatsMessageFromGAMA(List<GAMAThreatMessage> threats)
     {
-        foreach (GAMAThreatMessage t in threats)
+        /*foreach (GAMAThreatMessage t in threats)
         {
             if (t.PlayerID != thisPlayerID) continue;
             GlobalThreat tmp = GlobalThreat.Non;
@@ -411,7 +449,9 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             
             RemoveGlobalThreat(tmp);
 
-        }
+        }*/
+        gameLogic.LogicHandleRemoveThreatsMessageFromGAMA(threats);
+
     }
     /*public void ReloadScene(string playerID)
     {
@@ -430,11 +470,13 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
     public void CollectQuestionnaireData(string qType, string data)
     {
-        Debug.Log($"Questionnaire from :{qType} with Data :{data}");
+        /*Debug.Log($"Questionnaire from :{qType} with Data :{data}");
         FinishQuestionnaire(qType, data);
         isGAMAReceieveData = false;
         StartCoroutine(RepeatSendingQuestionnaireData(qType));
+*/
 
+        gameLogic.LogicCollectQuestionnaireData(qType, data);
         /*switch (qType)
         {
             case"before":
@@ -448,7 +490,8 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
     public void GAMAReceieveQuestionnaireData()
     {
-        isGAMAReceieveData = true;
+        //isGAMAReceieveData = true;
+        gameLogic.LogicGAMAReceieveQuestionnaireData();
         //StopCoroutine("RepeatSendingQuestionnaireData",);
         /*switch (qType)
         {
@@ -462,7 +505,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
     }
     public void ResendQuestionnaireData(string type)
     {
-        if (type == null) return;
+        /*if (type == null) return;
         switch(type)
         {
             case "before":
@@ -471,9 +514,11 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             case "after":
                 Q2Script.ResendQuestionnaireData();
                 break;
-        }
+        }*/
+
+        gameLogic.LogicResendQuestionnaireData(type);
     }
-    [SerializeField]
+    /*[SerializeField]
     private bool isGAMAReceieveData;
 
 
@@ -486,13 +531,13 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
             yield return new WaitForSeconds(2f);
         }
         Debug.Log("GAMA has replies message");
-    }
+    }*/
 }
-
+/*
 public enum GlobalThreat
 {
     Fire,
     Grasses,
     AlienPlant,
     Non
-}
+}*/

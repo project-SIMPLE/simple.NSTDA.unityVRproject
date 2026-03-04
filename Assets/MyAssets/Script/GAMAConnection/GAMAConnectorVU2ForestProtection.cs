@@ -9,9 +9,7 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
 {
     private bool isSubscribed = false;
     [SerializeField]
-    private int teamID; 
-
-    
+    private int teamID;
 
     public override void OnEnable()
     {
@@ -20,13 +18,20 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
 
         if (!isSubscribed)
         {
+            SubscribeEvent();
             //teamID = GetTeamIDAsInt();
-            VU2ForestProtectionEventManager.Instance.OnTreeChangeState += SendTreeStatusToGAMA;
-
-            VU2ForestProtectionEventManager.Instance.OnFinishQuestionnaire += SendCustomDataToGAMA;
+            
             //VU2ForestProtectionEventManager.Instance.OnFireRemove += SendOtherMessageToGAMA;
             isSubscribed = true;
         }
+    }
+
+    
+
+    private void SubscribeEvent()
+    {
+        VU2ForestProtectionEventManager.Instance.OnTreeChangeState += SendTreeStatusToGAMA;
+        VU2ForestProtectionEventManager.Instance.OnFinishQuestionnaire += SendCustomDataToGAMA;
     }
 
     public override void OnDisable()
@@ -34,10 +39,11 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
         base.OnDisable();
         if (isSubscribed)
         {
-            VU2ForestProtectionEventManager.Instance.OnTreeChangeState -= SendTreeStatusToGAMA;
+            
 
+            VU2ForestProtectionEventManager.Instance.OnTreeChangeState -= SendTreeStatusToGAMA;
             VU2ForestProtectionEventManager.Instance.OnFinishQuestionnaire -= SendCustomDataToGAMA;
-            //VU2ForestProtectionEventManager.Instance.OnFireRemove -= SendOtherMessageToGAMA;
+
             isSubscribed = false;
         }
     }

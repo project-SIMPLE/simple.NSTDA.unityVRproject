@@ -62,10 +62,14 @@ public class VU2BGSoundManager : MonoBehaviour
     private void Start()
     {
         VU2ForestProtectionEventManager.Instance.OnGameStop += StopAllSFX;
+        VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect += PlayRainSFX;
+        VU2ForestProtectionEventManager.Instance.OnUpdateFireEffect += PlayFireSFX;
     }
     private void OnDisable()
     {
         VU2ForestProtectionEventManager.Instance.OnGameStop -= StopAllSFX;
+        VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect -= PlayRainSFX;
+        VU2ForestProtectionEventManager.Instance.OnUpdateFireEffect -= PlayFireSFX;
     }
     public void PlayCoinSFX()
     {
