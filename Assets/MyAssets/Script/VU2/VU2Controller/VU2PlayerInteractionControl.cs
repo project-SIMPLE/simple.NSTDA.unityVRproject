@@ -11,6 +11,8 @@ public class VU2PlayerInteractionControl : MonoBehaviour
     private GameObject handMenu;
     [SerializeField]
     private GameObject locomotion;
+    [SerializeField]
+    private GameObject Player;
 
     private void Start()
     {
@@ -38,5 +40,10 @@ public class VU2PlayerInteractionControl : MonoBehaviour
     public void EnableLocomotion(bool t)
     {
         locomotion.SetActive(t);
+    }
+
+    private void TeleportPlayer(Vector3 pos)
+    {
+        Player.transform.position = pos;
     }
 }

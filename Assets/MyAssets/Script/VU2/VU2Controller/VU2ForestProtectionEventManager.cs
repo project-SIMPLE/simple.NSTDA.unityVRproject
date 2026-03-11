@@ -532,6 +532,7 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
         }
         Debug.Log("GAMA has replies message");
     }*/
+
 }
 /*
 public enum GlobalThreat
