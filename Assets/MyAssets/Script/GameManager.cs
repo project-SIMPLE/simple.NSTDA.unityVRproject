@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        System.Globalization.CultureInfo.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+
+
+
         if (GameManagerInstance != null && GameManagerInstance != this)
         {
             Destroy(this);

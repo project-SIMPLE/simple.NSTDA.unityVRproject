@@ -5,7 +5,7 @@ using System.Data;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.FilePathAttribute;
+//using static UnityEditor.FilePathAttribute;
 
 public class VU2ForestProtectionEventManager : MonoBehaviour
 {   
