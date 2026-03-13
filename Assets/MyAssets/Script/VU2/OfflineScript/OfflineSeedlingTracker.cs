@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OfflineSeedlingTracker : MonoBehaviour
+public class OfflineSeedlingTracker 
 {
     [SerializeField]
     private SeedlingInfoScriptableObj seedlingInfo;
@@ -20,6 +20,9 @@ public class OfflineSeedlingTracker : MonoBehaviour
         seedlingInfo = info;
         state = 1;
         cGrowValue = 0;
+
+        isGrowing = true;
+        isAlive = true;
     }
     
     public bool IsGrowing()
@@ -46,8 +49,13 @@ public class OfflineSeedlingTracker : MonoBehaviour
         }
 
     }
+    public int GetState()
+    {
+        return state;
+    }
     public bool isChangingState()
     {
+        if (state > 2) return false;
         if(cGrowValue >= seedlingInfo.growValue[state - 1])
         {
             state++;

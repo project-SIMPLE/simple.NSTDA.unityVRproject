@@ -10,11 +10,8 @@ public class VU2EnvironmentController : MonoBehaviour
     [SerializeField]
     private Material[] skybox;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    private void OnEnable()
+    
+    private void Start()
     {
         VU2ForestProtectionEventManager.Instance.OnUpdateRainEffect += OnRaining;
     }
