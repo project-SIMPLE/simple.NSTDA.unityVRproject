@@ -40,18 +40,46 @@ public class RandomPointPlacer : MonoBehaviour
         placePoint.Clear();
         List<Vector2> PDSamplePoints = PoissonDiskSample(areaWidth,areaHeight,minDistance,maxSamplesbeforeReject,targetPoint);
 
-        if (PDSamplePoints.Count < targetPoint)
+        bool checker = false;
+        while (!checker)
+        {
+            if (PDSamplePoints.Count < targetPoint)
+            {
+                Debug.Log("Error cannot place all point in area");
+                PDSamplePoints = PoissonDiskSample(areaWidth, areaHeight, minDistance, maxSamplesbeforeReject, targetPoint);
+            }
+            else
+            {
+                Debug.Log("Successfully place all point");
+                checker = true;
+            }
+        }
+
+        /*if (PDSamplePoints.Count < targetPoint)
         {
             Debug.Log("Error cannot place all point in area");
         }
         else
         {
             Debug.Log("Successfully place all point");
-        }
+        }*/
 
         foreach (Vector2 p in PDSamplePoints)
         {
             placePoint.Add(areaOrigin + new Vector3(p.x,0f,p.y));
+        }
+        return placePoint;
+    }
+
+    public List<Vector3> CalculateCustomPlacePoint(int minDis,int numOfPoint)
+    {
+        placePoint.Clear();
+        List<Vector2> PDSamplePoints = PoissonDiskSample(areaWidth, areaHeight, minDis, maxSamplesbeforeReject, numOfPoint);
+
+
+        foreach (Vector2 p in PDSamplePoints)
+        {
+            placePoint.Add(areaOrigin + new Vector3(p.x, 0f, p.y));
         }
         return placePoint;
     }

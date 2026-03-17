@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139f78a46b6660041ac0621a9f22c22c, type: 3}
+  m_Name: TimelineData
+  m_EditorClassIdentifier: 
+  plantEvents:
+  - spawnTime: 0
+    plantType: A2
+  - spawnTime: 15
+    plantType: A1
+  - spawnTime: 30
+    plantType: A2
+  - spawnTime: 90
+    plantType: A2
+  - spawnTime: 105
+    plantType: A1
+  - spawnTime: 120
+    plantType: A2
+  - spawnTime: 165
+    plantType: A1
+  - spawnTime: 180
+    plantType: A2
+  - spawnTime: 195
+    plantType: A1
+  rainEvents:
+  - startTime: 15
+    stopTime: 45
+  - startTime: 90
+    stopTime: 135
+  - startTime: 225
+    stopTime: 240
+  grassEvents:
+  - spawnTime: 15
+    grassType: G1
+  - spawnTime: 30
+    grassType: G2
+  - spawnTime: 105
+    grassType: G2
+  - spawnTime: 180
+    grassType: G1
+  fireEvents:
+  - spawnTime: 45
+    fireType: F1
+  - spawnTime: 60
+    fireType: F2
+  - spawnTime: 75
+    fireType: F1
+  - spawnTime: 150
+    fireType: F1
+  - spawnTime: 165
+    fireType: F2
+  - spawnTime: 210
+    fireType: F1

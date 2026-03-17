@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
 {
@@ -17,25 +19,37 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
 
     private VU2EnvironmentController envController;
     private VU2PlayerInteractionControl pInteractControler;
+    private VU2OfflineGameManager gameManager;
 
-    [SerializeField]
+    /*[SerializeField]
     private QuestionnaireControl Q1Script;
     [SerializeField]
-    private QuestionnaireControl Q2Script;
+    private QuestionnaireControl Q2Script;*/
 
-    private string playerScore = "";
+    private int playerScore = 100;
     private string thisPlayerID;
     private List<GameObject> cPlayerTrees = new List<GameObject>();
     private int cBGStage;
     private int totalFire = 0;
 
+
+    private void Start()
+    {
+        VU2ForestProtectionEventManager.Instance.OnUpdateTreeState += LogicHandelOnSeedlingChangeState;
+        VU2ForestProtectionEventManager.Instance.OnTreeChangeState += LogicHandelOnSeedlingDeath;
+    }
+    private void OnDisable()
+    {
+        VU2ForestProtectionEventManager.Instance.OnUpdateTreeState -= LogicHandelOnSeedlingChangeState;
+        VU2ForestProtectionEventManager.Instance.OnTreeChangeState -= LogicHandelOnSeedlingDeath;
+    }
+
     private void Awake()
     {
         envController = this.gameObject.GetComponent<VU2EnvironmentController>();
         pInteractControler = this.gameObject.GetComponent<VU2PlayerInteractionControl>();
-        
+        gameManager = this.gameObject.GetComponent<VU2OfflineGameManager>();
     }
-
 
     public void LogicStartStopGame(bool isRunning)
     {
@@ -45,6 +59,8 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
             pInteractControler.EnableTools(true);
             pInteractControler.EnableLocomotion(true);
             cBGStage = 2;
+            playerScore = 100;
+            gameManager.GameStart();
         }
         else
         {
@@ -56,10 +72,43 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
             VU2BGSoundManager.Instance.StopAllSFX();
         }
     }
+    private void LogicHandelOnSeedlingChangeState(string name,int state)
+    {
+        playerScore += 1;
+        IsBGChange();
+    }
+    private void LogicHandelOnSeedlingDeath(string name,string n)
+    {
+        playerScore -= 3;
+        IsBGChange();
+    }
+    private void IsBGChange()
+    {
+        int newBGStage;
+        if (playerScore <150)
+        {
+            newBGStage = 1;
+        }
+        else if (playerScore>=150 && playerScore<240)
+        {
+            newBGStage = 2;
+        }
+        else
+        {
+            newBGStage = 3;
+        }
 
-    
+        if (newBGStage != cBGStage)
+        {
+            cBGStage = newBGStage;
+            envController.ShowEnvironment(cBGStage);
+        }
+    }
+
+
     public void LogicCreateThreat(string name, Vector3 pos)
     {
+        if(name == null) return;
         switch (name)
         {
             case "Flame1":
@@ -147,7 +196,7 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
 
     public string LogicGetplayerScore()
     {
-        return playerScore;
+        return playerScore.ToString(); ;
     }
 
     public void LogicUpdateRainEffect(bool t)

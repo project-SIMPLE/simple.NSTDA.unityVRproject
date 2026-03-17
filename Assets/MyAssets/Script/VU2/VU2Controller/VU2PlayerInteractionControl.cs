@@ -13,6 +13,9 @@ public class VU2PlayerInteractionControl : MonoBehaviour
     private GameObject locomotion;
     [SerializeField]
     private GameObject Player;
+    [SerializeField]
+    private Transform[] teleportLocation;
+
 
     private void Start()
     {
@@ -41,7 +44,16 @@ public class VU2PlayerInteractionControl : MonoBehaviour
     {
         locomotion.SetActive(t);
     }
-
+    /// 
+    /// 0 forest
+    /// 1 Tutorial Area
+    /// 2 PlayingArea
+    /// 
+    public void ChangePlayerLocation(int state)
+    {
+        TeleportPlayer(teleportLocation[state].position);
+        
+    }
     private void TeleportPlayer(Vector3 pos)
     {
         Player.transform.position = pos;

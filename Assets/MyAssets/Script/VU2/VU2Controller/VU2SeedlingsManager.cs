@@ -21,23 +21,51 @@ public class VU2SeedlingsManager : MonoBehaviour
 
 
     private Dictionary<GameObject, OfflineSeedlingTracker> seedlingDict;
+    private Dictionary<string, GameObject> nameToObjDict;
+
     private List<GameObject> seedingList = new List<GameObject>();
 
     private List<Vector3> seedlingPositions;
     void Start()
     {
+        VU2ForestProtectionEventManager.Instance.OnTreeChangeState += UpdateSeedlingState;
+
+
         seedlingDict = new Dictionary<GameObject, OfflineSeedlingTracker>();
+        nameToObjDict = new Dictionary<string, GameObject>();
 
-        PlaceSeedling();
-    }
 
-    private void PlaceSeedling()
-    {
         randomPointPlacer = new RandomPointPlacer();
         randomPointPlacer.SetUpWorldPoint(playFieldbuttomLeft.transform.position,
             Mathf.Abs(playFieldbuttomLeft.transform.position.x - playFieldTopRight.transform.position.x),
             Mathf.Abs(playFieldbuttomLeft.transform.position.z - playFieldTopRight.transform.position.z)
             );
+
+        PrepareSeedlingArea();
+    }
+
+    private void OnDisable()
+    {
+        VU2ForestProtectionEventManager.Instance.OnTreeChangeState -= UpdateSeedlingState;
+    }
+    public void PrepareSeedlingArea()
+    {
+        PlaceSeedling();
+    }
+    public void ClearSeedlingArea()
+    {
+        seedlingDict.Clear();
+        nameToObjDict.Clear();
+        foreach (GameObject obj in seedingList)
+        {
+            Destroy(obj);
+        }
+        seedingList.Clear();
+    }
+
+    private void PlaceSeedling()
+    {
+        
 
         List<Vector3> tmpPositions = randomPointPlacer.CalculatePlacePoint();
 
@@ -58,9 +86,17 @@ public class VU2SeedlingsManager : MonoBehaviour
             OfflineSeedlingTracker tracker = new OfflineSeedlingTracker(seedlingInfo[num]);
             seedingList.Add(obj);
             seedlingDict.Add(obj, tracker);
+            nameToObjDict.Add(obj.name, obj);
+
+
             TreeNum++;
             //Instantiate(seedlingPrefab, position, Quaternion.identity);
         }
+    }
+
+    public List<Vector3> GetRandomPointInSeedlingZone(int dis,int num)
+    {
+        return randomPointPlacer.CalculateCustomPlacePoint(dis ,num);
     }
 
     public void AddGrowValueToSeedling()
@@ -81,6 +117,37 @@ public class VU2SeedlingsManager : MonoBehaviour
             }
         }
     }
+
+    private void UpdateSeedlingState(string treeName,string state)
+    {
+        int seedlingState = int.Parse(state);
+        GameObject seedling = nameToObjDict[treeName];
+        //seedlingDict[seedling].
+        switch (seedlingState)
+        {
+            case 0:
+                seedlingDict[seedling].SetAliveState(false);
+                break;
+            case -1:
+                seedlingDict[seedling].SetGrowingState(false);
+                break;
+            case 1:
+                seedlingDict[seedling].SetGrowingState(true);
+                break;
+        }
+
+    }
+
+    public void AddGrassesOnSeedling(int num)
+    {
+        List<GameObject> randomSeedling = RandomPickSeedling(seedingList, num);
+
+        foreach (var obj in randomSeedling)
+        {
+            VU2ForestProtectionEventManager.Instance.UpdatePlayerGrassOnTreeFromGAMA(obj.name);
+        }
+    }
+
 
     private List<Vector3> CreateTreeAndRemoveFromList(List<Vector3> input, int treeNum)
     {
@@ -116,4 +183,20 @@ public class VU2SeedlingsManager : MonoBehaviour
         return result;
     }
     
+    private List<GameObject> RandomPickSeedling(List<GameObject> input, int number)
+    {
+        if (input == null || number > input.Count) return null;
+
+        List<GameObject> copyI = new List<GameObject>(input);
+        List<GameObject> result = new List<GameObject>(number);
+
+        for (int i = 0; i < number; i++)
+        {
+            int randomIndex = Random.Range(0, input.Count);
+            (copyI[i], copyI[randomIndex]) = (copyI[randomIndex], copyI[i]);
+            result.Add(copyI[i]);
+        }
+
+        return result;
+    }
 }
