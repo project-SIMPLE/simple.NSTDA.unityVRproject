@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 public class VU2OfflineGameManager : MonoBehaviour
@@ -36,6 +35,10 @@ public class VU2OfflineGameManager : MonoBehaviour
                 CheckThreatTable();
                 countEverySec = 0;
             }
+            if(currentPlayTime >= 175f && currentPlayTime < 176f)
+            {
+                VU2BGSoundManager.Instance.AnnounceOneMinRemained();
+            }
             //CheckThreatTable();
 
         }
@@ -46,12 +49,13 @@ public class VU2OfflineGameManager : MonoBehaviour
         countEverySec = 0;
         currentPlayTime = 0;
         isGameRunning = true;
-
+        seedlingsManager.PrepareSeedlingArea();
         ResetSpwanIndex();
 }
     public void GameStop()
     {
         isGameRunning = false;
+        seedlingsManager.ClearSeedlingArea();
         VU2ForestProtectionEventManager.Instance?.StartStopGame(false);
     }
 
@@ -104,7 +108,7 @@ public class VU2OfflineGameManager : MonoBehaviour
             VU2ForestProtectionEventManager.Instance.GetPlayerRainEffect("Start");
             rainStartIdx++;
         }
-        if (rainStopIdx < timeData.rainEvents.Count && currentPlayTime >= timeData.rainEvents[rainStartIdx].stopTime)
+        if (rainStopIdx < timeData.rainEvents.Count && currentPlayTime >= timeData.rainEvents[rainStopIdx].stopTime)
         {
             VU2ForestProtectionEventManager.Instance.GetPlayerRainEffect("Stop");
             rainStopIdx++;
@@ -152,7 +156,8 @@ public class VU2OfflineGameManager : MonoBehaviour
         List<Vector3> posinMap = seedlingsManager.GetRandomPointInSeedlingZone(10, num);
         foreach (Vector3 pos in posinMap)
         {
-            VU2ForestProtectionEventManager.Instance.CreateThreat(prefabName, pos);
+            Vector3 newPos = new Vector3(pos.x,0.05f,pos.z);
+            VU2ForestProtectionEventManager.Instance.CreateThreat(prefabName, newPos);
 
         }
 

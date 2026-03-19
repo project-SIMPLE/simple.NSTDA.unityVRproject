@@ -328,7 +328,7 @@ public class Seeding : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other)
     {
-        
+        if (treeState == 0) return;
         if (other.transform.tag == "Fire")
         {
             //Debug.Log("Tree Burn1");
@@ -339,6 +339,7 @@ public class Seeding : MonoBehaviour
     private List<GameObject> FireOnTree;
     private void OnTriggerEnter(Collider other)
     {
+        if (treeState == 0) return;
         if(FireOnTree == null) FireOnTree = new List<GameObject>();
         
         string tag = other.gameObject.tag;

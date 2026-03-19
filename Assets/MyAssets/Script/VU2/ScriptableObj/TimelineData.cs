@@ -58,7 +58,9 @@ public class TimelineData : ScriptableObject
         new GrassEvent { spawnTime =  15, grassType = "G1" },
         new GrassEvent { spawnTime =  30, grassType = "G2" },
         new GrassEvent { spawnTime = 105, grassType = "G2" },
+        new GrassEvent { spawnTime = 120, grassType = "G2" },
         new GrassEvent { spawnTime = 180, grassType = "G1" },
+        new GrassEvent { spawnTime = 195, grassType = "G1" },
     };
 
     public List<FireEvent> fireEvents = new List<FireEvent>
@@ -68,6 +70,8 @@ public class TimelineData : ScriptableObject
         new FireEvent { spawnTime =  75, fireType = "F1" },
         new FireEvent { spawnTime = 150, fireType = "F1" },
         new FireEvent { spawnTime = 165, fireType = "F2" },
+        new FireEvent { spawnTime = 180, fireType = "F2" },
+        new FireEvent { spawnTime = 195, fireType = "F2" },
         new FireEvent { spawnTime = 210, fireType = "F1" },
     };
 }

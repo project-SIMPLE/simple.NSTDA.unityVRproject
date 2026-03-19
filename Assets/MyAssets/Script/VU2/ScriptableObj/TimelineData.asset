@@ -12,25 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139f78a46b6660041ac0621a9f22c22c, type: 3}
   m_Name: TimelineData
   m_EditorClassIdentifier: 
-  plantEvents:
+  alienEvents:
   - spawnTime: 0
-    plantType: A2
+    alienType: A2
   - spawnTime: 15
-    plantType: A1
+    alienType: A1
   - spawnTime: 30
-    plantType: A2
+    alienType: A2
   - spawnTime: 90
-    plantType: A2
+    alienType: A2
   - spawnTime: 105
-    plantType: A1
+    alienType: A1
   - spawnTime: 120
-    plantType: A2
+    alienType: A2
   - spawnTime: 165
-    plantType: A1
+    alienType: A1
   - spawnTime: 180
-    plantType: A2
+    alienType: A2
   - spawnTime: 195
-    plantType: A1
+    alienType: A1
   rainEvents:
   - startTime: 15
     stopTime: 45
@@ -45,7 +45,11 @@ MonoBehaviour:
     grassType: G2
   - spawnTime: 105
     grassType: G2
+  - spawnTime: 120
+    grassType: G2
   - spawnTime: 180
+    grassType: G1
+  - spawnTime: 195
     grassType: G1
   fireEvents:
   - spawnTime: 45
@@ -57,6 +61,10 @@ MonoBehaviour:
   - spawnTime: 150
     fireType: F1
   - spawnTime: 165
+    fireType: F2
+  - spawnTime: 180
+    fireType: F2
+  - spawnTime: 195
     fireType: F2
   - spawnTime: 210
     fireType: F1

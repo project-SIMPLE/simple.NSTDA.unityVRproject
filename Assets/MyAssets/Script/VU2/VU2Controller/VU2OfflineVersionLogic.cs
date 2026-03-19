@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
 {
@@ -25,23 +23,26 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
     private QuestionnaireControl Q1Script;
     [SerializeField]
     private QuestionnaireControl Q2Script;*/
-
+    [SerializeField]
     private int playerScore = 100;
     private string thisPlayerID;
     private List<GameObject> cPlayerTrees = new List<GameObject>();
     private int cBGStage;
     private int totalFire = 0;
 
+    
 
     private void Start()
     {
-        VU2ForestProtectionEventManager.Instance.OnUpdateTreeState += LogicHandelOnSeedlingChangeState;
-        VU2ForestProtectionEventManager.Instance.OnTreeChangeState += LogicHandelOnSeedlingDeath;
+        //VU2ForestProtectionEventManager.Instance.OnUpdateTreeState += LogicHandelOnSeedlingChangeState;
+        //VU2ForestProtectionEventManager.Instance.OnTreeChangeState += LogicHandelOnSeedlingDeath;
+        VU2ForestProtectionEventManager.Instance.OnScoreChange += UpdatePlayerScore;
     }
     private void OnDisable()
     {
-        VU2ForestProtectionEventManager.Instance.OnUpdateTreeState -= LogicHandelOnSeedlingChangeState;
-        VU2ForestProtectionEventManager.Instance.OnTreeChangeState -= LogicHandelOnSeedlingDeath;
+        //VU2ForestProtectionEventManager.Instance.OnUpdateTreeState -= LogicHandelOnSeedlingChangeState;
+        //VU2ForestProtectionEventManager.Instance.OnTreeChangeState -= LogicHandelOnSeedlingDeath;
+        VU2ForestProtectionEventManager.Instance.OnScoreChange -= UpdatePlayerScore;
     }
 
     private void Awake()
@@ -59,11 +60,13 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
             pInteractControler.EnableTools(true);
             pInteractControler.EnableLocomotion(true);
             cBGStage = 2;
+            IsBGChange();
             playerScore = 100;
             gameManager.GameStart();
         }
         else
         {
+            //gameManager.GameStop();
             VU2ForestProtectionEventManager.Instance.StatusUIControl(3);
             LogicUpdateRainEffect(false);
 
@@ -72,16 +75,13 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
             VU2BGSoundManager.Instance.StopAllSFX();
         }
     }
-    private void LogicHandelOnSeedlingChangeState(string name,int state)
+
+    private void UpdatePlayerScore(int i)
     {
-        playerScore += 1;
+        playerScore += i;
         IsBGChange();
     }
-    private void LogicHandelOnSeedlingDeath(string name,string n)
-    {
-        playerScore -= 3;
-        IsBGChange();
-    }
+   
     private void IsBGChange()
     {
         int newBGStage;

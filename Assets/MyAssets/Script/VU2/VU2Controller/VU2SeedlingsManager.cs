@@ -41,7 +41,7 @@ public class VU2SeedlingsManager : MonoBehaviour
             Mathf.Abs(playFieldbuttomLeft.transform.position.z - playFieldTopRight.transform.position.z)
             );
 
-        PrepareSeedlingArea();
+        //PrepareSeedlingArea();
     }
 
     private void OnDisable()
@@ -60,7 +60,12 @@ public class VU2SeedlingsManager : MonoBehaviour
         {
             Destroy(obj);
         }
+        foreach(GameObject tOBJ in bigTreeList)
+        {
+            Destroy(tOBJ);
+        }
         seedingList.Clear();
+        bigTreeList.Clear();
     }
 
     private void PlaceSeedling()
@@ -112,6 +117,7 @@ public class VU2SeedlingsManager : MonoBehaviour
                     {
                         //Debug.Log("Seedling name: " + obj.name + " Grown");
                         VU2ForestProtectionEventManager.Instance.UpdatePlayerTreeFromGAMA(obj.name, tracker.GetState());
+                        VU2ForestProtectionEventManager.Instance.ScoreChange(1);
                     }
                 }
             }
@@ -126,6 +132,7 @@ public class VU2SeedlingsManager : MonoBehaviour
         switch (seedlingState)
         {
             case 0:
+                VU2ForestProtectionEventManager.Instance.ScoreChange(seedlingDict[seedling].GetState()*(-1));
                 seedlingDict[seedling].SetAliveState(false);
                 break;
             case -1:
@@ -148,7 +155,7 @@ public class VU2SeedlingsManager : MonoBehaviour
         }
     }
 
-
+    private List<GameObject> bigTreeList = new List<GameObject>();
     private List<Vector3> CreateTreeAndRemoveFromList(List<Vector3> input, int treeNum)
     {
         if (input == null || treeNum > input.Count) return null;
@@ -159,7 +166,8 @@ public class VU2SeedlingsManager : MonoBehaviour
         foreach (Vector3 tree in TreesPos) {
             Quaternion tmpQ = Quaternion.identity;
             tmpQ.eulerAngles = new Vector3(0, Random.Range(0, 359), 0);
-            Instantiate(TreePrefab, tree, tmpQ);
+            GameObject tmpOBJ = Instantiate(TreePrefab, tree, tmpQ);
+            bigTreeList.Add(tmpOBJ);
         }
         List<Vector3> result = copyI.Except(TreesPos).ToList(); ;
 

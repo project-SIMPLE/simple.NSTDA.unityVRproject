@@ -5,7 +5,6 @@ using System.Data;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.FilePathAttribute;
 
 public class VU2ForestProtectionEventManager : MonoBehaviour
 {   
@@ -148,15 +147,20 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
         gameLogic.LogicRemoveOtherPlayerTree(tree);
     }
-/*
-    private void RemovePreviousPlayerTree()
-    {
-        foreach(var t in cPlayerTrees)
+    /*
+        private void RemovePreviousPlayerTree()
         {
-            Destroy(t.gameObject);
-        }
-        cPlayerTrees.Clear();
-    }*/
+            foreach(var t in cPlayerTrees)
+            {
+                Destroy(t.gameObject);
+            }
+            cPlayerTrees.Clear();
+        }*/
+    public event Action<int> OnScoreChange;
+    public void ScoreChange(int i)
+    {
+        OnScoreChange?.Invoke(i);
+    }
 
     public event Action<string, int> OnUpdateTreeState;
     public event Action<string> OnUpdateGrassOnTree;
