@@ -13,7 +13,7 @@ public class TestBedTimer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TestbedManager.instance.OnGameStart += StartTimer;
+        SeedCollectionOfflineEventManager.instance.OnGameStart += StartTimer;
     }
 
     // Update is called once per frame
@@ -32,16 +32,17 @@ public class TestBedTimer : MonoBehaviour
             }
         }
     }
-    void OnDestroy()
+    
+    void OnDisable()
     {
-        TestbedManager.instance.OnGameStart -= StartTimer;
+        SeedCollectionOfflineEventManager.instance.OnGameStart -= StartTimer;
     }
 
     public void EditSetTimer(int i)
     {
         SetTimer = i;
     }
-    public void StartTimer()
+    public void StartTimer(int season)
     {
         TimerOn = true;
         timer = SetTimer;
@@ -49,7 +50,7 @@ public class TestBedTimer : MonoBehaviour
     public void StopTimer()
     {
         TimerOn = false;
-        TestbedManager.instance.TimerFinish();
+        SeedCollectionOfflineEventManager.instance.TimerFinish();
 
     }
     public void ResetTimer()

@@ -1,16 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
-public class TestbedManager : MonoBehaviour
+public class SeedCollectionOfflineEventManager : MonoBehaviour
 {
     [SerializeField]
     private bool offlineMode = true;
 
-    public static TestbedManager instance { get; private set;}
+    public static SeedCollectionOfflineEventManager instance { get; private set;}
     [SerializeField]
-    private int[] fruitListScore = { 0, 0, 0 };
+    private int[] fruitListScore = { -10, 0, 0,0,0,0,0,0,0,-10,0,0 };
 
     [SerializeField]
     private GameObject LocomotionModule;
@@ -23,7 +24,8 @@ public class TestbedManager : MonoBehaviour
     private int stageIndex = 1;
 
     [SerializeField]
-    private GameObject[] stages;
+    //private GameObject[] stages;
+    private StageSetup stage;
 
     private void Awake()
     {
@@ -40,7 +42,17 @@ public class TestbedManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateStage(stageIndex-1);
+        
+        //UpdateStage(stageIndex-1);
+        if (PlayerPrefs.HasKey("SeedCollectionStage"))
+        {
+            stageIndex = PlayerPrefs.GetInt("SeedCollectionStage");
+        }
+        else
+        {
+            stageIndex = 1;
+        }
+        stage.SetupTreeTimelineInfo(stageIndex);
     }
 
     // Update is called once per frame
@@ -50,11 +62,12 @@ public class TestbedManager : MonoBehaviour
     }
     private void UpdateStage(int index)
     {
-        if(index > 0)
+        /*if(index > 0)
         {
             stages[index-1].SetActive(false);
         }
-        stages[index].SetActive(true);
+        stages[index].SetActive(true);*/
+        stage.SetupTreeTimelineInfo(index);
     }
     public void StartGame()
     {
@@ -91,7 +104,11 @@ public class TestbedManager : MonoBehaviour
         {
             OnSeedCollected(id);
         }*/
+
+        if (id < 0 || fruitListScore[id - 1] <-1) return;
         fruitListScore[id-1]++;
+
+
         OnSeedCollected(id, fruitListScore[id - 1]);
     }
     public event Action OnResetSeedPosition;
@@ -102,27 +119,22 @@ public class TestbedManager : MonoBehaviour
             OnResetSeedPosition();
         }
     }
-
+    public event Action<int[]> OnAllCompletedAllStage;
     public event Action<int,bool> OnTimerFinish;
     public void TimerFinish()
     {
-        
+        stage.ClearAllTreeFromStage();
         DisablePlayMode();
         stageIndex++;
         if (IsGameFinish())
         {
-            if (OnTimerFinish != null)
-            {
-                OnTimerFinish(stageIndex,true);
-            }
+            OnAllCompletedAllStage?.Invoke(fruitListScore);
+            OnTimerFinish?.Invoke(stageIndex, true);
         }
         else
         {
-            UpdateStage(stageIndex-1);
-            if (OnTimerFinish != null)
-            {
-                OnTimerFinish(stageIndex,false);
-            }
+            UpdateStage(stageIndex);
+            OnTimerFinish?.Invoke(stageIndex, false);
         }
 
         
@@ -130,7 +142,7 @@ public class TestbedManager : MonoBehaviour
 
     private bool IsGameFinish()
     {
-        if(stageIndex-1 == stages.Length) {
+        if(stageIndex > 6) {
             return true;
         }
         else
@@ -140,13 +152,10 @@ public class TestbedManager : MonoBehaviour
         
     }
 
-    public event Action OnGameStart;
+    public event Action<int> OnGameStart;
     public void GameStart()
     {
-        if(OnGameStart != null)
-        {
-            OnGameStart();
-        }
+        OnGameStart?.Invoke(stageIndex);
         EnablePlayMode();
     }
 }

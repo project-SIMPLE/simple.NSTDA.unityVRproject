@@ -37,10 +37,10 @@ public class SeedStorage : MonoBehaviour
         
         if (!seedScript.PickUpState() && seedScript.DetachSeedStatus())
         {
-            if (TestbedManager.instance != null)
+            if (SeedCollectionOfflineEventManager.instance != null)
             {
                 //Debug.Log("Call Manager 1");
-                TestbedManager.instance.SeedCollected(seedScript.GetSeedID());
+                SeedCollectionOfflineEventManager.instance.SeedCollected(seedScript.GetSeedID());
             }
             if (OnlineModeGameManager.Instance != null)
             {
