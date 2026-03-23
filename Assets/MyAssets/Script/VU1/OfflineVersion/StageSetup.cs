@@ -77,11 +77,13 @@ public class StageSetup : MonoBehaviour
             CreateTreeOnMap(usedPos,season.treePrefab);
 
             tmpAllPos.RemoveAll(x => usedPos.Contains(x));
+            //Debug.Log(tmpAllPos.Count);
         }
+        CreateRandomTree2(tmpAllPos, noFruitTreeList,40);
+        //List<GameObject> nonFruitPos = RandomPickGameObject(tmpAllPos, 40);
+        //Debug.Log(nonFruitPos.Count);
+        //CreateRandomTree(nonFruitPos, noFruitTreeList);
 
-        List<GameObject> nonFruitPos = RandomPickGameObject(tmpAllPos, 40);
-        CreateRandomTree(nonFruitPos, noFruitTreeList);
-        
     }
 
     private void CreateTreeOnMap(List<GameObject> pos, GameObject prefab)
@@ -104,7 +106,26 @@ public class StageSetup : MonoBehaviour
                 , obj.transform.position, tmpQ, treeObjParent.transform);
         }
     }
+    private void CreateRandomTree2(List<GameObject> pos, List<GameObject> prefabList,int num)
+    {
+        
+        for(int i = 0; i < pos.Count; i++)
+        {
+            if (i >= num) break;
+            Quaternion tmpQ = Quaternion.identity;
+            tmpQ.eulerAngles = new Vector3(0, Random.Range(0, 359), 0);
+            Instantiate(prefabList[Random.Range(0, (prefabList.Count - 1))]
+                , pos[i].transform.position, tmpQ, treeObjParent.transform);
+        }
 
+        /*foreach (GameObject obj in pos)
+        {
+            Quaternion tmpQ = Quaternion.identity;
+            tmpQ.eulerAngles = new Vector3(0, Random.Range(0, 359), 0);
+            Instantiate(prefabList[Random.Range(0, (prefabList.Count - 1))]
+                , obj.transform.position, tmpQ, treeObjParent.transform);
+        }*/
+    }
 
     private List<GameObject> RandomPickGameObject(List<GameObject> input, int number)
     {

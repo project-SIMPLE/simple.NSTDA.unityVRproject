@@ -27,6 +27,9 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
     //private GameObject[] stages;
     private StageSetup stage;
 
+    [SerializeField]
+    private GameObject player;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -55,11 +58,6 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
         stage.SetupTreeTimelineInfo(stageIndex);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void UpdateStage(int index)
     {
         /*if(index > 0)
@@ -87,6 +85,14 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
         }
         
     }
+    private void MovePlayer()
+    {
+        if (player != null)
+        {
+            player.transform.position = new Vector3(0,0,0);
+        }
+    }
+
     public void DisablePlayMode()
     {
         LocomotionModule?.SetActive(false);
@@ -125,6 +131,7 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
     {
         stage.ClearAllTreeFromStage();
         DisablePlayMode();
+        MovePlayer();
         stageIndex++;
         if (IsGameFinish())
         {

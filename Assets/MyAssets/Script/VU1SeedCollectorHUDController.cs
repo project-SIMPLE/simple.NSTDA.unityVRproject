@@ -124,7 +124,7 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
 
     private void UpdateSeedUI(int id, int value)
     {
-        HUDUIFruitScore[id].text = value.ToString();
+        IDtofScoreUI[id].text = value.ToString();
         /*switch (id)
         {
             case 1:
