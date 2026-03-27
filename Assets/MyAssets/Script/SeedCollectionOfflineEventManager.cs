@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
     public static SeedCollectionOfflineEventManager instance { get; private set;}
     [SerializeField]
     private int[] fruitListScore = { -10, 0, 0,0,0,0,0,0,0,-10,0,0 };
+    [SerializeField]
+    private int[] alienListScore = { 0, 0, 0};
 
     [SerializeField]
     private GameObject LocomotionModule;
@@ -55,8 +58,11 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
         {
             stageIndex = 1;
         }
-        stage.SetupTreeTimelineInfo(stageIndex);
+        //stage.SetupTreeTimelineInfo(stageIndex);
+        SetTutorialStatus(true);
     }
+
+
 
     private void UpdateStage(int index)
     {
@@ -85,12 +91,29 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
         }
         
     }
-    private void MovePlayer()
+    [SerializeField]
+    private Transform[] teleportPoints;
+    private void MovePlayer(int i)
     {
-        if (player != null)
+        /*if (player != null)
         {
             player.transform.position = new Vector3(0,0,0);
+        }*/
+        Vector3 newPos;
+        switch (i)
+        {
+            case 1:
+                newPos = teleportPoints[0].position;
+                break;
+            case 2:
+                newPos = teleportPoints[1].position;
+                break;
+            default:
+                newPos = new Vector3(0, 0, 0);
+                break;
         }
+        player.transform.position = newPos;
+
     }
 
     public void DisablePlayMode()
@@ -106,17 +129,74 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
     public event Action<int,int> OnSeedCollected;
     public void SeedCollected(int id)
     {
-        /*if(OnSeedCollected != null)
+        if(id == 0)
         {
-            OnSeedCollected(id);
-        }*/
+            TutorialSeedCollect();
+        }
+        else
+        {
+            if (id < 0)
+            {
+                int tmp = math.abs(id);
+                fruitListScore[tmp - 1]++;
+                OnSeedCollected(tmp, fruitListScore[tmp - 1]);
+                CollectAlienFruit(tmp);
+            }
+            else
+            {
+                fruitListScore[id - 1]++;
+                OnSeedCollected(id, fruitListScore[id - 1]);
+            }
+            
+        }
 
-        if (id < 0 || fruitListScore[id - 1] <-1) return;
+        /*if (id < 0 || fruitListScore[id - 1] <-1) return;
         fruitListScore[id-1]++;
-
-
-        OnSeedCollected(id, fruitListScore[id - 1]);
+        OnSeedCollected(id, fruitListScore[id - 1]);*/
     }
+    
+    private void CollectAlienFruit(int id)
+    {
+        switch (id)
+        {
+            case 2:
+                alienListScore[0]++;
+                break;
+            case 3:
+                alienListScore[1]++;
+                break;
+            case 9:
+                alienListScore[2]++;
+                break;
+        }
+    }
+    public int[] GetAlienLists()
+    {
+        return alienListScore;
+    }
+
+    public event Action OnTutorialSeedCollect;
+    public void TutorialSeedCollect()
+    {
+        OnTutorialSeedCollect?.Invoke();
+    }
+
+    public event Action OnTutorialStart;
+    public event Action OnTutorialFinish;
+    public void SetTutorialStatus(bool s)
+    {
+        if (s)
+        {
+            MovePlayer(2);
+            OnTutorialStart?.Invoke();
+        }
+        else{
+            MovePlayer(1);
+            OnTutorialFinish?.Invoke();
+        }
+    }
+
+
     public event Action OnResetSeedPosition;
     public void ResetSeedPosition()
     {
@@ -131,7 +211,7 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
     {
         stage.ClearAllTreeFromStage();
         DisablePlayMode();
-        MovePlayer();
+        MovePlayer(1);
         stageIndex++;
         if (IsGameFinish())
         {

@@ -14,16 +14,23 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
     private TextMeshProUGUI[] HUDUIFruitScore;
 
     [SerializeField]
-    private GameObject pauseUI;
+    private GameObject WorldUI;
     [SerializeField]
     private GameObject finishMenu;
     [SerializeField]
-    private GameObject pauseMenu;
+    private GameObject stageIntroUI;
+    [SerializeField]
+    private GameObject resultMenuUI;
     [SerializeField]
     private TextMeshProUGUI stageNumberText;
 
     [SerializeField]
-    private TextMeshProUGUI[] pausePannelScoreTexts;
+    private TextMeshProUGUI[] stageIntroFruitNameText;
+
+    [SerializeField]
+    private TextMeshProUGUI[] resultMenuFruitNameText;
+    [SerializeField]
+    private TextMeshProUGUI[] resultMenuFruitScoreText;
 
     [SerializeField]
     private TextMeshProUGUI finalScoreNameUI;
@@ -125,33 +132,22 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
     private void UpdateSeedUI(int id, int value)
     {
         IDtofScoreUI[id].text = value.ToString();
-        /*switch (id)
-        {
-            case 1:
-                appleScore.text = value.ToString();
-                break;
-            case 2:
-                orangeScore.text = value.ToString();
-                break; 
-            case 3:
-                mangoScore.text = value.ToString();
-                break;
-        }*/
     }
+
     private void ShowPauseMenu(int index,bool isFinish)
     {
         IDtofScoreUI.Clear();
         HUDUI.SetActive(false);
-        pauseUI.SetActive(true);
+        WorldUI.SetActive(true);
         if (isFinish)
         {
-            pauseMenu.SetActive(false);
+            resultMenuUI.SetActive(false);
             finishMenu.SetActive(true);
         }
         else
         {
-            pauseMenu.SetActive(true);
-            stageNumberText.text = "Stage " + index.ToString();
+            resultMenuUI.SetActive(true);
+            stageNumberText.text = "Season " + index.ToString();
         }
         /*
         if(pausePannelScoreTexts != null)
@@ -161,6 +157,23 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
             pausePannelScoreTexts[2].text = mangoScore.text;
         }*/
     }
+    private void ShowAndUpdateStageIntroMenu()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            stageIntroFruitNameText[i].text = IDtoFruitName[cFruitID[i]];
+        }
+
+    }
+    private void ShowAndUpdateResultMenuUI()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            resultMenuFruitNameText[i].text = HUDUIFruitTexts[i].text;
+            resultMenuFruitScoreText[i].text = HUDUIFruitScore[i].text;
+        }
+    }
+
     private void ShowFinishResultText(int[] totalScore)
     {
         for (int i = 0; i < totalScore.Length; i++)
