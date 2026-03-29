@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class OfflineTutorial : MonoBehaviour
 {
@@ -24,8 +26,8 @@ public class OfflineTutorial : MonoBehaviour
 
     [SerializeField]
     private Animator Dooe2AnimationControl;
-
-    private void Start()
+    
+    private void OnEnable()
     {
         if (!IsEventRegis)
         {
@@ -34,7 +36,7 @@ public class OfflineTutorial : MonoBehaviour
             SeedCollectionOfflineEventManager.instance.OnTutorialSeedCollect += TutorialSeedCollect;
             
             IsEventRegis = true;
-            
+            //Debug.Log("Regis");
         }
 
     }
@@ -55,11 +57,12 @@ public class OfflineTutorial : MonoBehaviour
 
     public void TutorialStart()
     {
+        Debug.Log("Tutorial Start");
         stage1.SetActive(true);
         wall.SetActive(true);
         TutorialWall.SetActive(true);
     }
-    public void TutorialFinish()
+    public void TutorialFinish(int s)
     {
         TutorialWall.SetActive(false);
         wall.SetActive(false);
@@ -93,8 +96,7 @@ public class OfflineTutorial : MonoBehaviour
     public void Stage2Complete()
     {
         stage2.SetActive(false);
-        
-
+        SeedCollectionOfflineEventManager.instance.SetTutorialStatus(false);
     }
     private void TutorialSeedCollect()
     {

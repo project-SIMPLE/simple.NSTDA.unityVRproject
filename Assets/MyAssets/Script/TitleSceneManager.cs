@@ -39,6 +39,13 @@ public class TitleSceneManager : MonoBehaviour
         }
 
     }
+    public void SetGame1OfflineStartingPeriod(int period)
+    {
+        
+        PlayerPrefs.SetInt("SeedCollectionStage", period);
+        PlayerPrefs.Save();
+    }
+
 
     public void SaveOnlineDeta()
     {

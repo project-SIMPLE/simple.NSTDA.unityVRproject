@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
 using UnityEngine;
 
@@ -50,7 +51,9 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
         {11,"Castano"},
         {12,"Gmelina"}
     };
-    private Dictionary<int, TextMeshProUGUI> IDtofScoreUI = new Dictionary<int, TextMeshProUGUI>();
+    private Dictionary<int, TextMeshProUGUI> IDtoScoreUI = new Dictionary<int, TextMeshProUGUI>();
+
+
     /*
     private List<string> fruitNames = new List<string> { 
         "Quercus",
@@ -63,7 +66,8 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
         "Phyllan",
         "Castano",
         "Gmelina"
-    };*/
+    };
+
     /**
      * 
      * Season1: 4,9,11
@@ -73,20 +77,25 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
      * Season5: 5,7,8
      * Season6: 4,8,9,-9
      *
+     * Alien : Quercus, Sapindus, Phyllan
+     *
+     *
      * */
     private void Start()
     {
-        SeedCollectionOfflineEventManager.instance.OnGameStart += SetupHUDUIid;
+        //SeedCollectionOfflineEventManager.instance.OnMoveToNextStage += SetupHUDUIid;
         SeedCollectionOfflineEventManager.instance.OnSeedCollected += UpdateSeedUI;
-        SeedCollectionOfflineEventManager.instance.OnTimerFinish += ShowPauseMenu;
+        SeedCollectionOfflineEventManager.instance.OnStageFinish += ShowResultMenu;
         SeedCollectionOfflineEventManager.instance.OnAllCompletedAllStage += ShowFinishResultText;
+        SeedCollectionOfflineEventManager.instance.OnTutorialFinish += ShowAndUpdateStageIntroMenu;
     }
     private void OnDestroy()
     {
-        SeedCollectionOfflineEventManager.instance.OnGameStart -= SetupHUDUIid;
+        //SeedCollectionOfflineEventManager.instance.OnMoveToNextStage -= SetupHUDUIid;
         SeedCollectionOfflineEventManager.instance.OnSeedCollected -= UpdateSeedUI;
-        SeedCollectionOfflineEventManager.instance.OnTimerFinish -= ShowPauseMenu;
+        SeedCollectionOfflineEventManager.instance.OnStageFinish -= ShowResultMenu;
         SeedCollectionOfflineEventManager.instance.OnAllCompletedAllStage -= ShowFinishResultText;
+        SeedCollectionOfflineEventManager.instance.OnTutorialFinish -= ShowAndUpdateStageIntroMenu;
     }
 
     private int[] cFruitID;
@@ -122,7 +131,7 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
             HUDUIFruitTexts[i].text = "" + IDtoFruitName[cFruitID[i]];
             HUDUIFruitScore[i].text = "0";
 
-            IDtofScoreUI.Add(cFruitID[i], HUDUIFruitScore[i]);
+            IDtoScoreUI.Add(cFruitID[i], HUDUIFruitScore[i]);
         }
 
     }
@@ -131,24 +140,28 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
 
     private void UpdateSeedUI(int id, int value)
     {
-        IDtofScoreUI[id].text = value.ToString();
+        IDtoScoreUI[id].text = value.ToString();
     }
 
-    private void ShowPauseMenu(int index,bool isFinish)
+    private void ShowResultMenu()
     {
-        IDtofScoreUI.Clear();
+        ShowAndUpdateResultMenuUI();
+
+        IDtoScoreUI.Clear();
         HUDUI.SetActive(false);
-        WorldUI.SetActive(true);
-        if (isFinish)
+        
+
+
+        /*if (isFinish)
         {
-            resultMenuUI.SetActive(false);
+            //resultMenuUI.SetActive(false);
             finishMenu.SetActive(true);
         }
         else
         {
             resultMenuUI.SetActive(true);
             stageNumberText.text = "Season " + index.ToString();
-        }
+        }*/
         /*
         if(pausePannelScoreTexts != null)
         {
@@ -157,31 +170,96 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
             pausePannelScoreTexts[2].text = mangoScore.text;
         }*/
     }
-    private void ShowAndUpdateStageIntroMenu()
+    private void ShowAndUpdateStageIntroMenu(int stageIndex)
     {
+        SetupHUDUIid(stageIndex);
+        WorldUI.SetActive(true);
+        stageIntroUI.SetActive(true);
         for (int i = 0; i < 3; i++)
         {
             stageIntroFruitNameText[i].text = IDtoFruitName[cFruitID[i]];
         }
-
+        stageNumberText.text = "Season " + stageIndex.ToString();
     }
+    public void CloseStageIntroMenu()
+    {
+        WorldUI.SetActive(false);
+        stageIntroUI.SetActive(false);
+        HUDUI.SetActive(true);
+    }
+
     private void ShowAndUpdateResultMenuUI()
     {
+        WorldUI.SetActive(true);
+        resultMenuUI.SetActive(true);
         for (int i = 0; i < 3; i++)
         {
             resultMenuFruitNameText[i].text = HUDUIFruitTexts[i].text;
             resultMenuFruitScoreText[i].text = HUDUIFruitScore[i].text;
         }
     }
+    public void CloseStageResultMenu()
+    {
+        WorldUI.SetActive(false);
+        resultMenuUI.SetActive(false);
+    }
+
 
     private void ShowFinishResultText(int[] totalScore)
     {
+        WorldUI.SetActive(true);
+        finishMenu.SetActive(true);
+        UpdateNumberofAlienFruit();
         for (int i = 0; i < totalScore.Length; i++)
         {
             if(!IDtoFruitName.ContainsKey(i+1)) continue;
 
-            finalScoreNameUI.text += IDtoFruitName[i+1] + Environment.NewLine;
-            finalScoreNumberUI.text += ": " + totalScore[i].ToString() + Environment.NewLine;
+            if (i == 1 || i == 2 || i == 8)
+            {
+                finalScoreNameUI.text += IDtoFruitName[i + 1] + Environment.NewLine;
+                int aIndex = GetAlienIndex(i);
+
+                if (alienList[aIndex] > 0)
+                {
+                    finalScoreNumberUI.text += ": " + totalScore[i].ToString() + " - <color=red>" + alienList[aIndex] + " Alien species </color>"
+
+                        + Environment.NewLine;
+                }
+                else
+                {
+                    finalScoreNumberUI.text += ": " + totalScore[i].ToString() + Environment.NewLine;
+                }
+            }
+            else
+            {
+                finalScoreNameUI.text += IDtoFruitName[i + 1] + Environment.NewLine;
+                finalScoreNumberUI.text += ": " + totalScore[i].ToString() + Environment.NewLine;
+            }
+            
         }
     }
+    private int GetAlienIndex(int id)
+    {
+        
+        if (id == 1)
+        {
+            return 0;
+        }
+        else if (id == 2)
+        {
+            return 1;      }
+        else if (id == 8)
+        {
+            return 2;
+        }
+        else return -1;
+
+    }
+
+    private int[] alienList;
+    private void UpdateNumberofAlienFruit()
+    {
+        alienList = SeedCollectionOfflineEventManager.instance.GetAlienLists();
+    }
+
 }

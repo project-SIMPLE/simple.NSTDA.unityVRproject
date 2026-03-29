@@ -14,7 +14,7 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
     [SerializeField]
     private int[] fruitListScore = { -10, 0, 0,0,0,0,0,0,0,-10,0,0 };
     [SerializeField]
-    private int[] alienListScore = { 0, 0, 0};
+    private int[] alienListScore = { 0, 0, 0 };
 
     [SerializeField]
     private GameObject LocomotionModule;
@@ -44,7 +44,14 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
             instance = this;
         }
     }
-    
+    private void OnDisable()
+    {
+        if (PlayerPrefs.HasKey("SeedCollectionStage"))
+        {
+            PlayerPrefs.DeleteKey("SeedCollectionStage");
+        }
+        //PlayerPrefs.DeleteKey
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +66,7 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
             stageIndex = 1;
         }
         //stage.SetupTreeTimelineInfo(stageIndex);
+        EnablePlayMode();
         SetTutorialStatus(true);
     }
 
@@ -75,10 +83,9 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
     }
     public void StartGame()
     {
-        if(offlineMode)
-        {
-            GameStart();
-        }
+        UpdateStage(stageIndex);
+        
+        GameStart();
     }
 
     public void EnablePlayMode()
@@ -154,7 +161,13 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
         fruitListScore[id-1]++;
         OnSeedCollected(id, fruitListScore[id - 1]);*/
     }
-    
+    /**
+     * 
+     * -2
+     * -3
+     * -9
+     * 
+     */
     private void CollectAlienFruit(int id)
     {
         switch (id)
@@ -182,17 +195,19 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
     }
 
     public event Action OnTutorialStart;
-    public event Action OnTutorialFinish;
+    public event Action<int> OnTutorialFinish;
     public void SetTutorialStatus(bool s)
     {
+        
         if (s)
         {
+            
             MovePlayer(2);
             OnTutorialStart?.Invoke();
         }
         else{
             MovePlayer(1);
-            OnTutorialFinish?.Invoke();
+            OnTutorialFinish?.Invoke(stageIndex);
         }
     }
 
@@ -206,13 +221,14 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
         }
     }
     public event Action<int[]> OnAllCompletedAllStage;
-    public event Action<int,bool> OnTimerFinish;
+    public event Action OnStageFinish;
     public void TimerFinish()
     {
-        stage.ClearAllTreeFromStage();
+        //stage.ClearAllTreeFromStage();
         DisablePlayMode();
         MovePlayer(1);
-        stageIndex++;
+        OnStageFinish?.Invoke();
+        /*stageIndex++;
         if (IsGameFinish())
         {
             OnAllCompletedAllStage?.Invoke(fruitListScore);
@@ -222,9 +238,27 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
         {
             UpdateStage(stageIndex);
             OnTimerFinish?.Invoke(stageIndex, false);
-        }
+        }*/
 
-        
+    }
+    public event Action<int> OnMoveToNextStage;
+    public void ContinueToNextStage()
+    {
+        stageIndex++;
+        if (IsGameFinish())
+        {
+            Debug.Log("Finish all stage");
+            OnAllCompletedAllStage?.Invoke(fruitListScore);
+            //OnStageFinish?.Invoke();
+        }
+        else
+        {
+            //UpdateStage(stageIndex);
+            EnablePlayMode();
+            OnMoveToNextStage?.Invoke(stageIndex);
+            //OnStageFinish?.Invoke();
+            SetTutorialStatus(true);
+        }
     }
 
     private bool IsGameFinish()
