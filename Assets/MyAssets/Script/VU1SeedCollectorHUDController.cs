@@ -40,16 +40,16 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
 
     private Dictionary<int,string> IDtoFruitName = new Dictionary<int, string>()
     {
-        {2,"Quercus"},
-        {3,"Sapindus"},
-        {4,"Magnolia"},
-        {5,"Phoebe"},
-        {6,"Debregeasia"},
-        {7,"Diospyros"},
-        {8,"Ostodes"},
-        {9,"Phyllan"},
-        {11,"Castano"},
-        {12,"Gmelina"}
+        {2,"<i>Quercus</i> sp."},
+        {3,"<i>Sapindus</i> sp."},
+        {4,"<i>Magnolia</i> sp."},
+        {5,"<i>Phoebe</i> sp."},
+        {6,"<i>Debregeasia</i> sp."},
+        {7,"<i>Diospyros</i> sp."},
+        {8,"<i>Ostodes</i> sp."},
+        {9,"<i>Phyllanthus</i> sp."},
+        {11,"<i>Castanopsis</i> sp."},
+        {12,"<i>Gmelina</i> sp."}
     };
     private Dictionary<int, TextMeshProUGUI> IDtoScoreUI = new Dictionary<int, TextMeshProUGUI>();
 

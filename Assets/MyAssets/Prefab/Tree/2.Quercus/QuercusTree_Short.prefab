@@ -111,6 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3837318284651863784}
   - component: {fileID: 8639389751173848386}
+  - component: {fileID: 2274392132305534726}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -157,6 +158,29 @@ CapsuleCollider:
   m_Height: 2.1223822
   m_Direction: 1
   m_Center: {x: 0.007466316, y: 0.5955639, z: 0.07826185}
+--- !u!136 &2274392132305534726
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6497905099662889460}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.46780536
+  m_Height: 1.0782522
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.0391261, z: 0.050456494}
 --- !u!1 &8396764053366783145
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +351,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Quercus_tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 79f28e8d04da7b34a85ae8cd76648bb7,
+        type: 3}
+      propertyPath: m_FadeMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 79f28e8d04da7b34a85ae8cd76648bb7,
+        type: 3}
+      propertyPath: m_AnimateCrossFading
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 79f28e8d04da7b34a85ae8cd76648bb7,
         type: 3}

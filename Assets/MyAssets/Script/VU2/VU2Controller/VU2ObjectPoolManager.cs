@@ -116,7 +116,6 @@ public class VU2ObjectPoolManager : MonoBehaviour
 
                 }
             }
-
         }
         else
         {

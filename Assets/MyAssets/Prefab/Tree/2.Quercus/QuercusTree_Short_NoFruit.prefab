@@ -146,10 +146,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3605777770243664478}
-  - {fileID: 8596266870840267455}
+  - {fileID: 4428229440724421383}
   - {fileID: 5173836107179408232}
   - {fileID: 8054492244950129808}
-  - {fileID: 2228125091410919105}
+  - {fileID: 6112453339314939769}
   m_Father: {fileID: 4317858071817165227}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6364162781199975131
@@ -382,7 +382,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 108652410c7a29c45ba515e28c6f11a6, type: 3}
---- !u!4 &2228125091410919105 stripped
+--- !u!4 &6112453339314939769 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5348068651258534329, guid: 108652410c7a29c45ba515e28c6f11a6,
     type: 3}
@@ -552,6 +552,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 79f28e8d04da7b34a85ae8cd76648bb7,
         type: 3}
+      propertyPath: m_FadeMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 79f28e8d04da7b34a85ae8cd76648bb7,
+        type: 3}
+      propertyPath: m_AnimateCrossFading
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 79f28e8d04da7b34a85ae8cd76648bb7,
+        type: 3}
       propertyPath: m_LODs.Array.data[0].renderers.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -673,7 +683,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 108652410c7a29c45ba515e28c6f11a6, type: 3}
---- !u!4 &8596266870840267455 stripped
+--- !u!4 &4428229440724421383 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5348068651258534329, guid: 108652410c7a29c45ba515e28c6f11a6,
     type: 3}

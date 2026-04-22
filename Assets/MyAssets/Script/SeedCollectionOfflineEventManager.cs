@@ -244,6 +244,7 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
     public event Action<int> OnMoveToNextStage;
     public void ContinueToNextStage()
     {
+        stage.ClearAllTreeFromStage();
         stageIndex++;
         if (IsGameFinish())
         {

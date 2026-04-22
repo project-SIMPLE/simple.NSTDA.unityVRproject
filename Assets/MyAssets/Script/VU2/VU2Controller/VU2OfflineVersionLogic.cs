@@ -139,6 +139,7 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
                 }
                 break;
             case "Flame22":
+                if (totalFire >= 7) return;
                 totalFire++;
                 LogicUpdateFireEffect(true);
                 //Instantiate(FlamePrefab, pos, this.transform.rotation);

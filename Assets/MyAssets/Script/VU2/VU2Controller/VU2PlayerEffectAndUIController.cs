@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,9 +11,9 @@ using UnityEngine.UI;
 public class VU2PlayerEffectAndUIController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject rainEffect;
+    private ParticleSystem rainEffect;
     [SerializeField]
-    private GameObject fireEffect;
+    private ParticleSystem fireEffect;
 
     /**
      * 0 Ready pannel
@@ -53,15 +54,36 @@ public class VU2PlayerEffectAndUIController : MonoBehaviour
     }
     private void UpdateRainEffect(bool t)
     {
-        rainEffect.SetActive(t);
         if (t)
         {
-            UpdateFireEffect(false);
+            rainEffect.Play();
+            if (fireEffect.isPlaying)
+            {
+                UpdateFireEffect(false);
+            }
         }
+        else
+        {
+            if(rainEffect.isPlaying) rainEffect.Stop();
+        }
+        
+        //rainEffect.SetActive(t);
+        /*if (t)
+        {
+            UpdateFireEffect(false);
+        }*/
     }
     private void UpdateFireEffect(bool t)
     {
-        fireEffect.SetActive(t);
+        if (t)
+        {
+            fireEffect.Play();
+        }
+        else
+        {
+            if(fireEffect.isPlaying) fireEffect.Stop(); 
+        }
+        //fireEffect.SetActive(t);
     }
     private void HideEffect()
     {

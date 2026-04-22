@@ -138,7 +138,7 @@ public class FruitCollectGun : MonoBehaviour
 
             else
             {
-                CancelHook();
+                //CancelHook();
                 // IT's something else.
             }
         }
@@ -176,7 +176,7 @@ public class FruitCollectGun : MonoBehaviour
 
                 else
                 {
-                    CancelHook();
+                    //CancelHook();
                 }
             }
 

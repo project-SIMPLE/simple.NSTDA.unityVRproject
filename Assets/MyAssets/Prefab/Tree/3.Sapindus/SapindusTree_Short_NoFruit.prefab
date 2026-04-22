@@ -87,7 +87,7 @@ Transform:
   m_Children:
   - {fileID: 2018361635775455079}
   - {fileID: 5583551101694455440}
-  - {fileID: 3072982175805264436}
+  - {fileID: 2252171116989250558}
   - {fileID: 4153314246014433399}
   - {fileID: 6699561948035801373}
   m_Father: {fileID: 3659533793844142446}
@@ -373,7 +373,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca432849732da3e44ade35066936522b, type: 3}
---- !u!4 &3072982175805264436 stripped
+--- !u!4 &2252171116989250558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3883295518808549837, guid: ca432849732da3e44ade35066936522b,
     type: 3}
@@ -471,6 +471,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size
       value: 12.495282
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 2c2063008cfc87a42bf0af84e8739e0f,
+        type: 3}
+      propertyPath: m_FadeMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 2c2063008cfc87a42bf0af84e8739e0f,
+        type: 3}
+      propertyPath: m_AnimateCrossFading
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 2c2063008cfc87a42bf0af84e8739e0f,
         type: 3}

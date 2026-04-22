@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class TitleSceneManager : MonoBehaviour
 {
+    [Header("IP address & Port")]
     [SerializeField] private string host = "127.0.0.1";
     [SerializeField] private string portWithMiddleware = "8080";
     private bool useMiddleWare = true;
 
+    [Header("Input Field")]
     [SerializeField] private TMP_InputField IP;
     [SerializeField] private TMP_InputField Port;
+
+    [Header("Menu")]
+    [SerializeField] private GameObject mainUI;
+    [SerializeField] private GameObject loadingUI;
+    [SerializeField] private UnityEngine.UI.Slider progressBar;
 
     public void OpenOnlinePannel()
     {
@@ -54,10 +64,7 @@ public class TitleSceneManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void GotoScene(string name)
-    {
-        SceneManager.LoadScene(name);
-    }
+    
 
     public void IPKeyboard(string key)
     {
@@ -81,6 +88,25 @@ public class TitleSceneManager : MonoBehaviour
         else
         {
             Port.text += key;
+        }
+    }
+
+    public void GotoScene(string name)
+    {
+        mainUI.SetActive(false);
+        loadingUI.SetActive(true);
+        //SceneManager.LoadScene(name);
+        StartCoroutine(LoadingSceneAsync(name));
+    }
+    IEnumerator LoadingSceneAsync(string sceneName)
+    {
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!loadOperation.isDone)
+        {
+            float progress = Mathf.Clamp01(loadOperation.progress/0.9f);
+            progressBar.value = progress;
+            yield return null;
         }
     }
 }

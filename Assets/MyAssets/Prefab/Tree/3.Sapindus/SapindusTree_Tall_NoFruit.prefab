@@ -367,7 +367,7 @@ Transform:
   - {fileID: 4175627911278105393}
   - {fileID: 5290195704180519501}
   - {fileID: 8100987901343720541}
-  - {fileID: 461967082535206744}
+  - {fileID: 3714625465355081370}
   m_Father: {fileID: 8227938485854899939}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6858860216970567054
@@ -401,7 +401,7 @@ Transform:
   m_Children:
   - {fileID: 7562345473649981904}
   - {fileID: 6010590121867280772}
-  - {fileID: 7422416521337601977}
+  - {fileID: 5973325835441165941}
   - {fileID: 2786006635656632916}
   m_Father: {fileID: 1745379702255758323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -538,7 +538,7 @@ Transform:
   - {fileID: 1686886185836340863}
   - {fileID: 7238896208055281388}
   - {fileID: 970678825046398080}
-  - {fileID: 7295639361579011118}
+  - {fileID: 7112846432431451078}
   m_Father: {fileID: 4652441993615078013}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &461967082535206743
@@ -619,7 +619,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca432849732da3e44ade35066936522b, type: 3}
---- !u!4 &461967082535206744 stripped
+--- !u!4 &3714625465355081370 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3883295518808549837, guid: ca432849732da3e44ade35066936522b,
     type: 3}
@@ -2125,7 +2125,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cd59d8d0cfbef74b81f34e98dab1b44, type: 3}
---- !u!4 &7295639361579011118 stripped
+--- !u!4 &7112846432431451078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7cd59d8d0cfbef74b81f34e98dab1b44,
     type: 3}
@@ -2303,19 +2303,19 @@ PrefabInstance:
         type: 3}
       propertyPath: rb
       value: 
-      objectReference: {fileID: 7422416521337601978}
+      objectReference: {fileID: 6284350405725565949}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca432849732da3e44ade35066936522b, type: 3}
---- !u!4 &7422416521337601977 stripped
+--- !u!4 &5973325835441165941 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3883295518808549837, guid: ca432849732da3e44ade35066936522b,
     type: 3}
   m_PrefabInstance: {fileID: 7422416521337601976}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &7422416521337601978 stripped
+--- !u!54 &6284350405725565949 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 3474465427257281605, guid: ca432849732da3e44ade35066936522b,
     type: 3}
@@ -2408,6 +2408,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CastShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 2c2063008cfc87a42bf0af84e8739e0f,
+        type: 3}
+      propertyPath: m_FadeMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 2c2063008cfc87a42bf0af84e8739e0f,
+        type: 3}
+      propertyPath: m_AnimateCrossFading
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 2c2063008cfc87a42bf0af84e8739e0f,
         type: 3}
