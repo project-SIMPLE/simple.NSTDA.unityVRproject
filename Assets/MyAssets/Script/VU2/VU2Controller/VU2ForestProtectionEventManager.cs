@@ -522,6 +522,10 @@ public class VU2ForestProtectionEventManager : MonoBehaviour
 
         gameLogic.LogicResendQuestionnaireData(type);
     }
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("TitleScene");
+    }
     /*[SerializeField]
     private bool isGAMAReceieveData;
 

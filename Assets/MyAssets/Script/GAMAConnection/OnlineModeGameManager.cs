@@ -134,5 +134,8 @@ public class OnlineModeGameManager : MonoBehaviour
 
         OnSetSeason?.Invoke(Seasons);
     }
-
+    public void ReturnToMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("TitleScene");
+    }
 }

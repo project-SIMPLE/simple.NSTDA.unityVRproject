@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
-using UnityEditor.SceneManagement;
+//using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class SeedCollectionOfflineEventManager : MonoBehaviour
@@ -220,6 +220,9 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
             OnResetSeedPosition();
         }
     }
+
+    
+
     public event Action<int[]> OnAllCompletedAllStage;
     public event Action OnStageFinish;
     public void TimerFinish()
@@ -279,5 +282,9 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
     {
         OnGameStart?.Invoke(stageIndex);
         EnablePlayMode();
+    }
+    public void ReturnToMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("TitleScene");
     }
 }

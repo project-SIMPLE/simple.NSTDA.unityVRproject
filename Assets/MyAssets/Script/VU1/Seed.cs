@@ -21,6 +21,10 @@ public class Seed : MonoBehaviour
     private Rigidbody rb;
     private Transform originTransform;
 
+    [SerializeField]
+    private bool isCollected =false;
+    private bool isOfflineMode = false;
+
     private void Awake()
     {
         originTransform = this.gameObject.transform;
@@ -31,10 +35,29 @@ public class Seed : MonoBehaviour
         {
             rb = this.GetComponent<Rigidbody>();
         }
+        isCollected = false;
+
+        CheckIsOfflineMode();
     }
+    
     private void OnDestroy()
     {
             
+    }
+    private void CheckIsOfflineMode()
+    {
+        if (SeedCollectionOfflineEventManager.instance != null)
+        {
+            isOfflineMode = true;
+            SeedCollectionOfflineEventManager.instance.OnStageFinish += RemoveFruit;
+        }
+    }
+    private void OnDisable()
+    {
+        if (isOfflineMode)
+        {
+            SeedCollectionOfflineEventManager.instance.OnStageFinish -= RemoveFruit;
+        }
     }
     public int GetSeedID()
     {
@@ -65,10 +88,10 @@ public class Seed : MonoBehaviour
     public void SeedCollected()
     {
         Destroy(this.gameObject);
-        //this.gameObject.transform.position = originTransform.position;
-        //this.gameObject.transform.rotation = originTransform.rotation;
-        //this.gameObject.SetActive(false);
-        
+    }
+    private void RemoveFruit()
+    {
+        Destroy(this.gameObject);
     }
     public void ActiveSeedPhysic()
     {
@@ -78,7 +101,14 @@ public class Seed : MonoBehaviour
             
         }
     }
-
+    public void SetStateToCollected()
+    {
+        isCollected = true;
+    }
+    public bool GetIsCollectedState()
+    {
+        return isCollected;
+    }
     private void DelayAddPhysic()
     {
         rb.useGravity = true;

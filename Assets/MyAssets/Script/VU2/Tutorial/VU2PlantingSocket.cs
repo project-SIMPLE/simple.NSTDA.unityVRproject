@@ -69,6 +69,7 @@ public class VU2PlantingSocket : MonoBehaviour
     {
         if(thisSocketState == SocketState.Planting && itemState == 1)
         {
+            VU2BGSoundManager.Instance?.PlayCutSoundSFX();
             thisSocketState = SocketState.Fertilizing;
             ChangeSocketDisplayModel(2);
             //InstantiateFertilizeBag();

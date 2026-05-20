@@ -60,8 +60,8 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
             pInteractControler.EnableTools(true);
             pInteractControler.EnableLocomotion(true);
             cBGStage = 2;
-            IsBGChange();
             playerScore = 100;
+            IsBGChange();
             gameManager.GameStart();
         }
         else

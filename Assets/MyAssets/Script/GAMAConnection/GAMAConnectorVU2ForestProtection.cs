@@ -137,6 +137,8 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
 
     }
 
+
+
     private void ReadListOfMessage(ListOfGAMAMessage lists)
     {
         List<GAMAMessage_edit2> mes = lists.ListOfMessage;
@@ -146,7 +148,17 @@ public class GAMAConnectorVU2ForestProtection : SimulationManager
             UpdateGameManager(m);
 
         }
+
     }
+
+    /*IEnumerator ProcessGAMAMessageCoroutine(List<GAMAMessage_edit2> mes)
+    {
+        foreach (GAMAMessage_edit2 m in mes)
+        {
+            UpdateGameManager(m);
+            yield return null;
+        }
+    }*/
 
     protected override void OtherUpdate()
     {

@@ -43,6 +43,7 @@ public class OfflineSeedlingTracker
     }
     public void SeedlingGrow(float time)
     {
+        if (!isAlive) return;
         if (isGrowing)
         {
             cGrowValue += time;

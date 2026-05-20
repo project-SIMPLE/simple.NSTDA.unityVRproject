@@ -124,6 +124,7 @@ public class FruitCollectGun : MonoBehaviour
 
         if(_safetyOverride)
         {
+            
             if (!IsHooked) //is hooked is define by the probe
             {
                 if (_laserObjectDetection.IsCorrectObject)
@@ -138,6 +139,7 @@ public class FruitCollectGun : MonoBehaviour
 
             else
             {
+                
                 //CancelHook();
                 // IT's something else.
             }
@@ -145,6 +147,7 @@ public class FruitCollectGun : MonoBehaviour
 
         else
         {
+            Debug.Log("D2");
             if (_endHookObj != null)
             {
                 if (_hookIsAtOrigin)
@@ -176,7 +179,9 @@ public class FruitCollectGun : MonoBehaviour
 
                 else
                 {
-                    //CancelHook();
+                    if (IsHooked) return;
+                    Debug.Log("Cancel Hook");
+                    CancelHook();
                 }
             }
 

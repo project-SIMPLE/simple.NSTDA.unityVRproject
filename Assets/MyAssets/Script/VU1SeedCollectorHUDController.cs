@@ -221,7 +221,7 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
 
                 if (alienList[aIndex] > 0)
                 {
-                    finalScoreNumberUI.text += ": " + totalScore[i].ToString() + " - <color=red>" + alienList[aIndex] + " Alien species </color>"
+                    finalScoreNumberUI.text += ": " + totalScore[i].ToString() + "<color=red>(" + alienList[aIndex] + " Alien sp. fruits)</color>"
 
                         + Environment.NewLine;
                 }

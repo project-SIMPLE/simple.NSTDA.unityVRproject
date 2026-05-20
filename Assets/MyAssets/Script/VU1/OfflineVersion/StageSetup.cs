@@ -70,20 +70,25 @@ public class StageSetup : MonoBehaviour
     private void SetupTreeInCurrentSeason(List<SeedInSeason> info)
     {
         List<GameObject> tmpAllPos = new List<GameObject>(posList);
-        List<GameObject> usedPos;
-        foreach (SeedInSeason season in info)
+        List<GameObject> usedPos ;
+        List<GameObject> remainingPos ;
+        /*foreach (SeedInSeason season in info)
         {
             usedPos = RandomPickGameObject(tmpAllPos, season.number);
             CreateTreeOnMap(usedPos,season.treePrefab);
 
             tmpAllPos.RemoveAll(x => usedPos.Contains(x));
-            //Debug.Log(tmpAllPos.Count);
         }
-        CreateRandomTree2(tmpAllPos, noFruitTreeList,40);
-        //List<GameObject> nonFruitPos = RandomPickGameObject(tmpAllPos, 40);
-        //Debug.Log(nonFruitPos.Count);
-        //CreateRandomTree(nonFruitPos, noFruitTreeList);
+        CreateRandomTree2(tmpAllPos, noFruitTreeList,40);*/
 
+        foreach (SeedInSeason season in info)
+        {
+            RandomSplit(season.number, tmpAllPos,out usedPos,out remainingPos);
+            CreateTreeOnMap(usedPos,season.treePrefab);
+
+            tmpAllPos = remainingPos;
+        }
+        CreateRandomTree2(tmpAllPos,noFruitTreeList,40);
     }
 
     private void CreateTreeOnMap(List<GameObject> pos, GameObject prefab)
@@ -142,6 +147,41 @@ public class StageSetup : MonoBehaviour
         }
 
         return result;
+    }
+
+    private void RandomSplit(int n, List<GameObject> objs,out List<GameObject> picked,out List<GameObject> remaining)
+    {
+        picked = new List<GameObject>();
+        remaining = new List<GameObject>();
+
+        if (objs == null || objs.Count == 0)
+        {
+            Debug.LogWarning("RandomSplit: source list is null or empty.");
+            return;
+        }
+
+        int clampedN = Mathf.Clamp(n, 0, objs.Count);
+
+        List<GameObject> shuffled = new List<GameObject>(objs);
+        FisherYatesShuffle(shuffled);
+
+        for (int i = 0; i < shuffled.Count; i++)
+        {
+            if (i < clampedN)
+                picked.Add(shuffled[i]);
+            else
+                remaining.Add(shuffled[i]);
+        }
+    }
+
+
+    private void FisherYatesShuffle(List<GameObject> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1); // Unity Random: max is exclusive for float, inclusive for int overload
+            (list[i], list[j]) = (list[j], list[i]);
+        }
     }
 
 }

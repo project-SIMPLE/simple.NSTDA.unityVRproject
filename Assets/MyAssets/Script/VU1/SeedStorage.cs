@@ -33,13 +33,14 @@ public class SeedStorage : MonoBehaviour
     private void CollectSeed(GameObject seed)
     {
         Seed seedScript = seed.GetComponent<Seed>();
-
+        if (seedScript.GetIsCollectedState()) return;
         
         if (!seedScript.PickUpState() && seedScript.DetachSeedStatus())
         {
+            seedScript.SetStateToCollected();
             if (SeedCollectionOfflineEventManager.instance != null)
             {
-                //Debug.Log("Call Manager 1");
+                Debug.Log("Call Manager 1");
                 SeedCollectionOfflineEventManager.instance.SeedCollected(seedScript.GetSeedID());
             }
             if (OnlineModeGameManager.Instance != null)

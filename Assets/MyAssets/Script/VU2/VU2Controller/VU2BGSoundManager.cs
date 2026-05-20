@@ -75,6 +75,10 @@ public class VU2BGSoundManager : MonoBehaviour
     {
         PlaySoundOnce(s_Coin);
     }
+    public void PlayCutSoundSFX()
+    {
+        PlaySoundOnce(s_Cutting);
+    }
 
     public void StopAllSFX()
     {

@@ -17,6 +17,7 @@ public class VU2OfflineGameManager : MonoBehaviour
     private float currentPlayTime;
     [SerializeField]
     private float totalPlayTime = 240;
+    private bool isAnnouncePlayed = false;
 
     private void FixedUpdate()
     {
@@ -37,7 +38,11 @@ public class VU2OfflineGameManager : MonoBehaviour
             }
             if(currentPlayTime >= 175f && currentPlayTime < 176f)
             {
-                VU2BGSoundManager.Instance.AnnounceOneMinRemained();
+                if (!isAnnouncePlayed)
+                {
+                    VU2BGSoundManager.Instance.AnnounceOneMinRemained();
+                    isAnnouncePlayed=true;
+                }
             }
             //CheckThreatTable();
 
@@ -49,6 +54,7 @@ public class VU2OfflineGameManager : MonoBehaviour
         countEverySec = 0;
         currentPlayTime = 0;
         isGameRunning = true;
+        isAnnouncePlayed = false;
         seedlingsManager.PrepareSeedlingArea();
         ResetSpwanIndex();
 }
@@ -156,7 +162,7 @@ public class VU2OfflineGameManager : MonoBehaviour
         List<Vector3> posinMap = seedlingsManager.GetRandomPointInSeedlingZone(10, num);
         foreach (Vector3 pos in posinMap)
         {
-            Vector3 newPos = new Vector3(pos.x,0.05f,pos.z);
+            Vector3 newPos = new Vector3(pos.x,0.01f,pos.z);
             VU2ForestProtectionEventManager.Instance.CreateThreat(prefabName, newPos);
 
         }
