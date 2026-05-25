@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: VU1Online Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: VU1Online
+  m_TableCollectionNameGuidString: a505d5b9d4456c84daf805990521027b
+  m_Entries:
+  - m_Id: 310262689792
+    m_Key: VU1SeedCollection/PauseUI/PauseCanvas/Panel/OnPause/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 390172569600
+    m_Key: VU1SeedCollection/PauseUI/PauseCanvas/Panel/OnPause/Text (TMP) (1)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 547270225920
+    m_Key: VU1SeedCollection/PauseUI/PauseCanvas/Panel/Hidden_Panel/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 621144502272
+    m_Key: VU1SeedCollection/PauseUI/PauseCanvas/Panel/Hidden_Panel/Button/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 867736023040
+    m_Key: VU1SeedCollection/CustomPlayer/Tools/CrossbowSet/CrossbowVR/ShakeHandUI/Panel/Text
+      (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1867721011200
+    m_Key: VU1SeedCollectionOffline/Crossbow1 (1)/CrossbowVR/ShakeHandUI/Panel/Text
+      (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8367638114304
+    m_Key: VU1SeedCollectionOffline/UI/WorldUI/StageIntroUI/Panel/Text&Button/SeasonText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16852455059456
+    m_Key: VU1SeedCollectionOffline/UI/WorldUI/StageIntroUI/Panel/StageInfoTexts/Text
+      (TMP) (1)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17306962423808
+    m_Key: VU1SeedCollectionOffline/UI/WorldUI/StageIntroUI/Panel/Text&Button/Button/Text
+      (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17829396541440
+    m_Key: VU1SeedCollectionOffline/UI/WorldUI/ResultUI/Panel/Text&Button/Text (TMP)
+      (1)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17925710344192
+    m_Key: VU1SeedCollectionOffline/UI/WorldUI/ResultUI/Panel/Text&Button/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18032136613888
+    m_Key: VU1SeedCollectionOffline/UI/WorldUI/ResultUI/Panel/Text&Button/Button/Text
+      (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18235304505344
+    m_Key: VU1SeedCollectionOffline/UI/WorldUI/FinishUI/Panel/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18404460785664
+    m_Key: VU1SeedCollectionOffline/UI/WorldUI/FinishUI/Panel/Text (TMP) (1)
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 1975871274945871970
+  references:
+    version: 2
+    RefIds:
+    - rid: 1975871274945871970
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1779420366827

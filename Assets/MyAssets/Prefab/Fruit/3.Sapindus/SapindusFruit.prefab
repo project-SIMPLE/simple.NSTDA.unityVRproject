@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 33704994510785713}
   - component: {fileID: 4530570715262754707}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SubCollider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2998109035600502132}
   - component: {fileID: 1613978998360239579}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SubCollider (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9039937908748813688}
   - component: {fileID: 441936005714002849}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SubCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,6 +283,7 @@ MonoBehaviour:
   pickUp: 0
   Detach: 0
   rb: {fileID: 0}
+  isCollected: 0
 --- !u!114 &168759761014064168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,7 +518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 823524398565218268}
   - component: {fileID: 2092180355504804310}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PhysicalCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,7 +581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 168408853398865429}
   - component: {fileID: 5021760185420866897}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SubCollider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -633,7 +634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1306041976867377927}
   - component: {fileID: 683599096897908279}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SubCollider (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -769,7 +770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9061921100622117352}
   - component: {fileID: 1199115702435131779}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SubCollider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +823,7 @@ GameObject:
   m_Component:
   - component: {fileID: 439200937921356480}
   - component: {fileID: 3034340596352449493}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SubCollider (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -875,7 +876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7709058788144669780}
   - component: {fileID: 2767120222946545106}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SubCollider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

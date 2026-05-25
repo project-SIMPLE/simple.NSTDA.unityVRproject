@@ -179,7 +179,7 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
         {
             stageIntroFruitNameText[i].text = IDtoFruitName[cFruitID[i]];
         }
-        stageNumberText.text = "Season " + stageIndex.ToString();
+        stageNumberText.text = "" + stageIndex.ToString();
     }
     public void CloseStageIntroMenu()
     {
@@ -221,7 +221,7 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
 
                 if (alienList[aIndex] > 0)
                 {
-                    finalScoreNumberUI.text += ": " + totalScore[i].ToString() + "<color=red>(" + alienList[aIndex] + " Alien sp. fruits)</color>"
+                    finalScoreNumberUI.text += ": " + totalScore[i].ToString() + "<color=red> (" + alienList[aIndex] + " Alien sp. fruits)</color>"
 
                         + Environment.NewLine;
                 }
