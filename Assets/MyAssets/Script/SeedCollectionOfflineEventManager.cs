@@ -33,6 +33,8 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
+    
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -195,7 +197,7 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
     }
 
     public event Action OnTutorialStart;
-    public event Action<int> OnTutorialFinish;
+    public event Action<int, int[]> OnTutorialFinish;
     public void SetTutorialStatus(bool s)
     {
         
@@ -207,7 +209,7 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
         }
         else{
             MovePlayer(1);
-            OnTutorialFinish?.Invoke(stageIndex);
+            OnTutorialFinish?.Invoke(stageIndex, fruitListScore);
         }
     }
 
@@ -227,21 +229,9 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
     public event Action OnStageFinish;
     public void TimerFinish()
     {
-        //stage.ClearAllTreeFromStage();
         DisablePlayMode();
         MovePlayer(1);
         OnStageFinish?.Invoke();
-        /*stageIndex++;
-        if (IsGameFinish())
-        {
-            OnAllCompletedAllStage?.Invoke(fruitListScore);
-            OnTimerFinish?.Invoke(stageIndex, true);
-        }
-        else
-        {
-            UpdateStage(stageIndex);
-            OnTimerFinish?.Invoke(stageIndex, false);
-        }*/
 
     }
     public event Action<int> OnMoveToNextStage;
@@ -253,16 +243,21 @@ public class SeedCollectionOfflineEventManager : MonoBehaviour
         {
             Debug.Log("Finish all stage");
             OnAllCompletedAllStage?.Invoke(fruitListScore);
-            //OnStageFinish?.Invoke();
+            
         }
         else
         {
             //UpdateStage(stageIndex);
             EnablePlayMode();
             OnMoveToNextStage?.Invoke(stageIndex);
-            //OnStageFinish?.Invoke();
+            
             SetTutorialStatus(true);
         }
+    }
+    public void EarlyFinishGame()
+    {
+        Debug.Log("Finish before stage 6");
+        OnAllCompletedAllStage?.Invoke(fruitListScore);
     }
 
     private bool IsGameFinish()

@@ -62,7 +62,7 @@ public class OfflineTutorial : MonoBehaviour
         wall.SetActive(true);
         TutorialWall.SetActive(true);
     }
-    public void TutorialFinish(int s)
+    public void TutorialFinish(int s, int[] scoreRef)
     {
         TutorialWall.SetActive(false);
         wall.SetActive(false);

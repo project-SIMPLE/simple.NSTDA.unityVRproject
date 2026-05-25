@@ -53,7 +53,7 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
     };
     private Dictionary<int, TextMeshProUGUI> IDtoScoreUI = new Dictionary<int, TextMeshProUGUI>();
 
-
+    private int[] cTotalScore;
     /*
     private List<string> fruitNames = new List<string> { 
         "Quercus",
@@ -99,7 +99,7 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
     }
 
     private int[] cFruitID;
-    private void SetupHUDUIid(int season)
+    private void SetupHUDUIid(int season, int[] scoreRef)
     {
         switch(season) 
         {
@@ -129,7 +129,7 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
         for (int i = 0; i < cFruitID.Length; i++)
         {
             HUDUIFruitTexts[i].text = "" + IDtoFruitName[cFruitID[i]];
-            HUDUIFruitScore[i].text = "0";
+            HUDUIFruitScore[i].text = "" + scoreRef[cFruitID[i]];
 
             IDtoScoreUI.Add(cFruitID[i], HUDUIFruitScore[i]);
         }
@@ -151,28 +151,11 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
         HUDUI.SetActive(false);
         
 
-
-        /*if (isFinish)
-        {
-            //resultMenuUI.SetActive(false);
-            finishMenu.SetActive(true);
-        }
-        else
-        {
-            resultMenuUI.SetActive(true);
-            stageNumberText.text = "Season " + index.ToString();
-        }*/
-        /*
-        if(pausePannelScoreTexts != null)
-        {
-            pausePannelScoreTexts[0].text = appleScore.text;
-            pausePannelScoreTexts[1].text = orangeScore.text;
-            pausePannelScoreTexts[2].text = mangoScore.text;
-        }*/
     }
-    private void ShowAndUpdateStageIntroMenu(int stageIndex)
+    private void ShowAndUpdateStageIntroMenu(int stageIndex, int[] listScore)
     {
-        SetupHUDUIid(stageIndex);
+        cTotalScore = listScore;
+        SetupHUDUIid(stageIndex,cTotalScore);
         WorldUI.SetActive(true);
         stageIntroUI.SetActive(true);
         for (int i = 0; i < 3; i++)
