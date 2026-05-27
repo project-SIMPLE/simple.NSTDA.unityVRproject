@@ -129,7 +129,7 @@ public class VU1SeedCollectorHUDController : MonoBehaviour
         for (int i = 0; i < cFruitID.Length; i++)
         {
             HUDUIFruitTexts[i].text = "" + IDtoFruitName[cFruitID[i]];
-            HUDUIFruitScore[i].text = "" + scoreRef[cFruitID[i]];
+            HUDUIFruitScore[i].text = "" + scoreRef[cFruitID[i]-1];
 
             IDtoScoreUI.Add(cFruitID[i], HUDUIFruitScore[i]);
         }
