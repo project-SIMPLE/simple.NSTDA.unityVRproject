@@ -96,7 +96,7 @@ public class VU2BGSoundManager : MonoBehaviour
 
     public void PlayFireSFX(bool play)
     {
-
+        //Debug.Log("Play fire SFX");
         //StopAllCoroutines();
         StopCoroutine(ThunderAndRainSoundCoroutine());
         if (play)

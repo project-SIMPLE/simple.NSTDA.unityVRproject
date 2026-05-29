@@ -65,7 +65,7 @@ public class TimelineData : ScriptableObject
 
     public List<FireEvent> fireEvents = new List<FireEvent>
     {
-        new FireEvent { spawnTime =  45, fireType = "F1" },
+        new FireEvent { spawnTime =  47, fireType = "F1" },
         new FireEvent { spawnTime =  60, fireType = "F2" },
         new FireEvent { spawnTime =  75, fireType = "F1" },
         new FireEvent { spawnTime = 150, fireType = "F1" },
