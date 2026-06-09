@@ -11,7 +11,11 @@ public class VU2BGSoundManager : MonoBehaviour
     [SerializeField]
     private AudioSource camAudioSource;
     [SerializeField]
+    private AudioSource environmentSource;
+    [SerializeField]
     private AudioSource localAudioSource;
+    /*[SerializeField]
+    private AudioSource IntroAudioSource;*/
 
     [Header("----Audio Clip----")]
     [SerializeField]
@@ -47,6 +51,13 @@ public class VU2BGSoundManager : MonoBehaviour
     [SerializeField]
     private AudioClip s_Cutting;
 
+    [Header("----BG SFX ----")]
+    [SerializeField]
+    private AudioClip BGdecrease;
+    [SerializeField]
+    private AudioClip BGLevel2;
+    [SerializeField]
+    private AudioClip BGLevel3;
 
     private void Awake()
     {
@@ -92,6 +103,38 @@ public class VU2BGSoundManager : MonoBehaviour
     {
         if (s_Endings[index] == null) return;
         camAudioSource.PlayOneShot(s_Endings[index]);
+    }
+
+    /*
+     * -1 BG down
+     * 2 BG2
+     * 3 BG3
+     *
+     * */
+
+    public void PlayBGChangeSFX(int BG)
+    {
+        if (environmentSource.isPlaying)
+        {
+            environmentSource.Stop();  
+        }
+        AudioClip tmpAC;
+        switch (BG)
+        {
+            case -1:
+                tmpAC = BGdecrease;
+                break;
+            case 2:
+                tmpAC = BGLevel2;
+                break;
+            case 3:
+                tmpAC = BGLevel3;
+                break;
+            default:
+                tmpAC = BGdecrease;
+                break;
+        }
+        environmentSource.PlayOneShot(tmpAC);
     }
 
     public void PlayFireSFX(bool play)

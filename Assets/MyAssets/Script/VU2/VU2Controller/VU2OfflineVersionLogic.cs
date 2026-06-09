@@ -18,6 +18,7 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
     private VU2EnvironmentController envController;
     private VU2PlayerInteractionControl pInteractControler;
     private VU2OfflineGameManager gameManager;
+    private VU2BGSoundManager soundManager;
 
     /*[SerializeField]
     private QuestionnaireControl Q1Script;
@@ -50,6 +51,7 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
         envController = this.gameObject.GetComponent<VU2EnvironmentController>();
         pInteractControler = this.gameObject.GetComponent<VU2PlayerInteractionControl>();
         gameManager = this.gameObject.GetComponent<VU2OfflineGameManager>();
+        soundManager = this.gameObject.GetComponent<VU2BGSoundManager>();
     }
 
     public void LogicStartStopGame(bool isRunning)
@@ -60,8 +62,9 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
             pInteractControler.EnableTools(true);
             pInteractControler.EnableLocomotion(true);
             cBGStage = 2;
+            ChangeBackgroundEnvironment(cBGStage);
             playerScore = 100;
-            IsBGChange();
+            //IsBGChange();
             gameManager.GameStart();
         }
         else
@@ -100,11 +103,28 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
 
         if (newBGStage != cBGStage)
         {
+            if (cBGStage > newBGStage)
+            {
+                PlayBackgroundChangeSFX(-1);
+            }
+            else
+            {
+                PlayBackgroundChangeSFX(newBGStage);
+            }
+
             cBGStage = newBGStage;
-            envController.ShowEnvironment(cBGStage);
+            //envController.ShowEnvironment(cBGStage);
+            ChangeBackgroundEnvironment(cBGStage);
         }
     }
-
+    private void ChangeBackgroundEnvironment(int stage)
+    {
+        envController.ShowEnvironment(stage);
+    }
+    private void PlayBackgroundChangeSFX(int sfxStage)
+    {
+        soundManager.PlayBGChangeSFX(sfxStage);
+    }
 
     public void LogicCreateThreat(string name, Vector3 pos)
     {
