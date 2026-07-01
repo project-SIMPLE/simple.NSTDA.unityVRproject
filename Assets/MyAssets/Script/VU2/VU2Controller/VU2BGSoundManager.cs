@@ -114,6 +114,7 @@ public class VU2BGSoundManager : MonoBehaviour
 
     public void PlayBGChangeSFX(int BG)
     {
+        if (BG == 1) return;
         if (environmentSource.isPlaying)
         {
             environmentSource.Stop();  

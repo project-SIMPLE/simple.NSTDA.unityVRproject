@@ -18,6 +18,7 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
     private VU2EnvironmentController envController;
     private VU2PlayerInteractionControl pInteractControler;
     private VU2OfflineGameManager gameManager;
+    [SerializeField]
     private VU2BGSoundManager soundManager;
 
     /*[SerializeField]
@@ -51,7 +52,7 @@ public class VU2OfflineVersionLogic : MonoBehaviour,IVU2GameLogic
         envController = this.gameObject.GetComponent<VU2EnvironmentController>();
         pInteractControler = this.gameObject.GetComponent<VU2PlayerInteractionControl>();
         gameManager = this.gameObject.GetComponent<VU2OfflineGameManager>();
-        soundManager = this.gameObject.GetComponent<VU2BGSoundManager>();
+        //soundManager = this.gameObject.GetComponent<VU2BGSoundManager>();
     }
 
     public void LogicStartStopGame(bool isRunning)

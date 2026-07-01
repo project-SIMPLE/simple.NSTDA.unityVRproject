@@ -20,6 +20,7 @@ public class VU2OnlineVersionLogic : MonoBehaviour, IVU2GameLogic
     //private GameObject PauseUI;
     private VU2EnvironmentController envController;
     private VU2PlayerInteractionControl pInteractControler;
+    [SerializeField]
     private VU2BGSoundManager soundController;
 
     [SerializeField]
@@ -34,17 +35,18 @@ public class VU2OnlineVersionLogic : MonoBehaviour, IVU2GameLogic
     private int totalFire = 0;
     [SerializeField]
     private bool isGAMAReceieveData;
-
+    private bool isGameRunning;
 
     private void Awake()
     {
         envController = this.gameObject.GetComponent<VU2EnvironmentController>();
         pInteractControler = this.gameObject.GetComponent<VU2PlayerInteractionControl>();
-        soundController = this.gameObject.GetComponent<VU2BGSoundManager>();
+        //soundController = this.gameObject.GetComponent<VU2BGSoundManager>();
     }
 
     public void LogicStartStopGame(bool isRunning)
     {
+        isGameRunning = isRunning;
         if (isRunning)
         {
             VU2ForestProtectionEventManager.Instance.StatusUIControl(-1);
@@ -203,13 +205,15 @@ public class VU2OnlineVersionLogic : MonoBehaviour, IVU2GameLogic
                 if (int.TryParse(t.Name, out stage))
                 {
                     Debug.Log("Change background to stage: " + t.Name);
-                    if(cBGStage!= null && cBGStage > stage)
-                    {
-                        soundController.PlayBGChangeSFX(-1);
-                    }
-                    else
-                    {
-                        soundController.PlayBGChangeSFX(stage);
+                    if (isGameRunning) {
+                        if (cBGStage != null && cBGStage > stage)
+                        {
+                            soundController.PlayBGChangeSFX(-1);
+                        }
+                        else
+                        {
+                            soundController.PlayBGChangeSFX(stage);
+                        }
                     }
                     cBGStage = stage;
                     envController.ShowEnvironment(stage);
@@ -247,6 +251,7 @@ public class VU2OnlineVersionLogic : MonoBehaviour, IVU2GameLogic
 
     public void LogicCreateThreat(string name, Vector3 pos)
     {
+        Debug.Log("Creat Threat");
         switch (name)
         {
             case "Flame1":
